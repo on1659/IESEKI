@@ -29,8 +29,7 @@ public class GameState implements IState {
     @Override
     public void Update()
     {
-
-
+        int jebal = 9;
     }
 
     @Override
