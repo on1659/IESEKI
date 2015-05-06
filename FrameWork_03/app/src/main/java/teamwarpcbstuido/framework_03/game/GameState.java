@@ -1,8 +1,13 @@
 package teamwarpcbstuido.framework_03.game;
 
 import android.graphics.Canvas;
+import teamwarpcbstuido.framework_03.org.Debug;
+
+import android.graphics.Color;
 import android.view.MotionEvent;
+import teamwarpcbstuido.framework_03.R;
 import teamwarpcbstuido.framework_03.org.IState;
+import teamwarpcbstuido.framework_03.org.AppManager;
 
 
 /**
@@ -13,23 +18,31 @@ public class GameState implements IState {
 
 
     private BackGround m_background;
+    private Player m_player;
+    private Debug debug = new Debug();
 
     @Override
     public void Init()
     {
         m_background = new BackGround();
+        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
     }
 
     @Override
     public void Render(Canvas canvas)
     {
         m_background.Draw(canvas);
+        m_player.Draw(canvas);
+        debug.drawText(canvas, AppManager.getInstance().getSensorX(), 150,150, 45, Color.RED);
+        debug.drawText(canvas, AppManager.getInstance().getSensorY(), 150,250, 45, Color.RED);
+
     }
 
     @Override
     public void Update()
     {
-        int jebal = 9;
+         long GameTime = System.currentTimeMillis();
+        m_player.onUpdate(GameTime);
     }
 
     @Override
