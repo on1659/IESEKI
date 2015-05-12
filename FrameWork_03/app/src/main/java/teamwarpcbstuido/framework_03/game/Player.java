@@ -26,33 +26,35 @@ public class Player extends SpriteAnimation {
         num = 6;
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
-        m_size = 40;
-        this.InitSpriteData(104,62,3,6);
-        // this.InitSpriteData(h,w/num,3,num);
-        this.SetPosition(140, 380);
+        this.InitSpriteData(10, 1 ,10, 6);
+        this.SetPosition(140, 380,70,80);
+
     }
 
     public void  onUpdate(long GameTime)
     {
         m_gameTime = GameTime;
+        this.SpriteUpdate(GameTime);
+
+        m_cx -= (int)AppManager.getInstance().getSensorX();
+        m_cy -= (int)AppManager.getInstance().getSensorY();
+
+        if(m_cx >= width - m_w) {
+            m_cx = width - m_w;
+        }
+
+        else if(m_cx <= m_w) {
+            m_cx = m_w;
+        }
 
 
+        if(m_cy >= height - m_h) {
+            m_cy = height- m_h;
+        }
 
-
-        if(m_x > width - m_size)
-             m_x = width - m_size;
-        else if(m_x < 0)
-            m_x = 0;
-        else
-            m_x -= (int)AppManager.getInstance().getSensorX();
-
-        if(m_y > height - m_size)
-            m_y = height- m_size;
-        else if(m_y < 0)
-            m_y = 0;
-        else
-          m_y -= (int)AppManager.getInstance().getSensorY();
-
+        else if(m_cy <= m_h) {
+            m_cy = m_h;
+        }
 
 
     }

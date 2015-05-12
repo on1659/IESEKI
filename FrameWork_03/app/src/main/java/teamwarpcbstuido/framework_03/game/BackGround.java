@@ -24,12 +24,4 @@ public class BackGround extends GraphicObject{
 
        }
 
-    public void Draw(Canvas canvas)
-    {
-        canvas.drawBitmap(m_bitmap, m_x, m_y, null);
-
-
-
-    }
-
 }

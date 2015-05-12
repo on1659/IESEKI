@@ -25,7 +25,7 @@ public class GameState implements IState {
     public void Init()
     {
         m_background = new BackGround();
-        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
+        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class GameState implements IState {
     public void Update()
     {
          long GameTime = System.currentTimeMillis();
-        m_player.onUpdate(GameTime);
+          m_player.onUpdate(GameTime);
     }
 
     @Override

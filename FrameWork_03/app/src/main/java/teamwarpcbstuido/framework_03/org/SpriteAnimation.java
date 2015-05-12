@@ -28,9 +28,9 @@ public class SpriteAnimation extends GraphicObject {
         mCurrentFrame =0;
     }
 
-    public void InitSpriteData(int Height, int Width, int theFPS, int theFrameCount) {
-        mSpriteHeight = Height;
-        mSpriteWidth = Width;
+    public void InitSpriteData(int _w, int _h, int theFPS, int theFrameCount) {
+        mSpriteHeight = m_bitmap.getHeight() / _h;
+        mSpriteWidth = m_bitmap.getWidth() / _w;
         mSRectangle.top = 0;
         mSRectangle.bottom = mSpriteHeight;
         mSRectangle.left = 0;
@@ -39,13 +39,13 @@ public class SpriteAnimation extends GraphicObject {
         mNoOfFrames = theFrameCount;
     }
     @Override
-    public void Draw(Canvas canvas){
-        Rect dest = new Rect(m_x, m_y,m_x + mSpriteWidth, m_y + mSpriteHeight);
-
+    public void Draw(Canvas canvas)
+    {
+        Rect dest =new Rect( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
         canvas.drawBitmap(m_bitmap, mSRectangle, dest, null);
     }
 
-    public void Update(long GameTime) {
+    public void SpriteUpdate(long GameTime) {
         if(!mbEnd){
             if(GameTime > mFrameTimer + mFPS ) {
                 mFrameTimer = GameTime;
