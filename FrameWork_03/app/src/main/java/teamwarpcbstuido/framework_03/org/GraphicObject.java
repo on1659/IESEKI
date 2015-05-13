@@ -35,6 +35,7 @@ public class GraphicObject {
         m_cy = _y;
         m_w = _w;
         m_h = _h;
+
         m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
     }
     public void Draw(Canvas canvas){

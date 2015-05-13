@@ -5,6 +5,10 @@ import teamwarpcbstuido.framework_03.org.Debug;
 
 import android.graphics.Color;
 import android.view.MotionEvent;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+
 import teamwarpcbstuido.framework_03.R;
 import teamwarpcbstuido.framework_03.org.IState;
 import teamwarpcbstuido.framework_03.org.AppManager;
@@ -21,11 +25,20 @@ public class GameState implements IState {
     private Player m_player;
     private Debug debug = new Debug();
 
+    private ArrayList<Monster> m_monster = new ArrayList<Monster>();
     @Override
     public void Init()
     {
         m_background = new BackGround();
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
+
+
+        Monster mon = null;
+
+
+    //   monster =  new Monster();
+
+
     }
 
     @Override

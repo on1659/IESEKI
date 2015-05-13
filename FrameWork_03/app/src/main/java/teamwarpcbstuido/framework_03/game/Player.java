@@ -16,18 +16,23 @@ public class Player extends SpriteAnimation {
 
     long m_gameTime;
     public int width, height;
-    int m_size;
+    protected  int limitX, limitY;
+    int hp;
+
     public Player(Bitmap bitmap){
         super(bitmap);
-        int w, h;
-        int num;
-        w = bitmap.getWidth();
-        h = bitmap.getHeight();
-        num = 6;
+        int dpiX, dpiY;
+
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
+
+        dpiX=  AppManager.getInstance().getDPI(0);
+        dpiY=  AppManager.getInstance().getDPI(1);
+
         this.InitSpriteData(10, 1 ,10, 6);
-        this.SetPosition(140, 380,70,80);
+        this.SetPosition(dpiX * 5, dpiY * 6,dpiX * 9,dpiY * 9);
+
+
 
     }
 
@@ -39,21 +44,21 @@ public class Player extends SpriteAnimation {
         m_cx -= (int)AppManager.getInstance().getSensorX();
         m_cy -= (int)AppManager.getInstance().getSensorY();
 
-        if(m_cx >= width - m_w) {
-            m_cx = width - m_w;
+        if(m_cx >= width - m_w/2) {
+            m_cx = width - m_w/2;
         }
 
-        else if(m_cx <= m_w) {
-            m_cx = m_w;
+        else if(m_cx <= m_w/2) {
+            m_cx = m_w/2;
         }
 
 
-        if(m_cy >= height - m_h) {
-            m_cy = height- m_h;
+        if(m_cy >= height - m_h/2) {
+            m_cy = height- m_h/2;
         }
 
-        else if(m_cy <= m_h) {
-            m_cy = m_h;
+        else if(m_cy <= m_h/2) {
+            m_cy = m_h/2;
         }
 
 

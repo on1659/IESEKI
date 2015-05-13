@@ -15,6 +15,9 @@ public class AppManager {
 
     static final int X = 0;
     static final int Y = 1;
+
+    static final  int DPI[] = new int[2];
+
     int screen_width, screen_height;
 
     public static AppManager getInstance(){
@@ -30,14 +33,23 @@ public class AppManager {
     }
     void setMoveSensor(moveSensor _moveSensor){m_moveSensor = _moveSensor;}
 
-    void setSize(int _width, int _height){
+    void setSize(int _width, int _height)
+    {
         screen_width = _width;
         screen_height = _height;
+        DPI[X] = screen_width / 36;
+        DPI[Y] = screen_height / 64;
+
     }
+
+
+
+
    public float getSensorX(){return m_moveSensor.getX();}
    public float getSensorY(){return m_moveSensor.getY();}
    public int getWidth(){return screen_width;}
-    public int getHeight(){return screen_height;}
+   public int getHeight(){return screen_height;}
+    public int getDPI(int select){return DPI[select];}
 
     public GameView getGameView(){
         return m_gameview;
