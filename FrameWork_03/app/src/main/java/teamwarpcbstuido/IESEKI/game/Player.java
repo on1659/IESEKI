@@ -1,9 +1,9 @@
-package teamwarpcbstuido.framework_03.game;
+package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Bitmap;
 
-import teamwarpcbstuido.framework_03.org.AppManager;
-import teamwarpcbstuido.framework_03.org.SpriteAnimation;
+import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
 
 /**
  * Created by Administrator on 2015-04-09.
@@ -30,7 +30,7 @@ public class Player extends SpriteAnimation {
 
 
 
-        this.InitSpriteData(10, 1 ,10, 6);
+        this.InitSpriteData(10, 1 ,10, 10);
         this.SetPosition(DPI,5,6,5,5);
 
 

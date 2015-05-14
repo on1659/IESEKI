@@ -1,9 +1,9 @@
-package teamwarpcbstuido.framework_03.game;
+package teamwarpcbstuido.IESEKI.game;
 
 
 
-import teamwarpcbstuido.framework_03.R;
-import teamwarpcbstuido.framework_03.org.AppManager;
+import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 
 /**
  * Created by Administrator on 2015-05-13.

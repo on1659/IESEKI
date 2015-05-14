@@ -1,10 +1,8 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-
-import teamwarpcbstuido.framework_03.org.GraphicObject;
 
 public class SpriteAnimation extends GraphicObject {
 

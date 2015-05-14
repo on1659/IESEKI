@@ -1,7 +1,6 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.graphics.Canvas;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 /**

@@ -1,14 +1,12 @@
-package teamwarpcbstuido.framework_03.game;
+package teamwarpcbstuido.IESEKI.game;
 
-import android.app.AppOpsManager;
-import android.appwidget.AppWidgetProvider;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import teamwarpcbstuido.framework_03.R;
-import teamwarpcbstuido.framework_03.org.AppManager;
-import teamwarpcbstuido.framework_03.org.GraphicObject;
+import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.GraphicObject;
 
 /**
  * Created by Administrator on 2015-04-15.

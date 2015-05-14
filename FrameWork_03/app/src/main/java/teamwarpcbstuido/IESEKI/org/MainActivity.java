@@ -1,8 +1,7 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Window;
 import android.view.WindowManager;
 

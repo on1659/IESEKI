@@ -1,9 +1,7 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import java.util.Objects;
 
 /**
  * Created by Administrator on 2015-05-15.

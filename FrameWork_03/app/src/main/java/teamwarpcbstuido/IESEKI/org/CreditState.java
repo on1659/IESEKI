@@ -1,32 +1,35 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.graphics.Color;
 import android.view.MotionEvent;
 
-import teamwarpcbstuido.framework_03.R;
+import teamwarpcbstuido.IESEKI.R;
 
-public class IntroState implements IState {
+public class CreditState implements IState {
     Bitmap icon;
     int x, y;
 
     @Override
-    public void Destroy(){
+    public void Destroy()
+    {
     }
 
     @Override
     public void Init() {
-        icon = AppManager.getInstance().getBitmap(R.drawable.character);
+        icon = AppManager.getInstance().getBitmap(R.drawable.monster_dolphin);
     }
 
     @Override
-    public void Update() {
+    public void Update()
+    {
     }
 
     @Override
     public void Render(Canvas canvas) {
-        canvas.drawBitmap(icon, x, y, null);
+        canvas.drawColor((Color.BLACK));
+        canvas.drawBitmap(icon, x , y , null);
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {

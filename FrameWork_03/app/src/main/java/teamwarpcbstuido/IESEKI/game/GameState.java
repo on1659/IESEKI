@@ -1,7 +1,7 @@
-package teamwarpcbstuido.framework_03.game;
+package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Canvas;
-import teamwarpcbstuido.framework_03.org.Debug;
+import teamwarpcbstuido.IESEKI.org.Debug;
 
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,10 +11,9 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import teamwarpcbstuido.framework_03.R;
-import teamwarpcbstuido.framework_03.org.IState;
-import teamwarpcbstuido.framework_03.org.AppManager;
-import teamwarpcbstuido.framework_03.org.Collision;
+import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.IState;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 
 
 /**

@@ -1,4 +1,4 @@
-package teamwarpcbstuido.framework_03.org;
+package teamwarpcbstuido.IESEKI.org;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -16,8 +15,8 @@ import android.view.WindowManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import teamwarpcbstuido.framework_03.R;
-import teamwarpcbstuido.framework_03.game.GameState;
+import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.game.GameState;
 
 
 /**
