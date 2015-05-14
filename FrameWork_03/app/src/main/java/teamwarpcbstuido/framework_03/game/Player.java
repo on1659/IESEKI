@@ -1,11 +1,7 @@
 package teamwarpcbstuido.framework_03.game;
 
-import android.app.AppOpsManager;
 import android.graphics.Bitmap;
-import android.view.Display;
-import android.view.WindowManager;
 
-import teamwarpcbstuido.framework_03.R;
 import teamwarpcbstuido.framework_03.org.AppManager;
 import teamwarpcbstuido.framework_03.org.SpriteAnimation;
 
@@ -26,8 +22,12 @@ public class Player extends SpriteAnimation {
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
         DPI = AppManager.getInstance().getDPI();
-        reviseX = 0;
-        reviseY = 0;
+
+        float revise[] = new float[2];
+        revise = AppManager.getInstance().getPreference().SensorLoad();
+        reviseX = (int)revise[0];
+        reviseY = (int)revise[1];
+
 
 
         this.InitSpriteData(10, 1 ,10, 6);
@@ -67,6 +67,12 @@ public class Player extends SpriteAnimation {
     void setSensorRevise()
     {
         reviseX =(int) AppManager.getInstance().getSensorX();
-        reviseY =(int)AppManager.getInstance().getSensorY();
+        reviseY =(int) AppManager.getInstance().getSensorY();
+        AppManager.getInstance().getPreference().SensorSave(reviseX, reviseY);
     }
+
+    public int getReviseX(){return reviseX;}
+    public int getReviseY(){return reviseY;}
+
+
 }

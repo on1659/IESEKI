@@ -14,6 +14,7 @@ public class AppManager {
     private GameView m_gameview;
     private Resources m_resource;
     private Vibrator m_vibe;
+    private PreferenceManager m_preference;
 
     private moveSensor m_moveSensor;
     static final int X = 0;
@@ -35,8 +36,8 @@ public class AppManager {
         m_resource = _resource;
     }
     void setMoveSensor(moveSensor _moveSensor){m_moveSensor = _moveSensor;}
+    void setPreference(PreferenceManager _preferenceManager){m_preference = _preferenceManager;}
     void setVibeSensor(Context context){m_vibe = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);}
-
     void setSize(int _width, int _height)
     {
         screen_width = _width;
@@ -66,5 +67,6 @@ public class AppManager {
     public Bitmap getBitmap(int r){
         return BitmapFactory.decodeResource(m_resource, r);
     }
+    public PreferenceManager getPreference(){return m_preference;}
 
 }

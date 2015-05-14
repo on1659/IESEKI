@@ -36,6 +36,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private SoundManager soundManger;
     private GameViewThread m_thread;
     private moveSensor m_moveSensor;
+    private PreferenceManager m_preferenceManager;
 
     private  GameState gameState;
 
@@ -52,11 +53,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         DPI[AppManager.Y] = height / 32;
 
         m_moveSensor = new moveSensor(context);
+        m_preferenceManager = new PreferenceManager(context);
 
         AppManager.getInstance().setGameView(this);
         AppManager.getInstance().setResuorces(getResources());
         AppManager.getInstance().setSize(width, height);
         AppManager.getInstance().setMoveSensor(m_moveSensor);
+        AppManager.getInstance().setPreference(m_preferenceManager);
         AppManager.getInstance().setVibeSensor(context);
 
 

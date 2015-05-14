@@ -84,8 +84,10 @@ public class GameState implements IState {
 
 
         {
-            debug.drawText(canvas, m_player.getPos().left, 150, 350, 45, Color.RED);
-            debug.drawText(canvas, m_player.getPos().top, 250, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.getReviseX(), 150, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.getReviseY(), 250, 350, 45, Color.RED);
+
+
 
             debug.drawText(canvas, m_monster.size(), 250, 650, 55, Color.BLACK);
 
