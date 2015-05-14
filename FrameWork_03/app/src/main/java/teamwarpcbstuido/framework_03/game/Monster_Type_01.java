@@ -20,7 +20,7 @@ public class Monster_Type_01 extends  Monster {
     {
         super(AppManager.getInstance().getBitmap(R.drawable.monster_goldpig));
 
-        m_speed =5;
+        m_speed = 4;
         this.InitSpriteData(5, 1 ,10, 6);//w,h, speed, coutn
 
     }
