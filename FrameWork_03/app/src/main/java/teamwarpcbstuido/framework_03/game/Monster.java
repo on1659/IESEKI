@@ -16,40 +16,50 @@ import teamwarpcbstuido.framework_03.org.SpriteAnimation;
 public class Monster extends SpriteAnimation
 {
 
-   public static Monster m_monster;
-   protected int m_hp;
    protected int m_speed;
-    protected int xDestiny, yDestiny;
+   protected int xDestiny, yDestiny;
+   protected float xDir, yDir;
+   protected  int height;
 
     public Monster(Bitmap bitmap) {
         super(bitmap);
+        xDir = 1;
+        yDir = 1;
+        height = AppManager.getInstance().getHeight();
     }
 
 
-    public void Move()
+    public void Move(float fps)
     {
-
-        if(yDestiny > m_cy)
-        {
-            m_cy--;
-        }
-        else if(yDestiny < m_cy)
-        {
-           m_cy++;
-        }
-
-        if(xDestiny > m_cx)
-        {
-            m_cx++;
-        }
-        else if(xDestiny < m_cx)
-        {
-            m_cx--;
-        }
+        m_cy += (m_speed * yDir);
+        m_cx += (m_speed * xDir) / 3;
     }
 
     public boolean Collision(Rect col)
     {
         return m_pos.intersect(col);
     }
+
+    public void setDir(int _x, int _y)
+    {
+        xDestiny = _x;
+        yDestiny = _y;
+
+        if(xDestiny > m_cx)
+        {
+            xDir = 1;
+        }
+        else
+        {
+            xDir = -1;
+        }
+    }
+
+    public boolean Die(){
+        if(m_cy > height + 30) //어떤 해상도이든 30이상 넘어가면 된다.
+            return true;
+        return  false;
+    }
+
+
 }

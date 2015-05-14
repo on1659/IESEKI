@@ -62,7 +62,7 @@ public class Debug {
 
     public static void drawText(Canvas canvas,int data,int x,int y,int size, int color){
         Paint paint = new Paint();
-        paint.setStyle(Style.STROKE);
+        paint.setStyle(Style.FILL);
         paint.setColor(color);
         paint.setTextSize(size);
         String text;
@@ -71,16 +71,25 @@ public class Debug {
     }
     public static void drawText(Canvas canvas,float data,int x,int y,int size, int color){
         Paint paint = new Paint();
-        paint.setStyle(Style.STROKE);
+        paint.setStyle(Style.FILL);
         paint.setColor(color);
         paint.setTextSize(size);
         String text;
         text = Float.toString(data);
         canvas.drawText(text, x, y, paint);
     }
+    public static void drawText(Canvas canvas,long data,int x,int y,int size, int color){
+        Paint paint = new Paint();
+        paint.setStyle(Style.FILL);
+        paint.setColor(color);
+        paint.setTextSize(size);
+        String text;
+        text = Long.toString(data);
+        canvas.drawText(text, x, y, paint);
+    }
     public static void drawText(Canvas canvas, String data,int x,int y,int size, int color){
         Paint paint = new Paint();
-        paint.setStyle(Style.STROKE);
+        paint.setStyle(Style.FILL);
         paint.setColor(color);
         paint.setTextSize(size);
         canvas.drawText(data, x, y, paint);

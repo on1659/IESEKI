@@ -16,21 +16,22 @@ public class Player extends SpriteAnimation {
 
     long m_gameTime;
     public int width, height;
-    protected  int limitX, limitY;
+    protected  int reviseX, reviseY;
     int hp;
 
     public Player(Bitmap bitmap){
         super(bitmap);
-        int dpiX, dpiY;
+        int DPI[] = new int[2];
 
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
+        DPI = AppManager.getInstance().getDPI();
+        reviseX = 0;
+        reviseY = 0;
 
-        dpiX=  AppManager.getInstance().getDPI(0);
-        dpiY=  AppManager.getInstance().getDPI(1);
 
         this.InitSpriteData(10, 1 ,10, 6);
-        this.SetPosition(dpiX * 5, dpiY * 6,dpiX * 9,dpiY * 9);
+        this.SetPosition(DPI,5,6,5,5);
 
 
 
@@ -40,8 +41,8 @@ public class Player extends SpriteAnimation {
         m_gameTime = GameTime;
         this.SpriteUpdate(GameTime);
 
-        m_cx -= (int)AppManager.getInstance().getSensorX();
-        m_cy -= (int)AppManager.getInstance().getSensorY();
+        m_cx -= (int)AppManager.getInstance().getSensorX() - reviseX;
+        m_cy -= (int)AppManager.getInstance().getSensorY() - reviseY;
 
         if(m_cx >= width - m_w/2) {
             m_cx = width - m_w/2;
@@ -59,5 +60,13 @@ public class Player extends SpriteAnimation {
         else if(m_cy <= m_h/2) {
             m_cy = m_h/2;
         }
+
+        m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+    }
+
+    void setSensorRevise()
+    {
+        reviseX =(int) AppManager.getInstance().getSensorX();
+        reviseY =(int)AppManager.getInstance().getSensorY();
     }
 }

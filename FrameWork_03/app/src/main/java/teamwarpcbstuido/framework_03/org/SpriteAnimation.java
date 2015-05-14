@@ -47,8 +47,8 @@ public class SpriteAnimation extends GraphicObject {
 
     public void onDraw(Canvas canvas)
     {
-        Rect dest =new Rect( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
-        canvas.drawBitmap(m_bitmap, mSRectangle, dest, null);
+      m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+        canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
     }
 
     public void SpriteUpdate(long GameTime) {

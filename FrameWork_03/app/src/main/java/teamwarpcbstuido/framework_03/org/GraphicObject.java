@@ -55,7 +55,6 @@ public class GraphicObject {
 
 
 
-
     public int GetX(){return m_cx;}
     public int GetY(){return m_cy;}
     public int GetWidth(){return m_w;}
