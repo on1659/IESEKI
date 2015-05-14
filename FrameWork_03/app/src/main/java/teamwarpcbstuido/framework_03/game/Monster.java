@@ -3,6 +3,7 @@ package teamwarpcbstuido.framework_03.game;
 import android.app.AppOpsManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -23,6 +24,8 @@ public class Monster extends SpriteAnimation
     public Monster(Bitmap bitmap) {
         super(bitmap);
     }
+
+
     public void Move()
     {
 
@@ -43,6 +46,10 @@ public class Monster extends SpriteAnimation
         {
             m_cx--;
         }
+    }
 
+    public boolean Collision(Rect col)
+    {
+        return m_pos.intersect(col);
     }
 }

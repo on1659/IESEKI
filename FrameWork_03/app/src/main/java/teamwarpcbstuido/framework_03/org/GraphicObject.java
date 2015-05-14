@@ -15,7 +15,7 @@ public class GraphicObject {
     protected int m_cy;
     protected int m_w;
     protected int m_h;
-    Rect m_pos;
+    protected Rect m_pos;
 
 
     public GraphicObject(Bitmap bitmap)
@@ -38,6 +38,16 @@ public class GraphicObject {
 
         m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
     }
+
+    public void SetPosition(int DPI[], int _x, int _y, int _w, int _h)
+    {
+        m_cx = DPI[0] * _x;
+        m_cy = DPI[1] *  _y;
+        m_w =  DPI[0] * _w;
+        m_h =  DPI[1] * _h;
+
+        m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+    }
     public void Draw(Canvas canvas){
          m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
         canvas.drawBitmap(m_bitmap, null, m_pos, null);
@@ -48,6 +58,9 @@ public class GraphicObject {
 
     public int GetX(){return m_cx;}
     public int GetY(){return m_cy;}
+    public int GetWidth(){return m_w;}
+    public int GetHeight(){return m_h;}
+    public Rect getPos(){return m_pos;}
 
     public int GetBitmapWidth(){return m_bitmap.getWidth();}
     public int GetBitmapHeight(){return m_bitmap.getHeight();}

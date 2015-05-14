@@ -15,10 +15,10 @@ import teamwarpcbstuido.framework_03.org.SpriteAnimation;
  */
 public class Monster_Type_01 extends  Monster {
 
-    public Monster_Type_01() {
+    public Monster_Type_01()
+    {
         super(AppManager.getInstance().getBitmap(R.drawable.monster_goldpig));
-       // xDestiny = _x;
-       // yDestiny = _y;
+        this.InitSpriteData(5, 1 ,10, 6);//w,h, speed, coutn
     }
     public void Update(long GameTime) {
         this.Move();

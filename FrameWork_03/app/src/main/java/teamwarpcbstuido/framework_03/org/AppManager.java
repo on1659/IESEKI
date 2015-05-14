@@ -1,9 +1,11 @@
 package teamwarpcbstuido.framework_03.org;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Vibrator;
 
 //All of resource put in this Class
 public class AppManager {
@@ -11,13 +13,14 @@ public class AppManager {
     private static AppManager s_instance;
     private GameView m_gameview;
     private Resources m_resource;
-    private moveSensor m_moveSensor;
+    private Vibrator m_vibe;
 
+    private moveSensor m_moveSensor;
     static final int X = 0;
+
     static final int Y = 1;
 
     static final  int DPI[] = new int[2];
-
     int screen_width, screen_height;
 
     public static AppManager getInstance(){
@@ -32,6 +35,7 @@ public class AppManager {
         m_resource = _resource;
     }
     void setMoveSensor(moveSensor _moveSensor){m_moveSensor = _moveSensor;}
+    void setVibeSensor(Context context){m_vibe = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);}
 
     void setSize(int _width, int _height)
     {
@@ -45,11 +49,13 @@ public class AppManager {
 
 
 
-   public float getSensorX(){return m_moveSensor.getX();}
-   public float getSensorY(){return m_moveSensor.getY();}
-   public int getWidth(){return screen_width;}
-   public int getHeight(){return screen_height;}
+    public float getSensorX(){return m_moveSensor.getX();}
+    public float getSensorY(){return m_moveSensor.getY();}
+    public int getWidth(){return screen_width;}
+    public int getHeight(){return screen_height;}
     public int getDPI(int select){return DPI[select];}
+    public int[] getDPI(){return DPI;}
+    public void getShake(long _time){m_vibe.vibrate(_time);}
 
     public GameView getGameView(){
         return m_gameview;

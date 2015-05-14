@@ -31,8 +31,14 @@ public class BackGround extends GraphicObject{
 
     @Override
     public void Draw(Canvas canvas) {
-
        canvas.drawBitmap(m_bitmap, null, pos, null);
        canvas.drawBitmap(m_layer2, null, pos, null);
     }
+
+    public void onDraw(Canvas canvas) {
+        canvas.drawBitmap(m_bitmap, null, pos, null);
+        canvas.drawBitmap(m_layer2, null, pos, null);
+    }
+
+
 }

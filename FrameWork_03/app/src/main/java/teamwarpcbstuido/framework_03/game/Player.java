@@ -35,7 +35,6 @@ public class Player extends SpriteAnimation {
 
 
     }
-
     public void  onUpdate(long GameTime)
     {
         m_gameTime = GameTime;
@@ -60,7 +59,5 @@ public class Player extends SpriteAnimation {
         else if(m_cy <= m_h/2) {
             m_cy = m_h/2;
         }
-
-
     }
 }
