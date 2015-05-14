@@ -28,13 +28,10 @@ public class Player extends SpriteAnimation {
         reviseX = (int)revise[0];
         reviseY = (int)revise[1];
 
+        //this.InitSpriteData(10, 1 ,10, 6);
+        this.InitSpriteData(1, 1 ,1, 1);
 
-
-        this.InitSpriteData(10, 1 ,10, 10);
         this.SetPosition(DPI,5,6,5,5);
-
-
-
     }
     public void  onUpdate(long GameTime)
     {

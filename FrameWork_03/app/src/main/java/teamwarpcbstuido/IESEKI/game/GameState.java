@@ -15,7 +15,6 @@ import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.IState;
 import teamwarpcbstuido.IESEKI.org.AppManager;
 
-
 /**
  * Created by Administrator on 2015-04-09.
  */
@@ -50,7 +49,7 @@ public class GameState implements IState {
     float current_time;
 
 
-     Rect button = new Rect();
+    Rect button = new Rect();
 
 
     @Override
@@ -61,7 +60,8 @@ public class GameState implements IState {
         height =  AppManager.getInstance().getHeight();
 
         m_background = new BackGround();
-        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
+        //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
+        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
         FPS = 0;
 
         current_time = System.currentTimeMillis();
@@ -80,11 +80,9 @@ public class GameState implements IState {
                 m_monster.get(i).onDraw(canvas);
         }
 
-
-
         {
-            debug.drawText(canvas, m_player.getReviseX(), 150, 350, 45, Color.RED);
-            debug.drawText(canvas, m_player.getReviseY(), 250, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.GetX(), 150, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.GetY(), 250, 350, 45, Color.RED);
 
 
 
@@ -139,6 +137,7 @@ public class GameState implements IState {
         FPS = this.FramePerSecond();
 
         m_player.onUpdate(GameTime);
+        m_background.onUpdate(GameTime);
 
         if(m_monster.size() != 0)
         {
@@ -149,8 +148,8 @@ public class GameState implements IState {
 
             }
         }
-         this.AddMonster();
-         this.Collision();
+        this.AddMonster();
+        this.Collision();
     }
 
     @Override
@@ -166,7 +165,7 @@ public class GameState implements IState {
 
                 if(m_monster.get(i).Collision(m_player.getPos()))
                 {
-                    AppManager.getInstance().getShake(500);
+                   // AppManager.getInstance().getShake(500);
                     m_monster.remove(i);
                 }
         }
@@ -204,7 +203,7 @@ public class GameState implements IState {
                     break;
             }//switch
 
-            mon.SetPosition(DPI, rnd.nextInt(25) + 2, -2, 2, 2); //Max DPI[X] is 36
+            mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(1), 5, 5); //Max DPI[X] is 36
             mon.setDir(m_player.GetX(), m_player.GetY());
             m_monster.add(mon);
         }//for
