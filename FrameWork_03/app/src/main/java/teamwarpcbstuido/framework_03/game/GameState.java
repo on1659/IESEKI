@@ -34,9 +34,8 @@ public class GameState implements IState {
 
 
         Monster mon = null;
-
-
-    //   monster =  new Monster();
+        mon = new Monster_Type_01();
+        //monster =  new Monster();
 
 
     }

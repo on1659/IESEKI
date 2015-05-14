@@ -15,7 +15,7 @@ import teamwarpcbstuido.framework_03.org.SpriteAnimation;
  */
 public class Monster_Type_01 extends  Monster {
 
-    public Monster_Type_01(Bitmap bitmap) {
+    public Monster_Type_01() {
         super(AppManager.getInstance().getBitmap(R.drawable.monster_goldpig));
        // xDestiny = _x;
        // yDestiny = _y;
