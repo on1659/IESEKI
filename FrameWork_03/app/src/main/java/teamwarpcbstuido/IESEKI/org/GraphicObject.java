@@ -2,6 +2,8 @@ package teamwarpcbstuido.IESEKI.org;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 /**
@@ -51,15 +53,18 @@ public class GraphicObject {
     public void Draw(Canvas canvas){
          m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
         canvas.drawBitmap(m_bitmap, null, m_pos, null);
+
     }
 
 
 
-    public int GetX(){return m_cx;}
-    public int GetY(){return m_cy;}
+    public int getX(){return m_cx - m_w/2;}
+    public int getY(){return m_cy- m_h/2;}
     public int GetWidth(){return m_w;}
     public int GetHeight(){return m_h;}
+    public int getRadius(){return m_w/2;}
     public Rect getPos(){return m_pos;}
+
 
     public int GetBitmapWidth(){return m_bitmap.getWidth();}
     public int GetBitmapHeight(){return m_bitmap.getHeight();}

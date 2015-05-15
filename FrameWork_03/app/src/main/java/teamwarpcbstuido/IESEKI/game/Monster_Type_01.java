@@ -7,6 +7,7 @@ import teamwarpcbstuido.IESEKI.org.AppManager;
 public class Monster_Type_01 extends  Monster {
 
 
+
     public Monster_Type_01(int DPI[])
     {
         //super(AppManager.getInstance().getBitmap(R.drawable.monster_goldpig));
@@ -16,7 +17,7 @@ public class Monster_Type_01 extends  Monster {
         //this.InitSpriteData(5, 1 ,10, 6);//w,h, speed, coutn
         this.InitSpriteData(1, 1 ,1, 1);//w,h, speed, coutn
 
-        m_speed = 5;
+        m_speed = DPI[1] * 5;
     }
 
 

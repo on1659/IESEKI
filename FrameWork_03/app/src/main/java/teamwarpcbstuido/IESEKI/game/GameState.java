@@ -1,6 +1,8 @@
 package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Canvas;
+
+import teamwarpcbstuido.IESEKI.org.Collision;
 import teamwarpcbstuido.IESEKI.org.Debug;
 
 import android.graphics.Color;
@@ -81,10 +83,11 @@ public class GameState implements IState {
         }
 
         {
-            debug.drawText(canvas, m_player.GetX(), 150, 350, 45, Color.RED);
-            debug.drawText(canvas, m_player.GetY(), 250, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.getX(), 150, 350, 45, Color.RED);
+            debug.drawText(canvas, m_player.getY(), 250, 350, 45, Color.RED);
 
-
+            debug.drawText(canvas, m_player.getPos().left, 150, 450, 45, Color.RED);
+            debug.drawText(canvas, m_player.getPos().top, 250, 450, 45, Color.RED);
 
             debug.drawText(canvas, m_monster.size(), 250, 650, 55, Color.BLACK);
 
@@ -96,6 +99,7 @@ public class GameState implements IState {
 
 
         debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
+
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.RED);
@@ -126,7 +130,7 @@ public class GameState implements IState {
         float frame_time = System.currentTimeMillis() - current_time;
         float frame_rate = 1.0f / frame_time;
         current_time += frame_time;
-        return frame_time;
+        return 1/fps;
     }
 
 
@@ -161,13 +165,20 @@ public class GameState implements IState {
     {
         if(m_monster.size() != 0)
         {
-            for(int i = 0; i< m_monster.size()- 1; i++)
+            for(int i = 0; i< m_monster.size()- 1; i++) {
 
-                if(m_monster.get(i).Collision(m_player.getPos()))
+                //Circle Collision
+             if(Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(),m_player.getY(),m_player.getRadius()))
                 {
-                   // AppManager.getInstance().getShake(500);
                     m_monster.remove(i);
                 }
+
+                //Rect Collision
+               //if (m_monster.get(i).Collision(m_player.getPos()))
+               //{
+               //    m_monster.remove(i);
+               //}
+            }
         }
     }
 
@@ -203,8 +214,8 @@ public class GameState implements IState {
                     break;
             }//switch
 
-            mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(1), 5, 5); //Max DPI[X] is 36
-            mon.setDir(m_player.GetX(), m_player.GetY());
+            mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
+            mon.setDir(m_player.getX(), m_player.getY());
             m_monster.add(mon);
         }//for
 

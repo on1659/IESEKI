@@ -50,8 +50,8 @@ public class BackGround extends GraphicObject{
     public void onUpdate(long GameTime)
     {
 
-        m_background_01.offset(0, -DPI[Y]/4);
-        m_background_02.offset(0, -DPI[Y]/4);
+        m_background_01.offset(0, -DPI[Y]/8);
+        m_background_02.offset(0, -DPI[Y]/8);
 
         if(m_background_01.top <= -height)
             m_background_01.set(0, height, width, height*2 + DPI[Y]/4);

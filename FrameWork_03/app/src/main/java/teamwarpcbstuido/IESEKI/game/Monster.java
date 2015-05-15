@@ -14,20 +14,22 @@ public class Monster extends SpriteAnimation
    protected int m_speed;
    protected int xDestiny, yDestiny;
    protected float xDir, yDir;
-   protected  int height;
+   protected  int width, height;
 
     public Monster(Bitmap bitmap) {
         super(bitmap);
         xDir = 1;
         yDir = 1;
+
+        width = AppManager.getInstance().getWidth();
         height = AppManager.getInstance().getHeight();
     }
 
 
     public void Move(float fps)
     {
-        m_cy += (m_speed * yDir);
-        m_cx += (m_speed * xDir) / 3;
+        m_cy += (m_speed * yDir) * fps;
+        m_cx += (m_speed * xDir / 3) * fps;
     }
 
     public boolean Collision(Rect col)
@@ -51,8 +53,9 @@ public class Monster extends SpriteAnimation
     }
 
     public boolean Die(){
-        if(m_cy > height + 30) //어떤 해상도이든 30이상 넘어가면 된다.
+        if(m_cy > height + 15 || m_cx < - 15 || m_cx > width + 15) //어떤 해상도이든 5이상 넘어가면 된다.
             return true;
+
         return  false;
     }
 
