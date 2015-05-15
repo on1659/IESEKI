@@ -11,8 +11,7 @@ public class Monster_Type_01 extends  Monster {
     public Monster_Type_01(int DPI[])
     {
         //super(AppManager.getInstance().getBitmap(R.drawable.monster_goldpig));
-        super(AppManager.getInstance().getBitmap(R.drawable.enemy
-        ));
+        super(AppManager.getInstance().getBitmap(R.drawable.enemy));
 
         //this.InitSpriteData(5, 1 ,10, 6);//w,h, speed, coutn
         this.InitSpriteData(1, 1 ,1, 1);//w,h, speed, coutn
@@ -21,7 +20,7 @@ public class Monster_Type_01 extends  Monster {
     }
 
 
-    public void onUpdate(long GameTime) {
-        this.Move(GameTime);
+    public void onUpdate(float frame_time) {
+        this.Move(frame_time);
     }
 }

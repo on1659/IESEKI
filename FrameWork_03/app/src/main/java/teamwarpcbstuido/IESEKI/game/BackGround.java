@@ -47,7 +47,7 @@ public class BackGround extends GraphicObject{
 
     }
 
-    public void onUpdate(long GameTime)
+    public void onUpdate(float GameTime)
     {
 
         m_background_01.offset(0, -DPI[Y]/8);
@@ -64,8 +64,8 @@ public class BackGround extends GraphicObject{
 
     @Override
     public void Draw(Canvas canvas){
-    canvas.drawBitmap(m_layer1, null, m_background_01, null);
-    canvas.drawBitmap(m_layer2, null, m_background_02, null);
+        canvas.drawBitmap(m_layer1, null, m_background_01, null);
+        canvas.drawBitmap(m_layer2, null, m_background_02, null);
     }
 
     public void onDraw(Canvas canvas) {
