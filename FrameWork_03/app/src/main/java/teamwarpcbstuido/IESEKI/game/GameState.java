@@ -46,7 +46,6 @@ public class GameState implements IState {
     private Debug debug = new Debug();
 
     private ArrayList<Monster> m_monster = new ArrayList<Monster>();
-    private ArrayList<Item> m_item = new ArrayList<Item>();
 
     private long LastRegenEnemy = System.currentTimeMillis();
     private long LastRegenItem= System.currentTimeMillis();
@@ -58,9 +57,11 @@ public class GameState implements IState {
     float current_time;
 
 
+    boolean debugCheck;
+    Rect    debugBtn = new Rect();
+
     Rect button = new Rect();
 
-    Item    item;
 
     @Override
     public void Init()
@@ -77,24 +78,23 @@ public class GameState implements IState {
         current_time = System.currentTimeMillis();
 
         Make_Monster(4, Monster_Type_01);
-        Make_Item(2, ITEM_FireWheel);
         button.set(DPI[X]*25, DPI[Y]*40, DPI[X]*30,DPI[Y]*45);
+        debugBtn.set(DPI[X]*25, DPI[Y]*20,DPI[X] * 30, DPI[Y]*25);
 
-        item = new FireWheel(DPI);
-        item.SetPosition(DPI, 2, -3, 5, 5); //Max DPI[X] is 36
+
+        debugCheck= false;
     }
+
     @Override
     public void Render(Canvas canvas)
     {
         m_background.onDraw(canvas);
 
 
-        if(m_item.size() != 0)
-        {
-            for(int i = 0; i< m_item.size()- 1; i++);
-               // m_item.get(i).onDraw(canvas);
-
-        }
+        //        ++
+        //     ++ // --
+        //        --
+        //Rll X , Pitch Y
 
         if(m_monster.size() != 0)
         {
@@ -102,23 +102,15 @@ public class GameState implements IState {
                 m_monster.get(i).onDraw(canvas);
         }
 
-
         {
-            debug.drawText(canvas, item.getX(), 150, 350, 45, Color.RED);
-            debug.drawText(canvas, item.getY(), 250, 350, 45, Color.RED);
-
-            debug.drawText(canvas, m_player.getPos().left, 150, 450, 45, Color.RED);
+            debug.drawText(canvas,  m_player.getPos().left, 150, 450, 45, Color.RED);
             debug.drawText(canvas, m_player.getPos().top, 250, 450, 45, Color.RED);
 
-            debug.drawText(canvas, m_item.size(), 250, 650, 55, Color.BLACK);
-
-
-            debug.drawText(canvas, AppManager.getInstance().getSensorX(), 150, 150, 45, Color.RED);
-            debug.drawText(canvas, AppManager.getInstance().getSensorY(), 150, 250, 45, Color.RED);
+            debug.drawText(canvas, "Roll : "  +AppManager.getInstance().getSensorX(), 150, 150, 45, Color.BLUE);
+            debug.drawText(canvas,  "Pitch : " +AppManager.getInstance().getSensorY(), 150, 250, 45, Color.BLUE);
 
         }
 
-        item.onDraw(canvas);
 
         debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
 
@@ -126,9 +118,15 @@ public class GameState implements IState {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.RED);
         canvas.drawRect(button,paint);
+        paint.setColor(Color.BLUE);
+        canvas.drawRect(debugBtn,paint);
 
-        m_player.onDraw(canvas);
+        m_player.onDrawPalyer(canvas);
+
+
+        if(debugCheck)Debug.debugLine(canvas);
     }
+
     public float FramePerSecond()
     {
         long fpsEndTime = System.currentTimeMillis();
@@ -165,7 +163,6 @@ public class GameState implements IState {
         m_player.onUpdate(GameTime);
         m_background.onUpdate(GameTime);
 
-        item.Move(GameTime,FPS);
 
 
         if(m_monster.size() != 0)
@@ -178,17 +175,7 @@ public class GameState implements IState {
             }
         }
 
-     // if(m_item.size() != 0)
-     // {
-     //     for(int i= 0; i< m_item.size() - 1; i++)
-     //     {
-     //         m_item.get(i).Move(GameTime, FPS);
-     //         if(m_item.get(i).Die()) m_item.remove(i);
-     //     }
-     // }
-
         this.AddMonster();
-        this.AddItem();
         this.Collision();
     }
 
@@ -196,6 +183,7 @@ public class GameState implements IState {
     public void Destroy()
     {
     }
+
     public void Collision()
     {
         if(m_monster.size() != 0)
@@ -209,60 +197,16 @@ public class GameState implements IState {
                 }
             }
         }
-
-        if(m_item.size() != 0)
-        {
-            for(int i = 0; i< m_item.size()- 1; i++) {
-
-                //Circle Collision
-                if(Collision.collisionCircle(m_item.get(i).getX(), m_item.get(i).getY(), m_item.get(i).getRadius(), m_player.getX(),m_player.getY(),m_player.getRadius()))
-                {
-                   // m_item.remove(i);
-                }
-            }
-        }
-
     }
-    public void AddItem()
-    {
-        Random rnd =new Random();
-        long GameTime = System.currentTimeMillis();
-        if(System.currentTimeMillis() - LastRegenItem >= 55)
-        {
-            LastRegenItem = System.currentTimeMillis();
-            Make_Item(0, ITEM_FireWheel);
-        }
-    }
+
     public void AddMonster()
     {
         Random rnd =new Random();
         long GameTime = System.currentTimeMillis();
-        if(System.currentTimeMillis() - LastRegenEnemy >= 55500)
+        if(System.currentTimeMillis() - LastRegenEnemy >= 50000)
         {
             LastRegenEnemy = System.currentTimeMillis();
             Make_Monster(rnd.nextInt(8), Monster_Type_01);
-        }
-    }
-    public void Make_Item(int make_num,int make_type)
-    {
-        for(int i =0; i< make_num; i++)
-        {
-            Item itm = null;
-            Random rnd = new Random();
-
-            switch(make_type)
-            {
-                case ITEM_FireWheel:
-                    itm = new FireWheel(DPI);
-                    break;
-                case ITEM_Type02:
-                    break;
-                case ITEM_Type_03:
-                    break;
-            }
-
-            itm.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
-            m_item.add(itm);
         }
     }
 
@@ -294,7 +238,6 @@ public class GameState implements IState {
     }
 
     //////////////////////////////////Callback
-
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
@@ -307,9 +250,14 @@ public class GameState implements IState {
 
         if(button.contains(x,y))
         {
+
             m_player.setSensorRevise();
         }
-
+        if(debugBtn.contains(x,y))
+        {
+        if(debugCheck)  debugCheck= false;
+            else debugCheck= true;
+        }
         return false;
     }
 

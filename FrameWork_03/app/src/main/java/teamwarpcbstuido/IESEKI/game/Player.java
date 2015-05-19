@@ -1,6 +1,9 @@
 package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+
+import java.util.Vector;
 
 import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
@@ -15,7 +18,9 @@ public class Player extends SpriteAnimation {
     protected  int reviseX, reviseY;
     int hp;
 
-    public Player(Bitmap bitmap){
+
+    public Player(Bitmap bitmap)
+    {
         super(bitmap);
         int DPI[] = new int[2];
 
@@ -33,6 +38,7 @@ public class Player extends SpriteAnimation {
 
         this.SetPosition(DPI,5,6,5,5);
     }
+
     public void  onUpdate(long GameTime)
     {
         m_gameTime = GameTime;
@@ -68,8 +74,17 @@ public class Player extends SpriteAnimation {
         AppManager.getInstance().getPreference().SensorSave(reviseX, reviseY);
     }
 
+     public void onDrawPalyer(Canvas canvas)
+     {
+        onDraw(canvas,-15 + (MathCalu.getCos(0, 1, -(AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY)) );
+     }
+
+
+
     public int getReviseX(){return reviseX;}
     public int getReviseY(){return reviseY;}
+
+
 
 
 }

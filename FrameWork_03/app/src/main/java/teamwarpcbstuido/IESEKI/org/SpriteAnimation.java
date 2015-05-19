@@ -3,6 +3,7 @@ package teamwarpcbstuido.IESEKI.org;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -46,6 +47,7 @@ public class SpriteAnimation extends GraphicObject {
     }
 
     public void onDraw(Canvas canvas) {
+
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
         canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
 
@@ -53,6 +55,20 @@ public class SpriteAnimation extends GraphicObject {
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
         canvas.drawCircle( m_cx, m_cy,m_w/2,paint);
+    }
+
+    public void onDraw(Canvas canvas, double angle) {
+        canvas.rotate((float)angle, m_cx, m_cy);
+
+        m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
+        canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.RED);
+        canvas.drawCircle( m_cx, m_cy,m_w/2,paint);
+
+        canvas.rotate((float)angle * -1.0f, m_cx, m_cy);
     }
 
     public void SpriteUpdate(long GameTime) {

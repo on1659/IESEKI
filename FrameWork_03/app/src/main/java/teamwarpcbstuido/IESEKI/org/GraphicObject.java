@@ -13,8 +13,8 @@ public class GraphicObject {
 
     protected Bitmap m_bitmap;
 
-    protected int m_cx;
-    protected int m_cy;
+    public int m_cx;
+    public int m_cy;
     protected int m_w;
     protected int m_h;
     protected Rect m_pos;

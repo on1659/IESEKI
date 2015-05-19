@@ -60,6 +60,7 @@ public class Debug {
 	 }
 
 
+
     public static void drawText(Canvas canvas,int data,int x,int y,int size, int color){
         Paint paint = new Paint();
         paint.setStyle(Style.FILL);
@@ -94,6 +95,7 @@ public class Debug {
         paint.setTextSize(size);
         canvas.drawText(data, x, y, paint);
     }
+
 
 
 	 void intRED(Canvas canvas, int data, int posX, int posY,int size){
@@ -178,7 +180,39 @@ public class Debug {
 		 paint.setStyle(Style.STROKE);
 		 canvas.drawRect(rect, paint);	
 	}
-	  void Line(Canvas canvas){	
+
+    public static void debugLine(Canvas canvas)
+    {
+        Paint pnt = new Paint();
+        pnt.setColor(Color.RED);
+        pnt.setStyle(Style.STROKE);
+        int width =  AppManager.getInstance().getWidth();
+        int height =  AppManager.getInstance().getHeight();
+        int DPI[] =  AppManager.getInstance().getDPI();
+        int num = 0;
+
+
+        for(int i = 0; i < width; i += DPI[0]){
+
+            pnt.setColor(Color.BLACK);
+            String text = Integer.toString(num);
+            canvas.drawText(text, i, 15, pnt);
+
+            pnt.setColor(Color.RED);
+            canvas.drawLine(i, 1, i, height,  pnt);
+            num++;
+        }
+        num = 0;
+        for(int j = 0; j < height; j+= DPI[1]){
+            pnt.setColor(Color.BLACK);
+            String text = Integer.toString(num);
+            canvas.drawText(text, 15, j,  pnt);
+            pnt.setColor(Color.RED);
+            canvas.drawLine(1, j, width, j,  pnt);
+            num++;
+        }
+    }
+	  void Line(Canvas canvas){
 		  int num  = 0;
 		  paint[REDCOLOR].setTextSize(20);
 		  for(int i = 0; i < width; i += DPI[X]){

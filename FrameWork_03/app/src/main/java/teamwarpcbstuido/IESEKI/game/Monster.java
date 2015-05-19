@@ -1,6 +1,9 @@
 package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import teamwarpcbstuido.IESEKI.org.AppManager;
@@ -16,7 +19,8 @@ public class Monster extends SpriteAnimation
    protected float xDir, yDir;
    protected  int width, height;
 
-    public Monster(Bitmap bitmap) {
+    public Monster(Bitmap bitmap)
+    {
         super(bitmap);
         xDir = 1;
         yDir = 1;
@@ -25,12 +29,12 @@ public class Monster extends SpriteAnimation
         height = AppManager.getInstance().getHeight();
     }
 
-
     public void Move(float fps)
     {
         m_cy += (m_speed * yDir) * fps;
         m_cx += (m_speed * xDir / 3) * fps;
     }
+
 
     public boolean Collision(Rect col)
     {
@@ -52,12 +56,15 @@ public class Monster extends SpriteAnimation
         }
     }
 
-    public boolean Die(){
+    public boolean Die()
+    {
         if(m_cy > height + 15 || m_cx < - 15 || m_cx > width + 15) //어떤 해상도이든 5이상 넘어가면 된다.
             return true;
 
         return  false;
     }
+
+
 
 
 }
