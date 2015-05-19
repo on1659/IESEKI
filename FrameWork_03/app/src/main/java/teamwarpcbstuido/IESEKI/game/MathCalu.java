@@ -20,22 +20,29 @@ public class MathCalu {
         return Math.sqrt(Math.pow(x,2.0f) + Math.pow(y, 2.0f)) + Math.sqrt(Math.pow(x2,2.0f) + Math.pow(y2, 2.0f));
     }
 
-    static double getCos(double x, double y, double x2, double y2)
+    static double getACOS(double x, double y, double x2, double y2)
     {
-        double photowonder;
         double dot = InnerProduct(x, y, x2, y2);
-        if(dot > 0)
-        {
-            photowonder = 0;
-        }
-        else
-        {
-            photowonder = 180;
-        }
         double length = VectorScale(x, y, x2, y2);
         double radian = Math.acos(dot / length);
         double degree = radian * 180 / Math.PI;
-        return degree + photowonder;
+        return degree;
+    }
+    static double getCos(double x, double y,double x2, double y2)
+    {
+        double a, b;
+        a = -y;
+        b = x;
+        double tmp_dot = InnerProduct(a, b, x2, y2);
+        double tmp_length = VectorScale(a, b, x2, y2);
+        double tmp_radian = Math.acos(tmp_dot / tmp_length);
+        double tmp_degree =  tmp_radian * 180 / Math.PI;
+
+        if(tmp_degree < 90)
+            return getACOS(x,y,x2,y2);
+        else
+            return 360 - getACOS(x,y,x2,y2);
+
     }
 
 }

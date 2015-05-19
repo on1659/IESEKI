@@ -76,7 +76,7 @@ public class Player extends SpriteAnimation {
 
      public void onDrawPalyer(Canvas canvas)
      {
-        onDraw(canvas,-15 + (MathCalu.getCos(0, 1, -(AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY)) );
+        onDraw(canvas, (MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY)) );
      }
 
 
