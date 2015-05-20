@@ -22,12 +22,11 @@ import teamwarpcbstuido.IESEKI.org.AppManager;
  */
 public class GameState implements IState {
 
-
-
     private static int X = 0;
     private static int Y = 1;
     private static int width;
     private static int height;
+
     final private  int Monster_Type_01 = 85;
     final private  int Monster_Type_02 = 95;
     final private  int Monster_Type_03 = 105;
@@ -50,15 +49,14 @@ public class GameState implements IState {
     private long LastRegenEnemy = System.currentTimeMillis();
     private long LastRegenItem= System.currentTimeMillis();
 
-    long fpsStartTime = 0L;             // Frame 시작 시간
-    int frameCnt = 0;                      // 돌아간 Frame 갯수
-    double timeElapsed = 0.0f;
+    private long fpsStartTime = 0L;             // Frame 시작 시간
+    private int frameCnt = 0;                      // 돌아간 Frame 갯수
+    private double timeElapsed = 0.0f;
 
     float current_time;
 
-
     boolean debugCheck;
-    Rect    debugBtn = new Rect();
+    Rect debugBtn = new Rect();
 
     Rect button = new Rect();
 
@@ -71,15 +69,14 @@ public class GameState implements IState {
         height =  AppManager.getInstance().getHeight();
 
         m_background = new BackGround();
-        //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
         FPS = 0;
 
         current_time = System.currentTimeMillis();
 
-        Make_Monster(4, Monster_Type_01);
-        button.set(DPI[X]*25, DPI[Y]*40, DPI[X]*30,DPI[Y]*45);
-        debugBtn.set(DPI[X]*25, DPI[Y]*20,DPI[X] * 30, DPI[Y]*25);
+          Make_Monster(4, Monster_Type_01);
+          button.set(DPI[X] * 25, DPI[Y] * 40, DPI[X] * 30, DPI[Y] * 45);
+        debugBtn.set(DPI[X] * 25, DPI[Y] * 20, DPI[X] * 30, DPI[Y] * 25);
 
 
         debugCheck= false;
@@ -89,30 +86,14 @@ public class GameState implements IState {
     public void Render(Canvas canvas)
     {
         m_background.onDraw(canvas);
-
-
         //        ++
         //     ++ // --
         //        --
         //Rll X , Pitch Y
 
-        if(m_monster.size() != 0)
-        {
-            for(int i = 0; i< m_monster.size()- 1; i++)
+            for(int i = 0; i< m_monster.size(); i++)
                 m_monster.get(i).onDraw(canvas);
-        }
 
-        {
-            debug.drawText(canvas,  m_player.getPos().left, 150, 450, 45, Color.RED);
-            debug.drawText(canvas, m_player.getPos().top, 250, 450, 45, Color.RED);
-
-            debug.drawText(canvas, "Roll : "  +AppManager.getInstance().getSensorX(), 150, 150, 45, Color.BLUE);
-            debug.drawText(canvas,  "Pitch : " +AppManager.getInstance().getSensorY(), 150, 250, 45, Color.BLUE);
-
-        }
-
-
-        debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
@@ -125,6 +106,26 @@ public class GameState implements IState {
 
 
         if(debugCheck)Debug.debugLine(canvas);
+
+
+        {
+            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, Color.BLUE);
+
+            debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 45, Color.RED);
+            debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 45, Color.RED);
+            debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 45, Color.RED);
+
+
+            debug.drawText(canvas, "Roll : "  +AppManager.getInstance().getSensorX(), DPI, 10, 22, 45, Color.BLUE);
+            debug.drawText(canvas,  "Pitch : " +AppManager.getInstance().getSensorY(), DPI, 10, 24, 45, Color.BLUE);
+
+            debug.drawText(canvas,  "Monster Num : " + m_monster.size(), DPI, 10, 26, 45, Color.GREEN);
+
+
+
+
+
+        }
     }
 
     public float FramePerSecond()
@@ -163,17 +164,13 @@ public class GameState implements IState {
         m_player.onUpdate(GameTime);
         m_background.onUpdate(GameTime);
 
-
-
-        if(m_monster.size() != 0)
-        {
-            for (int i = 0; i < m_monster.size() - 1; i++)
+            for (int i = 0; i < m_monster.size(); i++)
             {
                 m_monster.get(i).Move(FPS);
                 if(m_monster.get(i).Die()) m_monster.remove(i);
 
             }
-        }
+
 
         this.AddMonster();
         this.Collision();
@@ -186,24 +183,24 @@ public class GameState implements IState {
 
     public void Collision()
     {
-        if(m_monster.size() != 0)
-        {
-            for(int i = 0; i< m_monster.size()- 1; i++) {
+
+            for(int i = 0; i< m_monster.size(); i++) {
 
                 //Circle Collision
              if(Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(),m_player.getY(),m_player.getRadius()))
                 {
+                    //AppManager.getInstance().getShake(150);
                     m_monster.remove(i);
                 }
             }
-        }
+
     }
 
     public void AddMonster()
     {
         Random rnd =new Random();
         long GameTime = System.currentTimeMillis();
-        if(System.currentTimeMillis() - LastRegenEnemy >= 50000)
+        if(System.currentTimeMillis() - LastRegenEnemy >= 500)
         {
             LastRegenEnemy = System.currentTimeMillis();
             Make_Monster(rnd.nextInt(8), Monster_Type_01);
@@ -218,14 +215,15 @@ public class GameState implements IState {
             Monster mon = null;
             Random rnd = new Random();
 
-
             switch(make_type)
             {
                 case 85://Monster_Type_01
                     mon = new Monster_Type_01(DPI);
                     break;
+
                 case 95://Monster_Type_02:
                     break;
+
                 case 105://Monster_Type_03:
                     break;
             }//switch
@@ -250,7 +248,6 @@ public class GameState implements IState {
 
         if(button.contains(x,y))
         {
-
             m_player.setSensorRevise();
         }
         if(debugBtn.contains(x,y))

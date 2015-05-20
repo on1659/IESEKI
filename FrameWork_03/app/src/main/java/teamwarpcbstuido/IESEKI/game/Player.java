@@ -16,6 +16,7 @@ public class Player extends SpriteAnimation {
     long m_gameTime;
     public int width, height;
     protected  int reviseX, reviseY;
+    private double m_deree;
     int hp;
 
 
@@ -27,7 +28,7 @@ public class Player extends SpriteAnimation {
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
         DPI = AppManager.getInstance().getDPI();
-
+        m_deree = 0;
         float revise[] = new float[2];
         revise = AppManager.getInstance().getPreference().SensorLoad();
         reviseX = (int)revise[0];
@@ -43,6 +44,7 @@ public class Player extends SpriteAnimation {
     {
         m_gameTime = GameTime;
         this.SpriteUpdate(GameTime);
+        m_deree = MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY);
 
         m_cx -= (int)AppManager.getInstance().getSensorX() - reviseX;
         m_cy -= (int)AppManager.getInstance().getSensorY() - reviseY;
@@ -76,13 +78,14 @@ public class Player extends SpriteAnimation {
 
      public void onDrawPalyer(Canvas canvas)
      {
-        onDraw(canvas, (MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY)) );
+        onDraw(canvas,m_deree );
      }
 
 
 
     public int getReviseX(){return reviseX;}
     public int getReviseY(){return reviseY;}
+    public double getDegree(){return m_deree;}
 
 
 

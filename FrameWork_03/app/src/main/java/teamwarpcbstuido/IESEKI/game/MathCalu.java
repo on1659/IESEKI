@@ -28,6 +28,7 @@ public class MathCalu {
         double degree = radian * 180 / Math.PI;
         return degree;
     }
+
     static double getCos(double x, double y,double x2, double y2)
     {
         double a, b;

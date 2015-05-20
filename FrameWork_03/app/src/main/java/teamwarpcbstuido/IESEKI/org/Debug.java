@@ -96,6 +96,13 @@ public class Debug {
         canvas.drawText(data, x, y, paint);
     }
 
+    public static void drawText(Canvas canvas, String data,int DPI[], int x,int y,int size, int color){
+        Paint paint = new Paint();
+        paint.setStyle(Style.FILL);
+        paint.setColor(color);
+        paint.setTextSize(size);
+        canvas.drawText(data, DPI[0] * x, DPI[1] * y, paint);
+    }
 
 
 	 void intRED(Canvas canvas, int data, int posX, int posY,int size){
