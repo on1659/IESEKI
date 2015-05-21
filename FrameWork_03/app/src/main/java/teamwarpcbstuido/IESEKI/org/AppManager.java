@@ -15,6 +15,7 @@ public class AppManager {
     private Resources m_resource;
     private Vibrator m_vibe;
     private PreferenceManager m_preference;
+    private Thread m_thread;
 
     private moveSensor m_moveSensor;
     static final int X = 0;
@@ -38,6 +39,9 @@ public class AppManager {
     void setMoveSensor(moveSensor _moveSensor){m_moveSensor = _moveSensor;}
     void setPreference(PreferenceManager _preferenceManager){m_preference = _preferenceManager;}
     void setVibeSensor(Context context){m_vibe = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);}
+    void setThread(Thread _thread){
+        m_thread = _thread;
+    }
     void setSize(int _width, int _height)
     {
         screen_width = _width;
@@ -57,6 +61,7 @@ public class AppManager {
     public int getDPI(int select){return DPI[select];}
     public int[] getDPI(){return DPI;}
     public void getShake(long _time){m_vibe.vibrate(_time);}
+    public Thread getThread(){return m_thread;}
 
     public GameView getGameView(){
         return m_gameview;
