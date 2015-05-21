@@ -20,10 +20,7 @@
     <bookmark url="file://$PROJECT_DIR$" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="3e6f3c2e-3725-4fea-b75e-6be98550d940" name="Default" comment="//Update&#10;&#10;전제용 자고있음">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/model_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/GameViewThread.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/GameViewThread.java" />
+    <list default="true" readonly="true" id="3e6f3c2e-3725-4fea-b75e-6be98550d940" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FrameWork_03.iws" />
@@ -65,8 +62,8 @@
       <file leaf-file-name="GameView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/GameView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63268894" vertical-offset="723" max-vertical-offset="2850">
-              <caret line="73" column="28" selection-start-line="73" selection-start-column="28" selection-end-line="73" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.26537785" vertical-offset="666" max-vertical-offset="2850">
+              <caret line="59" column="50" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -1932,7 +1929,11 @@
       <created>1432125752061</created>
       <updated>1432125752061</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="//Update&#10;백업전 설치">
+      <created>1432204299070</created>
+      <updated>1432204299070</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -2048,7 +2049,8 @@
     <MESSAGE value="//Update&#10;캐릭터 방향움직임 구현완료" />
     <MESSAGE value="//Update&#10;리스트 size() 0까지랑 디버그 값들 편하게 볼 수 있게 만듬" />
     <MESSAGE value="//Update&#10;&#10;전제용 자고있음" />
-    <option name="LAST_COMMIT_MESSAGE" value="//Update&#10;&#10;전제용 자고있음" />
+    <MESSAGE value="//Update&#10;백업전 설치" />
+    <option name="LAST_COMMIT_MESSAGE" value="//Update&#10;백업전 설치" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2422,8 +2424,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63268894" vertical-offset="723" max-vertical-offset="2850">
-          <caret line="73" column="28" selection-start-line="73" selection-start-column="28" selection-end-line="73" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.26537785" vertical-offset="666" max-vertical-offset="2850">
+          <caret line="59" column="50" selection-start-line="59" selection-start-column="50" selection-end-line="59" selection-end-column="50" />
           <folding />
         </state>
       </provider>
