@@ -17,4 +17,4 @@
 <alpha xmlns:android="http://schemas.android.com/apk/res/android"
        android:interpolator="@android:anim/decelerate_interpolator"
        android:fromAlpha="1.0" android:toAlpha="0.0"
-       android:duration="@android:integer/config_mediumAnimTime" /><!-- From: file:/D:/한국산업기술대학교/2015년%203학년%201학기/안드로이드/yt/FrameWork_03/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/anim/abc_fade_out.xml -->
+       android:duration="@android:integer/config_mediumAnimTime" /><!-- From: file:/D:/Prject_3D/FrameWork_03/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/anim/abc_fade_out.xml -->

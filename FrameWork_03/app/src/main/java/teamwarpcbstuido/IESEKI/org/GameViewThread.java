@@ -40,4 +40,6 @@ public class GameViewThread extends  Thread{
             }
         }
     }
+
+
 }
