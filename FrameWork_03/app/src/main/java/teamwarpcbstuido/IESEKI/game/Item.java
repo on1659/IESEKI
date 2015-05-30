@@ -59,4 +59,11 @@ public class Item extends SpriteAnimation {
     public void Wall_collision() {
 
     }
+
+    public boolean DIe() {
+        if (m_cy > height + m_h || m_cx < -m_w || m_cx > width + m_w) //어떤 해상도이든 몬스터 가로세로길이
+            return true;
+
+        return false;
+    }
 }

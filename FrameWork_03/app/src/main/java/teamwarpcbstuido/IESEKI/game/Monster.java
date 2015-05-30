@@ -55,7 +55,7 @@ public class Monster extends SpriteAnimation
 
     public boolean Die()
     {
-        if(m_cy > height + m_h || m_cx < - m_w || m_cx > width + m_w) //어떤 해상도이든 5이상 넘어가면 된다.
+        if (m_cy > height + m_h || m_cx < -m_w || m_cx > width + m_w) //어떤 해상도이든 몬스터 가로세로길이
             return true;
 
         return  false;

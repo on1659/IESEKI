@@ -27,15 +27,15 @@ public class GameState implements IState {
     private static int Y = 1;
     private static int width;
     private static int height;
-    final private  int Monster_Type_01 = 85;
-    final private  int Monster_Type_02 = 95;
-    final private  int Monster_Type_03 = 105;
+    final public static int Monster_Type_01 = 85;
+    final public static int Monster_Type_02 = 95;
+    final public static int Monster_Type_03 = 105;
 
-    final private int ITEM_PIWheel = 0;
-    final private int ITEM_BloodyShield = 1;
-    final private int ITEM_AlphaMissile = 3;
-    final private int ITEM_SigmaReflect = 4;
-    final private int ITEM_Adrenaline = 5;
+    final public static int ITEM_PIWheel = 0;
+    final public static int ITEM_BloodyShield = 1;
+    final public static int ITEM_AlphaMissile = 3;
+    final public static int ITEM_SigmaReflect = 4;
+    final public static int ITEM_Adrenaline = 5;
 
     private float FPS;
 
@@ -59,6 +59,7 @@ public class GameState implements IState {
 
     float current_time;
 
+    long tmpTime;
 
     boolean debugCheck;
     Rect debugBtn = new Rect();
@@ -86,6 +87,8 @@ public class GameState implements IState {
         debugBtn.set(DPI[X] * 25, DPI[Y] * 20, DPI[X] * 30, DPI[Y] * 25);
 
         debugCheck= false;
+
+        tmpTime = 0;
     }
     @Override
     public void Render(Canvas canvas)
@@ -102,21 +105,39 @@ public class GameState implements IState {
                 m_item.get(i).onDraw(canvas);
         }
 
-        if (m_effect.size() != 0) {
-            for (int i = 0; i < m_effect.size() - 1; i++)
+        if (m_effect.size() > 0) {
+            for (int i = 0; i < m_effect.size(); i++)
                 m_effect.get(i).onDraw(canvas);
         }
 
 
+        if (debugCheck) Debug.debugLine(canvas);
+
+
         {
+            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, Color.BLUE);
 
-            debug.drawText(canvas, m_player.getPos().left, 150, 450, 45, Color.RED);
-            debug.drawText(canvas, m_player.getPos().top, 250, 450, 45, Color.RED);
+            debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, Color.RED);
+            debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, Color.RED);
+            debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, Color.RED);
 
-            debug.drawText(canvas, AppManager.getInstance().getSensorX(), 150, 150, 45, Color.RED);
-            debug.drawText(canvas, AppManager.getInstance().getSensorY(), 150, 250, 45, Color.RED);
 
-            debug.drawText(canvas, m_effect.size(), 150, 350, 45, Color.BLUE);
+            debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 10, 21, 35, Color.BLUE);
+            debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 10, 23, 35, Color.BLUE);
+
+            debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, Color.GREEN);
+
+
+            debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, Color.BLACK);
+
+
+            debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, Color.CYAN);
+
+
+            if (m_effect.size() > 0)
+                debug.drawText(canvas, "GameTime  : " + (m_effect.get(0).m_GameTime - m_effect.get(0).m_CreateTime) / 1000, DPI, 10, 31, 35, Color.YELLOW);
+
+
 
         }
 
@@ -129,7 +150,8 @@ public class GameState implements IState {
         paint.setColor(Color.BLUE);
         canvas.drawRect(debugBtn, paint);
 
-        m_player.onDraw(canvas);
+        m_player.onDrawPalyer(canvas);
+
 
         if (debugCheck) Debug.debugLine(canvas);
     }
@@ -159,17 +181,27 @@ public class GameState implements IState {
         return 1/fps;
     }
 
-
     @Override
     public void Update()
     {
         long GameTime = System.currentTimeMillis();
         FPS = this.FramePerSecond();
 
+
         m_player.onUpdate(GameTime);
         m_background.onUpdate(GameTime);
 
-        if (m_monster.size() != 0) {
+        if (m_effect.size() >= 0) {
+            for (int i = 0; i < m_effect.size(); i++) {
+                m_effect.get(i).onUpdate(GameTime, m_player);
+
+                if (m_effect.get(i).Die()) m_effect.remove(i);
+            }
+        }
+
+
+        //Move
+        if (m_monster.size() > 0) {
             for (int i = 0; i < m_monster.size() - 1; i++)
             {
                 m_monster.get(i).Move(FPS);
@@ -178,9 +210,10 @@ public class GameState implements IState {
             }
         }
 
-        if (m_item.size() != 0) {
+        if (m_item.size() > 0) {
             for (int i = 0; i < m_item.size() - 1; i++) {
                 m_item.get(i).Move(FPS);
+                if (m_item.get(i).DIe()) m_item.remove(i);
             }
         }
 
@@ -192,7 +225,9 @@ public class GameState implements IState {
     @Override
     public void Destroy()
     {
+
     }
+
     public void Collision()
     {
         if (m_monster.size() != 0) {
@@ -206,7 +241,7 @@ public class GameState implements IState {
             }
         }
 
-        if (m_item.size() != 0) {
+        if (m_item.size() > 0) {
             for (int i = 0; i < m_item.size() - 1; i++) {
 
                 //Circle Collision
@@ -221,11 +256,12 @@ public class GameState implements IState {
     public void AddItem() {
         Random rnd = new Random();
         long GameTime = System.currentTimeMillis();
-        if (System.currentTimeMillis() - LastRegenItem >= 5500) {
+        if (System.currentTimeMillis() - LastRegenItem >= 3000) {
             LastRegenItem = System.currentTimeMillis();
-            Make_Item(rnd.nextInt(8), ITEM_PIWheel); // 추후 랜덤
+            Make_Item(1, ITEM_PIWheel); // 추후 랜덤
         }
     }
+
     public void AddMonster()
     {
         Random rnd =new Random();
@@ -258,19 +294,18 @@ public class GameState implements IState {
             }
 
             itm.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
-
             itm.setDir(m_player.getX(), m_player.getY());
             m_item.add(itm);
         }
     }
 
-    public void Make_Effect(int itm_type) {
-        Effect eff = null;
+    public void Make_Effect(int item_type) {
+        Effect effect = null;
 
-        switch (itm_type) {
+        switch (item_type) {
             case ITEM_PIWheel:
-                eff = new Effect(ITEM_PIWheel);
-                eff.Eff_PIWheel(DPI, 5, 5, 10, 10);
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), ITEM_PIWheel);
+                effect.Eff_PIWheel(m_player);
                 break;
             case ITEM_BloodyShield:
                 break;
@@ -282,7 +317,7 @@ public class GameState implements IState {
                 break;
         }
 
-        m_effect.add(eff);
+        m_effect.add(effect);
     }
 
     public void Make_Monster(int make_num,int make_type)

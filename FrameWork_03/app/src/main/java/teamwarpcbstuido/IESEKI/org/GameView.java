@@ -127,42 +127,4 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
-
-    public void TimerManager(TimerTask timertask1, TimerTask timertask2)
-    {
-        //------------------------------------------------타이머1
-        timertask1 = new TimerTask(){
-            public void run()
-            {
-                try
-                {
-                }
-
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Timer Timer1 = new Timer();
-        Timer1.schedule(timertask1, 0, 1000); //실제시계 1초 마다 실행
-
-        //------------------------------------------------타이머2
-        timertask2 = new TimerTask(){
-            public void run()
-            {
-                try{
-
-
-                }
-
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Timer Timer2 = new Timer();
-        Timer2.schedule(timertask2, 0, 30); //실제시계 0.03초 마다 실행
-    }
 }

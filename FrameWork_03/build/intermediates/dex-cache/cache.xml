@@ -2,12 +2,6 @@
 <items version="2" >
 
     <item
-        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false" revision="22.0.0" sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex
-            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-949006a8eb15fe0e47288c5ef79f05a7e6453e2d.jar" />
-    </item>
-    <item
         jar="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\yt\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="22.0.0"
@@ -15,30 +9,11 @@
         <dex dex="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\yt\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-3b9ea4c48d2e9f3f72b711a49f9599f54611aca8.jar" />
     </item>
     <item
-        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false" revision="22.0.0" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex
-            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-24f2f904bea33f14a144ce1ed8dc3b958ed8d799.jar" />
-    </item>
-    <item
-        jar="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-fe7cf675680c5930368d2c5d682adda4928585b9.jar" />
-    </item>
-    <item
         jar="D:\Users\Administrator\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex dex="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\yt\FrameWork_03\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-2db560221c229daf3c0533b4ccce68f6ad799ff5.jar" />
-    </item>
-    <item
-        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false" revision="22.0.0" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex
-            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-78ea05150e5c66d1f675641f07470a9aea654185.jar" />
     </item>
     <item
         jar="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
@@ -67,6 +42,30 @@
         revision="22.0.0"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-1b5c24320468b011d5ee69c0c64c3530de00daf7.jar" />
+    </item>
+    <item
+        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false" revision="22.0.0" sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex
+            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-949006a8eb15fe0e47288c5ef79f05a7e6453e2d.jar" />
+    </item>
+    <item
+        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false" revision="22.0.0" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex
+            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-24f2f904bea33f14a144ce1ed8dc3b958ed8d799.jar" />
+    </item>
+    <item
+        jar="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false" revision="22.0.0" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex
+            dex="D:\한국산업기술대학교\2015년 3학년 1학기\안드로이드\SVN\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-fe7cf675680c5930368d2c5d682adda4928585b9.jar" />
+    </item>
+    <item
+        jar="D:\Prject_3D\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false" revision="22.0.0" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex
+            dex="D:\Prject_3D\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-78ea05150e5c66d1f675641f07470a9aea654185.jar" />
     </item>
 
 </items>

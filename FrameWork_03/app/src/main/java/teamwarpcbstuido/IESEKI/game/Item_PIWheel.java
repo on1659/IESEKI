@@ -18,7 +18,6 @@ public class Item_PIWheel extends Item {
     public Item_PIWheel(int DPI[]) {
         super(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel));
         this.InitSpriteData(1, 1, 1, 1);
-
         m_speed = DPI[1] * 5;
     }
 }

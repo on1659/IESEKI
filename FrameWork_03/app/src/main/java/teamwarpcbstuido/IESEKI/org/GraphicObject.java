@@ -15,8 +15,8 @@ public class GraphicObject {
 
     public int m_cx;
     public int m_cy;
-    protected int m_w;
-    protected int m_h;
+    public int m_w;
+    public int m_h;
     protected Rect m_pos;
 
 
@@ -58,6 +58,7 @@ public class GraphicObject {
 
 
 
+
     public int getX(){return m_cx - m_w/2;}
     public int getY(){return m_cy- m_h/2;}
     public int GetWidth(){return m_w;}
@@ -65,6 +66,13 @@ public class GraphicObject {
     public int getRadius(){return m_w/2;}
     public Rect getPos(){return m_pos;}
 
+    public int getWidth() {
+        return m_w;
+    }
+
+    public int getHight() {
+        return m_h;
+    }
 
     public int GetBitmapWidth(){return m_bitmap.getWidth();}
     public int GetBitmapHeight(){return m_bitmap.getHeight();}
