@@ -27,12 +27,15 @@ public class GameState implements IState {
     private static int Y = 1;
     private static int width;
     private static int height;
+
     final public static int Monster_Type_01 = 85;
     final public static int Monster_Type_02 = 95;
     final public static int Monster_Type_03 = 105;
 
     final public static int ITEM_PIWheel = 0;
     final public static int ITEM_BloodyShield = 1;
+    final public static int ITEM_Meruss = 2;
+
     final public static int ITEM_AlphaMissile = 3;
     final public static int ITEM_SigmaReflect = 4;
     final public static int ITEM_Adrenaline = 5;
@@ -81,7 +84,7 @@ public class GameState implements IState {
         current_time = System.currentTimeMillis();
 
         Make_Monster(4, Monster_Type_01);
-        Make_Item(5, ITEM_PIWheel);
+        Make_Item(5, ITEM_BloodyShield);
 
         button.set(DPI[X] * 25, DPI[Y] * 40, DPI[X] * 30, DPI[Y] * 45);
         debugBtn.set(DPI[X] * 25, DPI[Y] * 20, DPI[X] * 30, DPI[Y] * 25);
@@ -182,8 +185,8 @@ public class GameState implements IState {
     }
 
     @Override
-    public void Update()
-    {
+    public void Update() {
+
         long GameTime = System.currentTimeMillis();
         FPS = this.FramePerSecond();
 
@@ -193,13 +196,11 @@ public class GameState implements IState {
 
         if (m_effect.size() >= 0) {
             for (int i = 0; i < m_effect.size(); i++) {
-                m_effect.get(i).onUpdate(GameTime, m_player);
+                m_effect.get(i).onUpdate(GameTime, m_player, FPS);
 
                 if (m_effect.get(i).Die()) m_effect.remove(i);
             }
         }
-
-
         //Move
         if (m_monster.size() > 0) {
             for (int i = 0; i < m_monster.size() - 1; i++)
@@ -223,13 +224,11 @@ public class GameState implements IState {
     }
 
     @Override
-    public void Destroy()
-    {
+    public void Destroy() {
 
     }
 
-    public void Collision()
-    {
+    public void Collision() {
         if (m_monster.size() != 0) {
             for (int i = 0; i < m_monster.size() - 1; i++) {
 
@@ -246,24 +245,28 @@ public class GameState implements IState {
 
                 //Circle Collision
                 if (Collision.collisionCircle(m_item.get(i).getX(), m_item.get(i).getY(), m_item.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius())) {
-                    Make_Effect(m_item.get(i).getType());
+                    Make_Effect(m_item.get(i).getType(), i);
                     m_item.remove(i);
                 }
             }
         }
     }
 
+    //AddItem
     public void AddItem() {
+
         Random rnd = new Random();
         long GameTime = System.currentTimeMillis();
+
+        //Item Effect
         if (System.currentTimeMillis() - LastRegenItem >= 3000) {
             LastRegenItem = System.currentTimeMillis();
-            Make_Item(1, ITEM_PIWheel); // 추후 랜덤
+            Make_Item(1, 2); // 추후 랜덤
         }
     }
 
-    public void AddMonster()
-    {
+    //AddMonster
+    public void AddMonster() {
         Random rnd =new Random();
         long GameTime = System.currentTimeMillis();
         if (System.currentTimeMillis() - LastRegenEnemy >= 5500)
@@ -273,6 +276,7 @@ public class GameState implements IState {
         }
     }
 
+    //Item Effect
     public void Make_Item(int make_num, int make_type) {
         for (int i = 0; i < make_num; i++) {
             Item itm = null;
@@ -283,12 +287,23 @@ public class GameState implements IState {
                     itm = new Item_PIWheel(DPI);
                     itm.setType(ITEM_PIWheel);
                     break;
+
                 case ITEM_BloodyShield:
+                    itm = new Item_BloodyShield(DPI);
+                    itm.setType(ITEM_BloodyShield);
                     break;
+
+                case ITEM_Meruss:
+                    itm = new Item_Meruss(DPI);
+                    itm.setType(ITEM_Meruss);
+                    break;
+
                 case ITEM_AlphaMissile:
                     break;
+
                 case ITEM_SigmaReflect:
                     break;
+
                 case ITEM_Adrenaline:
                     break;
             }
@@ -299,7 +314,8 @@ public class GameState implements IState {
         }
     }
 
-    public void Make_Effect(int item_type) {
+    //Item Effect
+    public void Make_Effect(int item_type, int item_num) {
         Effect effect = null;
 
         switch (item_type) {
@@ -307,12 +323,23 @@ public class GameState implements IState {
                 effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), ITEM_PIWheel);
                 effect.Eff_PIWheel(m_player);
                 break;
+
             case ITEM_BloodyShield:
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), ITEM_BloodyShield);
+                effect.Eff_BloodyShdiled(m_item.get(item_num));
                 break;
+
+            case ITEM_Meruss:
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.dragon_mou), ITEM_Meruss);
+                effect.Eff_Meruss(m_item.get(item_num));
+                break;
+
             case ITEM_AlphaMissile:
                 break;
+
             case ITEM_SigmaReflect:
                 break;
+
             case ITEM_Adrenaline:
                 break;
         }
@@ -320,9 +347,8 @@ public class GameState implements IState {
         m_effect.add(effect);
     }
 
-    public void Make_Monster(int make_num,int make_type)
-    {
-
+    //Make
+    public void Make_Monster(int make_num, int make_type) {
         for(int i = 0; i < make_num; i++)
         {
             Monster mon = null;
@@ -331,13 +357,16 @@ public class GameState implements IState {
 
             switch(make_type)
             {
-                case 85://Monster_Type_01
+                case Monster_Type_01://Monster_Type_01
                     mon = new Monster_Type_01(DPI);
                     break;
-                case 95://Monster_Type_02:
+
+                case Monster_Type_02://Monster_Type_02:
                     break;
-                case 105://Monster_Type_03:
+
+                case Monster_Type_03://Monster_Type_03:
                     break;
+
             }//switch
 
             mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
