@@ -261,7 +261,7 @@ public class GameState implements IState {
         //Item Effect
         if (System.currentTimeMillis() - LastRegenItem >= 3000) {
             LastRegenItem = System.currentTimeMillis();
-            Make_Item(1, 2); // 추후 랜덤
+            Make_Item(1, rnd.nextInt(3)); // 추후 랜덤
         }
     }
 

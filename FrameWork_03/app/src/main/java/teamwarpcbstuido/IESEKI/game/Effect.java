@@ -85,15 +85,15 @@ public class Effect extends SpriteAnimation {
 
         switch (m_type)
         {
-            case GameState.ITEM_BloodyShield:
+            case GameState.ITEM_PIWheel:
                 canvas.rotate(rota, m_cx, m_cy);
                 canvas.drawBitmap(AppManager.getInstance().getBitmap(R.drawable.eff_piwheel), null, m_pos, null);
                 canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
-            case GameState.ITEM_PIWheel:
+            case GameState.ITEM_BloodyShield:
                 canvas.rotate(rota, m_cx, m_cy);
-                canvas.drawBitmap(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), null, m_pos, null);
+                canvas.drawBitmap(AppManager.getInstance().getBitmap(R.drawable.eff_bloodyshield), null, m_pos, null);
                 canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
@@ -108,15 +108,15 @@ public class Effect extends SpriteAnimation {
 
         switch (m_type) {
             case GameState.ITEM_PIWheel:
+                rota += 5;
+                break;
+
+            case GameState.ITEM_BloodyShield:
                 m_cx = _player.m_cx;
                 m_cy = _player.m_cy;
                 m_w = _player.getWidth() / 2 * 3;
                 m_h = _player.getHight() / 2 * 3;
                 m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-                rota += 5;
-                break;
-
-            case GameState.ITEM_BloodyShield:
                 rota += 5;
                 break;
 

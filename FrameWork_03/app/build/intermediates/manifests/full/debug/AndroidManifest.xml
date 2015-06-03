@@ -16,7 +16,7 @@
         android:label="IESEKI"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="teamwarpcbstuido.IESEKI.org.MainActivity"
+            android:name="teamwarpcbstuido.IESEKI.game.SelectMenu"
             android:label="IESEKI" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

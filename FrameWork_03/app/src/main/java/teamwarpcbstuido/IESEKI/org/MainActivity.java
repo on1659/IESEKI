@@ -1,9 +1,15 @@
 package teamwarpcbstuido.IESEKI.org;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import teamwarpcbstuido.IESEKI.R;
 
 
 public class MainActivity extends Activity {
@@ -15,7 +21,8 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//가로세로전환
-        setContentView(new GameView(this));
+
+        //setContentView(new GameView(this));
     }
     @Override
     protected void onStart() {
@@ -56,4 +63,5 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }
