@@ -36,7 +36,6 @@ public class BackGround extends GraphicObject{
 
         DPI =  AppManager.getInstance().getDPI();
 
-
         m_layer1 = AppManager.getInstance().getBitmap(R.drawable.game_background);
         m_layer2 = m_layer1;
 
@@ -44,23 +43,19 @@ public class BackGround extends GraphicObject{
         m_background_02 = new Rect();
         m_background_01.set(0,0,width,height);
         m_background_02.set(0, height, width, height*2 + DPI[Y]/4);
-
-
     }
 
     public void onUpdate(float GameTime)
     {
 
-        m_background_01.offset(0, -DPI[Y]/8);
-        m_background_02.offset(0, -DPI[Y]/8);
+        m_background_01.offset(0, +DPI[Y] / 8);
+        m_background_02.offset(0, +DPI[Y] / 8);
 
-        if(m_background_01.top <= -height)
-            m_background_01.set(0, height, width, height*2 + DPI[Y]/4);
+        if (m_background_01.top >= height)
+            m_background_01.set(0, -height, width, -DPI[Y] / 4 + 10);
 
-        if(m_background_02.top <= -height)
-            m_background_02.set(0, height, width, height*2 + DPI[Y]/4);
-
-
+        if (m_background_02.top >= height)
+            m_background_02.set(0, -height, width, -DPI[Y] / 4 + 10);
     }
 
     @Override
@@ -72,6 +67,7 @@ public class BackGround extends GraphicObject{
     public void onDraw(Canvas canvas) {
         canvas.drawBitmap(m_layer1, null, m_background_01, null);
         canvas.drawBitmap(m_layer2, null, m_background_02, null);
+
     }
 
 }

@@ -17,6 +17,7 @@ import teamwarpcbstuido.IESEKI.org.GameView;
 public class SelectMenu extends Activity implements View.OnClickListener {
 
     ImageButton btn_start;
+    ImageButton btn_quit;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,9 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         btn_start = (ImageButton) findViewById(R.id.select_btn_start);
         btn_start.setOnClickListener(this);
+
+        btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
+        btn_quit.setOnClickListener(this);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +49,12 @@ public class SelectMenu extends Activity implements View.OnClickListener {
                 intent = new Intent(this, Link.class);
                 startActivity(intent);
                 finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
+                break;
+
+            case R.id.select_btn_quit:
+
+                System.exit(0);
+                finish();
                 break;
 
             default:

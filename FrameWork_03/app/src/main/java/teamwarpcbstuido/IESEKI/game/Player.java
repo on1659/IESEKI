@@ -17,7 +17,9 @@ public class Player extends SpriteAnimation {
     public int width, height;
     protected  int reviseX, reviseY;
     private double m_deree;
-    int hp;
+
+
+    public int hp;
 
 
     public Player(Bitmap bitmap)

@@ -140,6 +140,14 @@ public class Effect extends SpriteAnimation {
         return false;
     }
 
+    public void setType(int _type) {
+        m_type = _type;
+    }
+
+    public int getType() {
+        return m_type;
+    }
+
     public Rect getPos() {
         return m_pos;
     }

@@ -46,6 +46,7 @@ public class GameState implements IState {
     private int DPI[] = new int[2];
 
     private BackGround m_background;
+    private UI m_ui;
     private Player m_player;
     private Debug debug = new Debug();
 
@@ -77,6 +78,7 @@ public class GameState implements IState {
         height =  AppManager.getInstance().getHeight();
 
         m_background = new BackGround();
+        m_ui = new UI();
         //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
         FPS = 0;
@@ -91,6 +93,7 @@ public class GameState implements IState {
 
         debugCheck= false;
 
+        m_player.hp = 5;
         tmpTime = 0;
     }
     @Override
@@ -154,7 +157,7 @@ public class GameState implements IState {
         canvas.drawRect(debugBtn, paint);
 
         m_player.onDrawPalyer(canvas);
-
+        m_ui.onDraw(canvas);
 
         if (debugCheck) Debug.debugLine(canvas);
     }
@@ -236,7 +239,23 @@ public class GameState implements IState {
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
                 {
                     m_monster.remove(i);
+                    --m_player.hp;
+                    m_ui.onUpdate(m_player.hp);
                 }
+
+                if (m_effect.size() != 0) {
+                    for (int j = 0; j < m_effect.size() - j; j++) {
+
+                        //Circle Collision
+
+                        if (m_effect.get(j).getType() == ITEM_PIWheel || m_effect.get(j).getType() == ITEM_BloodyShield || m_effect.get(j).getType() == ITEM_Meruss) {
+                            if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
+                                m_monster.remove(i);
+                            }
+                        }
+                    }
+                }
+
             }
         }
 
@@ -322,16 +341,19 @@ public class GameState implements IState {
             case ITEM_PIWheel:
                 effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), ITEM_PIWheel);
                 effect.Eff_PIWheel(m_player);
+                effect.setType(ITEM_PIWheel);
                 break;
 
             case ITEM_BloodyShield:
                 effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), ITEM_BloodyShield);
                 effect.Eff_BloodyShdiled(m_item.get(item_num));
+                effect.setType(ITEM_BloodyShield);
                 break;
 
             case ITEM_Meruss:
                 effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.dragon_mou), ITEM_Meruss);
                 effect.Eff_Meruss(m_item.get(item_num));
+                effect.setType(ITEM_Meruss);
                 break;
 
             case ITEM_AlphaMissile:
