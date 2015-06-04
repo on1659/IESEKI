@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.GameView;
@@ -15,7 +16,7 @@ import teamwarpcbstuido.IESEKI.org.GameView;
  */
 public class SelectMenu extends Activity implements View.OnClickListener {
 
-    Button btn_start;
+    ImageButton btn_start;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.select_menu);
 
-        btn_start = (Button) findViewById(R.id.select_btn_start);
+        btn_start = (ImageButton) findViewById(R.id.select_btn_start);
         btn_start.setOnClickListener(this);
     }
 
@@ -43,7 +44,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
                 intent = new Intent(this, Link.class);
                 startActivity(intent);
-                // finish();
+                finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
                 break;
 
             default:

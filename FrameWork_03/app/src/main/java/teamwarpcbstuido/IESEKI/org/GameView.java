@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -39,8 +40,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private  GameState gameState;
 
-    public GameView(Context context){
-        super(context);
+    public GameView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         setFocusable(true);
 
         Display dispaly = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
