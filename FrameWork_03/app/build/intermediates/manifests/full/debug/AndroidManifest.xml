@@ -17,14 +17,18 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="teamwarpcbstuido.IESEKI.game.SelectMenu"
-            android:label="IESEKI" >
+            android:label="IESEKI"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="teamwarpcbstuido.IESEKI.game.Link" />
+        <activity
+            android:name="teamwarpcbstuido.IESEKI.game.Link"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
