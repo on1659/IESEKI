@@ -1,6 +1,10 @@
 package teamwarpcbstuido.IESEKI.org;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -74,7 +78,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         // getHolder().addCallback(this);
        m_thread = new GameViewThread(getHolder(), this);
-
     }
 
 
@@ -128,4 +131,5 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
     }
+
 }

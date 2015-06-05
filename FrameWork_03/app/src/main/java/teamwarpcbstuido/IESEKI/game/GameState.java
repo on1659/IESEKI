@@ -1,5 +1,9 @@
 package teamwarpcbstuido.IESEKI.game;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 
 import teamwarpcbstuido.IESEKI.org.Collision;
@@ -12,8 +16,12 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Vector;
 
 import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.GameView;
 import teamwarpcbstuido.IESEKI.org.IState;
 import teamwarpcbstuido.IESEKI.org.AppManager;
 
@@ -22,6 +30,8 @@ import teamwarpcbstuido.IESEKI.org.AppManager;
  */
 public class GameState implements IState {
 
+    private Link link = new Link();
+    private GameView gameview;
 
     private static int X = 0;
     private static int Y = 1;
@@ -36,9 +46,8 @@ public class GameState implements IState {
     final public static int ITEM_BloodyShield = 1;
     final public static int ITEM_Meruss = 2;
 
-    final public static int ITEM_AlphaMissile = 3;
-    final public static int ITEM_SigmaReflect = 4;
-    final public static int ITEM_Adrenaline = 5;
+    final public static int ITEM_SigmaReflect = 3;
+    final public static int ITEM_Adrenaline = 4;
 
     private float FPS;
 
@@ -50,9 +59,12 @@ public class GameState implements IState {
     private Player m_player;
     private Debug debug = new Debug();
 
-    private ArrayList<Monster> m_monster = new ArrayList<Monster>();
-    private ArrayList<Item> m_item = new ArrayList<Item>();
-    private ArrayList<Effect> m_effect = new ArrayList<Effect>();
+    TimerTask m_timer;
+
+    private Vector<Monster> m_monster = new Vector<Monster>();
+    private Vector<Item> m_item = new Vector<Item>();
+    private Vector<Effect> m_effect = new Vector<Effect>();
+
 
     private long LastRegenEnemy = System.currentTimeMillis();
     private long LastRegenItem= System.currentTimeMillis();
@@ -79,6 +91,7 @@ public class GameState implements IState {
 
         m_background = new BackGround();
         m_ui = new UI();
+
         //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
         FPS = 0;
@@ -95,6 +108,7 @@ public class GameState implements IState {
 
         m_player.hp = 5;
         tmpTime = 0;
+
     }
     @Override
     public void Render(Canvas canvas)
@@ -113,7 +127,7 @@ public class GameState implements IState {
 
         if (m_effect.size() > 0) {
             for (int i = 0; i < m_effect.size(); i++)
-                m_effect.get(i).onDraw(canvas);
+                m_effect.get(i).Eff_Draw(canvas);
         }
 
 
@@ -140,10 +154,10 @@ public class GameState implements IState {
             debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, Color.CYAN);
 
 
-            if (m_effect.size() > 0)
-                debug.drawText(canvas, "GameTime  : " + (m_effect.get(0).m_GameTime - m_effect.get(0).m_CreateTime) / 1000, DPI, 10, 31, 35, Color.YELLOW);
-
-
+            if (m_effect.size() > 1) {
+                debug.drawText(canvas, "GameTime  : " + m_effect.get(0).m_activeTime, DPI, 10, 31, 35, Color.YELLOW);
+                debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, Color.YELLOW);
+            }
 
         }
 
@@ -197,9 +211,9 @@ public class GameState implements IState {
         m_player.onUpdate(GameTime);
         m_background.onUpdate(GameTime);
 
-        if (m_effect.size() >= 0) {
+        if (m_effect.size() > 0) {
             for (int i = 0; i < m_effect.size(); i++) {
-                m_effect.get(i).onUpdate(GameTime, m_player, FPS);
+                m_effect.get(i).onUpdate(m_player, FPS);
 
                 if (m_effect.get(i).Die()) m_effect.remove(i);
             }
@@ -243,7 +257,7 @@ public class GameState implements IState {
                     m_ui.onUpdate(m_player.hp);
                 }
 
-                if (m_effect.size() != 0) {
+                if (m_effect.size() > 0) {
                     for (int j = 0; j < m_effect.size() - j; j++) {
 
                         //Circle Collision
@@ -280,7 +294,7 @@ public class GameState implements IState {
         //Item Effect
         if (System.currentTimeMillis() - LastRegenItem >= 3000) {
             LastRegenItem = System.currentTimeMillis();
-            Make_Item(1, rnd.nextInt(3)); // 추후 랜덤
+            Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
         }
     }
 
@@ -288,6 +302,7 @@ public class GameState implements IState {
     public void AddMonster() {
         Random rnd =new Random();
         long GameTime = System.currentTimeMillis();
+
         if (System.currentTimeMillis() - LastRegenEnemy >= 5500)
         {
             LastRegenEnemy = System.currentTimeMillis();
@@ -303,27 +318,23 @@ public class GameState implements IState {
 
             switch (make_type) {
                 case ITEM_PIWheel:
-                    itm = new Item_PIWheel(DPI);
-                    itm.setType(ITEM_PIWheel);
+                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), DPI, ITEM_PIWheel);
                     break;
 
                 case ITEM_BloodyShield:
-                    itm = new Item_BloodyShield(DPI);
-                    itm.setType(ITEM_BloodyShield);
+                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), DPI, ITEM_BloodyShield);
                     break;
 
                 case ITEM_Meruss:
-                    itm = new Item_Meruss(DPI);
-                    itm.setType(ITEM_Meruss);
-                    break;
-
-                case ITEM_AlphaMissile:
+                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_meruss), DPI, ITEM_Meruss);
                     break;
 
                 case ITEM_SigmaReflect:
+                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_reflect), DPI, ITEM_SigmaReflect);
                     break;
 
                 case ITEM_Adrenaline:
+                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_adrenaline), DPI, ITEM_Adrenaline);
                     break;
             }
 
@@ -336,37 +347,42 @@ public class GameState implements IState {
     //Item Effect
     public void Make_Effect(int item_type, int item_num) {
         Effect effect = null;
+        TimerTask timer = null;
 
         switch (item_type) {
             case ITEM_PIWheel:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), ITEM_PIWheel);
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_piwheel), ITEM_PIWheel);
                 effect.Eff_PIWheel(m_player);
-                effect.setType(ITEM_PIWheel);
                 break;
 
             case ITEM_BloodyShield:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), ITEM_BloodyShield);
-                effect.Eff_BloodyShdiled(m_item.get(item_num));
-                effect.setType(ITEM_BloodyShield);
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_bloodyshield), ITEM_BloodyShield);
+                effect.Eff_BloodyShield(m_item.get(item_num));
                 break;
 
             case ITEM_Meruss:
                 effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.dragon_mou), ITEM_Meruss);
                 effect.Eff_Meruss(m_item.get(item_num));
-                effect.setType(ITEM_Meruss);
-                break;
-
-            case ITEM_AlphaMissile:
                 break;
 
             case ITEM_SigmaReflect:
+                effect = new Effect(null, ITEM_SigmaReflect);
+                effect.Eff_Reflect();
+                for (int i = 0; i < m_monster.size(); i++)
+                    m_monster.get(i).ChageDir(-1, -1);
                 break;
 
             case ITEM_Adrenaline:
+                effect = new Effect(null, ITEM_Adrenaline);
+                effect.Eff_Adrenaline();
+                for (int i = 0; i < m_monster.size(); i++)
+                    m_monster.remove(i);
+                m_monster.clear();
                 break;
         }
 
         m_effect.add(effect);
+        effect.TimerManager(m_timer);
     }
 
     //Make
@@ -392,11 +408,12 @@ public class GameState implements IState {
             }//switch
 
             mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
-            mon.setDir(m_player.getX(), m_player.getY());
+            mon.setDir(m_player.getPos());
             m_monster.add(mon);
         }//for
 
     }
+
 
     //////////////////////////////////Callback
 
@@ -412,8 +429,8 @@ public class GameState implements IState {
 
         if(button.contains(x,y))
         {
-
             m_player.setSensorRevise();
+
         }
         if(debugBtn.contains(x,y))
         {

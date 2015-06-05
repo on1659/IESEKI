@@ -38,6 +38,16 @@ public class Monster extends SpriteAnimation
         return m_pos.intersect(col);
     }
 
+    public void setDir(Rect _Destiny) {
+        xDestiny = _Destiny.left;
+        yDestiny = _Destiny.top;
+
+        if (xDestiny > m_cx) {
+            xDir = 1;
+        } else {
+            xDir = -1;
+        }
+    }
     public void setDir(int _x, int _y)
     {
         xDestiny = _x;
@@ -61,7 +71,8 @@ public class Monster extends SpriteAnimation
         return  false;
     }
 
-
-
-
+    public void ChageDir(float _xDir, float _yDir) {
+        xDir *= _xDir;
+        yDir *= _yDir;
+    }
 }
