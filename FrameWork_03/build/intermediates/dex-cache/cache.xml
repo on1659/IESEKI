@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2">
 
     <item
-        jar="C:\Users\JYJ\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        jar="C:\Users\hj\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false" revision="22.0.0" sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex
-            dex="D:\FrameWork_03\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-34306e6d956a1f5fbe95596a6411bf7eb5da8e8a.jar" />
+            dex="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-eb5f336f706311e4157631d6ff057d68205f48bf.jar" />
     </item>
     <item
-        jar="D:\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="22.0.0" sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex
-            dex="D:\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-96f5e33eb6d521a76eda85832c8a37bb4437abff.jar" />
-    </item>
-    <item
-        jar="D:\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false" revision="22.0.0" sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex
-            dex="D:\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-dbddd7491e1e7ca16ff5b2c337febdc89111168d.jar" />
+            dex="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-b5a926048bba85b62f06f0560ecacb1d87655cca.jar" />
     </item>
     <item
-        jar="D:\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="22.0.0" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        jar="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false" revision="22.0.0" sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex
-            dex="D:\FrameWork_03\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-6e02ff905797d4b97d055b273a6135cb1351d7dd.jar" />
+            dex="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\pre-dexed\debug\classes-7d108c1f50bf31dc7a9104b1742f747ef7d0563d.jar" />
+    </item>
+    <item
+        jar="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false" revision="22.0.0" sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex
+            dex="C:\Users\hj\IESEKI\FrameWork_03\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-1d6d07193399f84756fc1e10b6c8f7c8832a4dc4.jar" />
     </item>
 
 </items>

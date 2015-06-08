@@ -303,10 +303,10 @@ public class GameState implements IState {
         Random rnd =new Random();
         long GameTime = System.currentTimeMillis();
 
-        if (System.currentTimeMillis() - LastRegenEnemy >= 5500)
+        if (System.currentTimeMillis() - LastRegenEnemy >= 1000)
         {
             LastRegenEnemy = System.currentTimeMillis();
-            Make_Monster(rnd.nextInt(8), Monster_Type_01);
+            Make_Monster(8, Monster_Type_01);
         }
     }
 
@@ -407,7 +407,7 @@ public class GameState implements IState {
 
             }//switch
 
-            mon.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
+            mon.SetPosition(DPI, this.random(2, 25), -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
             mon.setDir(m_player.getPos());
             m_monster.add(mon);
         }//for

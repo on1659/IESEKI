@@ -3,6 +3,8 @@ package teamwarpcbstuido.IESEKI.game;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 
+import java.util.Random;
+
 import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
 /**
@@ -53,6 +55,12 @@ public class Monster extends SpriteAnimation
         xDestiny = _x;
         yDestiny = _y;
 
+        Random rnd = new Random();
+        if (rnd.nextBoolean()) {
+            xDir = 0;
+            return;
+
+        }
         if(xDestiny > m_cx)
         {
             xDir = 1;
@@ -74,5 +82,10 @@ public class Monster extends SpriteAnimation
     public void ChageDir(float _xDir, float _yDir) {
         xDir *= _xDir;
         yDir *= _yDir;
+    }
+
+    public void SetSpeed(int _offsetSpeed, int _changeSpeed) {
+        m_speed = _changeSpeed;
+        m_speed += _offsetSpeed;
     }
 }
