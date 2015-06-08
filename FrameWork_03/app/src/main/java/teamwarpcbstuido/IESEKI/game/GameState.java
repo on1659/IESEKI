@@ -3,6 +3,7 @@ package teamwarpcbstuido.IESEKI.game;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
@@ -30,9 +31,6 @@ import teamwarpcbstuido.IESEKI.org.AppManager;
  */
 public class GameState implements IState {
 
-    private Link link = new Link();
-    private GameView gameview;
-
     private static int X = 0;
     private static int Y = 1;
     private static int width;
@@ -58,6 +56,8 @@ public class GameState implements IState {
     private UI m_ui;
     private Player m_player;
     private Debug debug = new Debug();
+    private Pause m_pause;
+    private GameOver gameover;
 
     TimerTask m_timer;
 
@@ -91,6 +91,7 @@ public class GameState implements IState {
 
         m_background = new BackGround();
         m_ui = new UI();
+        gameover = new GameOver();
 
         //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
@@ -108,12 +109,12 @@ public class GameState implements IState {
 
         m_player.hp = 5;
         tmpTime = 0;
-
     }
     @Override
     public void Render(Canvas canvas)
     {
         m_background.onDraw(canvas);
+        gameover.onDraw(canvas);
 
         if (m_monster.size() != 0) {
             for (int i = 0; i < m_monster.size() - 1; i++)
@@ -174,6 +175,7 @@ public class GameState implements IState {
         m_ui.onDraw(canvas);
 
         if (debugCheck) Debug.debugLine(canvas);
+
     }
     public float FramePerSecond()
     {
@@ -204,40 +206,40 @@ public class GameState implements IState {
     @Override
     public void Update() {
 
-        long GameTime = System.currentTimeMillis();
-        FPS = this.FramePerSecond();
+        if (m_pause.m_return == false) {
+            long GameTime = System.currentTimeMillis();
+            FPS = this.FramePerSecond();
 
+            m_player.onUpdate(GameTime);
+            m_background.onUpdate(GameTime);
 
-        m_player.onUpdate(GameTime);
-        m_background.onUpdate(GameTime);
+            if (m_effect.size() > 0) {
+                for (int i = 0; i < m_effect.size(); i++) {
+                    m_effect.get(i).onUpdate(m_player, FPS);
 
-        if (m_effect.size() > 0) {
-            for (int i = 0; i < m_effect.size(); i++) {
-                m_effect.get(i).onUpdate(m_player, FPS);
-
-                if (m_effect.get(i).Die()) m_effect.remove(i);
+                    if (m_effect.get(i).Die()) m_effect.remove(i);
+                }
             }
-        }
-        //Move
-        if (m_monster.size() > 0) {
-            for (int i = 0; i < m_monster.size() - 1; i++)
-            {
-                m_monster.get(i).Move(FPS);
-                if(m_monster.get(i).Die()) m_monster.remove(i);
+            //Move
+            if (m_monster.size() > 0) {
+                for (int i = 0; i < m_monster.size() - 1; i++) {
+                    m_monster.get(i).Move(FPS);
+                    if (m_monster.get(i).Die()) m_monster.remove(i);
 
+                }
             }
-        }
 
-        if (m_item.size() > 0) {
-            for (int i = 0; i < m_item.size() - 1; i++) {
-                m_item.get(i).Move(FPS);
-                if (m_item.get(i).DIe()) m_item.remove(i);
+            if (m_item.size() > 0) {
+                for (int i = 0; i < m_item.size() - 1; i++) {
+                    m_item.get(i).Move(FPS);
+                    if (m_item.get(i).DIe()) m_item.remove(i);
+                }
             }
-        }
 
-        this.AddMonster();
-        this.AddItem();
-        this.Collision();
+            this.AddMonster();
+            this.AddItem();
+            this.Collision();
+        }
     }
 
     @Override
@@ -255,6 +257,8 @@ public class GameState implements IState {
                     m_monster.remove(i);
                     --m_player.hp;
                     m_ui.onUpdate(m_player.hp);
+
+
                 }
 
                 if (m_effect.size() > 0) {
@@ -382,7 +386,7 @@ public class GameState implements IState {
         }
 
         m_effect.add(effect);
-        effect.TimerManager(m_timer);
+        effect.Effect_TimerManager(m_timer);
     }
 
     //Make

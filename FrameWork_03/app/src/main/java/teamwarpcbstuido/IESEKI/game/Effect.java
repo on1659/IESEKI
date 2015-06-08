@@ -62,8 +62,8 @@ public class Effect extends SpriteAnimation {
     {
         m_cx = _player.m_cx;
         m_cy = _player.m_cy;
-        m_w = _player.getWidth() / 2 * 3;
-        m_h = _player.getHight() / 2 * 3;
+        m_w = _player.getWidth() / 2 * 5;
+        m_h = _player.getHight() / 2 * 5;
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
         this.InitSpriteData(1, 1, 1, 1);
         /*
@@ -145,7 +145,7 @@ public class Effect extends SpriteAnimation {
     }
 
     //-------------------------------------------------------타이머 매니저
-    public void TimerManager(TimerTask timertask1) {
+    public void Effect_TimerManager(TimerTask timertask1) {
         //------------------------------------------------타이머1
         timertask1 = new TimerTask() {
             public void run() {

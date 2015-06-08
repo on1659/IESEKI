@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/select_background">
+
+    <teamwarpcbstuido.IESEKI.org.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_sl"
+
+        sl:scale_base_width="480"
+        sl:scale_base_height="800">
+
+        <Switch
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="음악"
+            android:id="@+id/option_switch_music"
+
+            sl:scale_left="120"
+            sl:scale_top="250"
+            sl:scale_width="250"
+            sl:scale_height="100"
+            sl:scale_textsize="30" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="진동"
+            android:id="@+id/option_switch_vibe"
+
+            sl:scale_left="120"
+            sl:scale_top="400"
+            sl:scale_width="250"
+            sl:scale_height="100"
+            sl:scale_textsize="30" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/option_btn_zeroin"
+            android:background="@drawable/btn_zeroin"
+
+            sl:scale_left="120"
+            sl:scale_top="550"
+            sl:scale_width="250"
+            sl:scale_height="125" />
+
+    </teamwarpcbstuido.IESEKI.org.ScalableLayout>
+
+</RelativeLayout>

@@ -72,7 +72,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         gameState = new GameState();
         ChangeGameState(gameState);
 
-       bit = BitmapFactory.decodeResource(context.getResources(), R.drawable.character);
+        bit = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
        pnt = new Paint();
        pnt.setAlpha(50);
 

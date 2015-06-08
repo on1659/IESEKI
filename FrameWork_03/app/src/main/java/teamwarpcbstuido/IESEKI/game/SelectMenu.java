@@ -10,14 +10,19 @@ import android.widget.ImageButton;
 
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.GameView;
+import teamwarpcbstuido.IESEKI.org.MyMediaPlayer;
 
 /**
  * Created by JYJ on 2015-06-03.
  */
 public class SelectMenu extends Activity implements View.OnClickListener {
 
+    private MyMediaPlayer m_myMediaPlayer;
+
     ImageButton btn_start;
     ImageButton btn_quit;
+    ImageButton btn_help;
+    ImageButton btn_option;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,15 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
         btn_quit.setOnClickListener(this);
+
+        btn_help = (ImageButton) findViewById(R.id.select_btn_help);
+        btn_help.setOnClickListener(this);
+
+        btn_option = (ImageButton) findViewById(R.id.select_btn_option);
+        btn_option.setOnClickListener(this);
+
+        m_myMediaPlayer = new MyMediaPlayer(this);
+        m_myMediaPlayer.start(1);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,14 +61,27 @@ public class SelectMenu extends Activity implements View.OnClickListener {
             case R.id.select_btn_start:
 
                 intent = new Intent(this, Link.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
+                //finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
+                break;
+
+            case R.id.select_btn_help:
+
+                intent = new Intent(this, Help.class);
+                startActivity(intent);
+                break;
+
+            case R.id.select_btn_option:
+
+                intent = new Intent(this, Option.class);
+                startActivity(intent);
                 break;
 
             case R.id.select_btn_quit:
 
-                System.exit(0);
                 finish();
+                System.exit(0);
                 break;
 
             default:
@@ -68,8 +95,9 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
 
-                System.exit(0);
                 finish();
+                //this.onDestroy();
+                System.exit(0);
                 break;
         }
         return super.onKeyDown(keyCode, event);

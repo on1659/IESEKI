@@ -18,7 +18,7 @@ public class CreditState implements IState {
 
     @Override
     public void Init() {
-        icon = AppManager.getInstance().getBitmap(R.drawable.monster_dolphin);
+        icon = AppManager.getInstance().getBitmap(R.drawable.player);
     }
 
     @Override

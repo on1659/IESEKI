@@ -18,7 +18,6 @@ public class BackGround extends GraphicObject{
     private int X = 0;
     private int Y = 1;
     int DPI[] = new int[2];
-    int k;
 
     Bitmap m_layer1 ;
     Bitmap m_layer2 ;

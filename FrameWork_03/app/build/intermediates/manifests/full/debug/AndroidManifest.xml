@@ -28,6 +28,15 @@
         <activity
             android:name="teamwarpcbstuido.IESEKI.game.Link"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="teamwarpcbstuido.IESEKI.game.Help"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="teamwarpcbstuido.IESEKI.game.Option"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="teamwarpcbstuido.IESEKI.game.ZeroInTest"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
