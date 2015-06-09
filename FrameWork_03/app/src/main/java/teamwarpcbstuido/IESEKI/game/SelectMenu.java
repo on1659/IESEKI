@@ -9,15 +9,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.GameView;
 import teamwarpcbstuido.IESEKI.org.MyMediaPlayer;
+import teamwarpcbstuido.IESEKI.org.MySoundPool;
+import teamwarpcbstuido.IESEKI.org.SoundManager;
 
 /**
  * Created by JYJ on 2015-06-03.
  */
 public class SelectMenu extends Activity implements View.OnClickListener {
 
-    private MyMediaPlayer m_myMediaPlayer;
+    static public MyMediaPlayer m_myMediaPlayer;
+    static public MySoundPool m_mySoundPool;
 
     ImageButton btn_start;
     ImageButton btn_quit;
@@ -46,7 +50,11 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         btn_option.setOnClickListener(this);
 
         m_myMediaPlayer = new MyMediaPlayer(this);
-        m_myMediaPlayer.start(1);
+        m_mySoundPool = new MySoundPool(this);
+
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+            m_myMediaPlayer.play(1);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +67,8 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.select_btn_start:
+
+                m_myMediaPlayer.stop(1);
 
                 intent = new Intent(this, Link.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

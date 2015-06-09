@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 
 import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 
 /**
  * Created by JYJ on 2015-06-07.
@@ -16,6 +19,8 @@ import teamwarpcbstuido.IESEKI.R;
 public class Option extends Activity implements View.OnClickListener {
 
     ImageButton btn_zeroin;
+
+    Switch swt_music_onoff;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,13 @@ public class Option extends Activity implements View.OnClickListener {
 
         btn_zeroin = (ImageButton) findViewById(R.id.option_btn_zeroin);
         btn_zeroin.setOnClickListener(this);
+
+        swt_music_onoff = (Switch) findViewById(R.id.option_switch_music);
+        swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
+                AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
+            }
+        });
     }
 
     @Override

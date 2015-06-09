@@ -28,6 +28,8 @@ public class Link extends Activity {
 
     Pause m_pause;
 
+    SelectMenu m_selectMenu;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,8 @@ public class Link extends Activity {
         m_pause = new Pause(Link.this);
         m_pause.setCancelable(false);
 
+        m_selectMenu.m_myMediaPlayer.play(2);
+
         //a = Link.this;
     }
 
@@ -51,6 +55,8 @@ public class Link extends Activity {
             case KeyEvent.KEYCODE_BACK:
                 m_pause.m_return = true;
                 m_pause.show();
+
+                m_selectMenu.m_myMediaPlayer.pause(2);
                 break;
         }
         return super.onKeyDown(keyCode, event);

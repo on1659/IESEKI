@@ -25,6 +25,8 @@ public class Pause extends Dialog implements View.OnClickListener {
     ImageButton btn_return;
     ImageButton btn_gomain;
 
+    SelectMenu m_selectMenu;
+
     public static boolean m_return;
 
     public Pause(Context context) {
@@ -56,10 +58,14 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
+                m_selectMenu.m_myMediaPlayer.stop(2);
+
                 System.exit(0);
                 break;
 
             case R.id.pause_btn_return:
+                m_selectMenu.m_myMediaPlayer.play(2);
+
                 m_return = false;
                 dismiss();
                 break;

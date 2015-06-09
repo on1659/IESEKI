@@ -57,7 +57,8 @@ public class GameState implements IState {
     private Player m_player;
     private Debug debug = new Debug();
     private Pause m_pause;
-    private GameOver gameover;
+    private GameOver m_gameover;
+    private SelectMenu m_selectmenu;
 
     TimerTask m_timer;
 
@@ -91,7 +92,7 @@ public class GameState implements IState {
 
         m_background = new BackGround();
         m_ui = new UI();
-        gameover = new GameOver();
+        m_gameover = new GameOver();
 
         //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
@@ -114,7 +115,7 @@ public class GameState implements IState {
     public void Render(Canvas canvas)
     {
         m_background.onDraw(canvas);
-        gameover.onDraw(canvas);
+        m_gameover.onDraw(canvas);
 
         if (m_monster.size() != 0) {
             for (int i = 0; i < m_monster.size() - 1; i++)
@@ -257,8 +258,6 @@ public class GameState implements IState {
                     m_monster.remove(i);
                     --m_player.hp;
                     m_ui.onUpdate(m_player.hp);
-
-
                 }
 
                 if (m_effect.size() > 0) {
@@ -269,6 +268,7 @@ public class GameState implements IState {
                         if (m_effect.get(j).getType() == ITEM_PIWheel || m_effect.get(j).getType() == ITEM_BloodyShield || m_effect.get(j).getType() == ITEM_Meruss) {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
                                 m_monster.remove(i);
+                                m_selectmenu.m_mySoundPool.play(1);
                             }
                         }
                     }
@@ -310,7 +310,7 @@ public class GameState implements IState {
         if (System.currentTimeMillis() - LastRegenEnemy >= 1000)
         {
             LastRegenEnemy = System.currentTimeMillis();
-            Make_Monster(8, Monster_Type_01);
+            Make_Monster(4, Monster_Type_01);
         }
     }
 

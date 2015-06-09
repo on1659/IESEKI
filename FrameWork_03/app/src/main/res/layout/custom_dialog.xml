@@ -29,7 +29,7 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="음악"
+            android:text="음악/효과음"
             android:id="@+id/custom_switch_music"
 
             sl:scale_left="50"

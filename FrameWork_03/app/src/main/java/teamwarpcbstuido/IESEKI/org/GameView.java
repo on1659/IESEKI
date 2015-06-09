@@ -29,8 +29,7 @@ import teamwarpcbstuido.IESEKI.game.GameState;
  */
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
-    Bitmap bit;
-    private Paint pnt;
+
     int width, height;
     int DPI[] = new int[2];
 
@@ -72,9 +71,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         gameState = new GameState();
         ChangeGameState(gameState);
 
-        bit = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
-       pnt = new Paint();
-       pnt.setAlpha(50);
 
         // getHolder().addCallback(this);
        m_thread = new GameViewThread(getHolder(), this);

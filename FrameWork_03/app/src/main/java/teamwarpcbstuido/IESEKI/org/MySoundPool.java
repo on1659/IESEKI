@@ -2,7 +2,10 @@ package teamwarpcbstuido.IESEKI.org;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
+
+import java.util.HashMap;
 
 import teamwarpcbstuido.IESEKI.R;
 
@@ -11,40 +14,41 @@ import teamwarpcbstuido.IESEKI.R;
  */
 public class MySoundPool {
 
-    SoundPool pool;
+    private SoundPool m_SoundPool;
+    private HashMap m_SoundPoolMap;
+    private AudioManager m_AudioManager;
 
-    int button_sound;
+
+    int monsterdie_sound;
 
     public MySoundPool(Context context) {
-        pool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-        loadSound(context);
+
+        /* SoundPool(한번에 실행가능한 사운드수 , 스트림 타입 , 음질);*/
+        m_SoundPool = new SoundPool(200, AudioManager.STREAM_MUSIC, 0);
+        m_SoundPoolMap = new HashMap();
+
+        //SoundPool용 사운드 로드, 번호 1번
+        monsterdie_sound = m_SoundPool.load(context, R.raw.effectmusic_monsterdie, 1);
     }
 
-    private void loadSound(Context context) {
-        button_sound = pool.load(context, R.raw.music_selectmenu, 1);
+    public void play(int choice) {
 
-    }
-
-    public void start(int choice) {
-
-        if (choice == 1) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             //실행할 사운드 ID, 왼쪽볼륨, 오른쪽볼륨, 재생우선순위, 반복여부, 재생속도
-            pool.play(button_sound, 1, 1, 0, 0, 1);
+            m_SoundPool.play(choice, 5, 5, 0, 0, 1);
         }
-
     }
 
     public void stop(int choice) {
-
-        if (choice == 1)
-            pool.stop(button_sound);
-
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+            m_SoundPool.stop(choice);
+        }
     }
 
     public void pause(int choice) {
-
-        if (choice == 1)
-            pool.pause(button_sound);
-
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+            m_SoundPool.pause(choice);
+        }
     }
+
 }

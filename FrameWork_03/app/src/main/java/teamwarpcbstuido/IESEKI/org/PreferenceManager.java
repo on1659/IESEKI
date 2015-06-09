@@ -58,5 +58,21 @@ public class PreferenceManager {
         return revise;
     }
 
+    public void MusicOptionSave(boolean _onoff) {
+
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putBoolean("Music_OnOff", _onoff);
+        ed.commit();
+
+    }
+
+    public boolean MusicOptionLoad() {
+        boolean music_onoff;
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        music_onoff = pref.getBoolean("Music_OnOff", true);
+        return music_onoff;
+    }
+
 
 }

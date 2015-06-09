@@ -35,7 +35,7 @@ public class BackGround extends GraphicObject{
 
         DPI =  AppManager.getInstance().getDPI();
 
-        m_layer1 = AppManager.getInstance().getBitmap(R.drawable.game_background);
+        m_layer1 = AppManager.getInstance().getBitmap(R.drawable.game_background2);
         m_layer2 = m_layer1;
 
         m_background_01 = new Rect();
