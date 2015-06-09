@@ -1,10 +1,13 @@
 package teamwarpcbstuido.IESEKI.game;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -13,7 +16,9 @@ import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.GameView;
 import teamwarpcbstuido.IESEKI.org.MyMediaPlayer;
 import teamwarpcbstuido.IESEKI.org.MySoundPool;
+import teamwarpcbstuido.IESEKI.org.PreferenceManager;
 import teamwarpcbstuido.IESEKI.org.SoundManager;
+import teamwarpcbstuido.IESEKI.org.moveSensor;
 
 /**
  * Created by JYJ on 2015-06-03.
@@ -22,6 +27,8 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
     static public MyMediaPlayer m_myMediaPlayer;
     static public MySoundPool m_mySoundPool;
+    private PreferenceManager m_preferenceManager;
+    private moveSensor m_moveSensor;
 
     ImageButton btn_start;
     ImageButton btn_quit;
@@ -52,9 +59,20 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         m_myMediaPlayer = new MyMediaPlayer(this);
         m_mySoundPool = new MySoundPool(this);
 
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
-            m_myMediaPlayer.play(1);
-        }
+        Display dispaly = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
+        //m_thread = new GameViewThread((getHolder(), this);
+        int width = dispaly.getWidth();
+        int height = dispaly.getHeight();
+
+        m_preferenceManager = new PreferenceManager(this);
+        m_moveSensor = new moveSensor(this);
+
+        AppManager.getInstance().setPreference(m_preferenceManager);
+        AppManager.getInstance().setMoveSensor(m_moveSensor);
+        AppManager.getInstance().setSize(width, height);
+
+
+        m_myMediaPlayer.play(AppManager.MUSIC_SELECT_BGM);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,9 +85,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.select_btn_start:
-
-                m_myMediaPlayer.stop(1);
-
+                m_myMediaPlayer.stop(AppManager.MUSIC_SELECT_BGM);
                 intent = new Intent(this, Link.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

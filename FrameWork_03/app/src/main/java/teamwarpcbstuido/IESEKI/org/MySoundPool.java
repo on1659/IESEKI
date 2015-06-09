@@ -28,7 +28,7 @@ public class MySoundPool {
         m_SoundPoolMap = new HashMap();
 
         //SoundPool용 사운드 로드, 번호 1번
-        monsterdie_sound = m_SoundPool.load(context, R.raw.effectmusic_monsterdie, 1);
+        monsterdie_sound = m_SoundPool.load(context, R.raw.effectmusic_monsterdie, AppManager.EFFECT_MONSTER_DIE);
     }
 
     public void play(int choice) {

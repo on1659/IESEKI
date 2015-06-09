@@ -13,7 +13,6 @@ public class MyMediaPlayer {
 
     public MediaPlayer m_music_selectmenu;
     public MediaPlayer m_music_maingame;
-
     public MyMediaPlayer(Context context) {
 
         //MediaPlayer용 사운드 로드
@@ -26,32 +25,37 @@ public class MyMediaPlayer {
 
     public void play(int choice) {
 
-        //if(AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
         switch (choice) {
-            case 1:
+
+            case AppManager.MUSIC_SELECT_BGM:
                 m_music_selectmenu.setLooping(true);
                 m_music_selectmenu.start(); // (중지된 위치에서 부터) 재생 시작
                 break;
-            case 2:
+
+            case AppManager.MUSIC_MAINGAME_BGM:
                 m_music_maingame.setLooping(true);
                 m_music_maingame.start(); // (중지된 위치에서 부터) 재생 시작
                 break;
             default:
                 break;
         }
-        // }
+        }
     }
 
 
     public void stop(int choice) {
         if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             switch (choice) {
-                case 1:
+
+                case AppManager.MUSIC_SELECT_BGM:
                     m_music_selectmenu.stop();
                     break;
-                case 2:
+
+                case AppManager.MUSIC_MAINGAME_BGM:
                     m_music_maingame.stop();
                     break;
+
                 default:
                     break;
             }
@@ -61,12 +65,14 @@ public class MyMediaPlayer {
     public void pause(int choice) {
         if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             switch (choice) {
-                case 1:
+
+                case AppManager.MUSIC_SELECT_BGM:
                     m_music_selectmenu.pause();
                     break;
-                case 2:
+                case AppManager.MUSIC_MAINGAME_BGM:
                     m_music_maingame.pause();
                     break;
+
                 default:
                     break;
             }

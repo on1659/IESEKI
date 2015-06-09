@@ -58,14 +58,12 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
-                m_selectMenu.m_myMediaPlayer.stop(2);
-
+                m_selectMenu.m_myMediaPlayer.stop(AppManager.MUSIC_MAINGAME_BGM);
                 System.exit(0);
                 break;
 
             case R.id.pause_btn_return:
-                m_selectMenu.m_myMediaPlayer.play(2);
-
+                m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
                 m_return = false;
                 dismiss();
                 break;

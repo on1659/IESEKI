@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.GameView;
 import teamwarpcbstuido.IESEKI.org.IState;
 
@@ -43,7 +44,7 @@ public class Link extends Activity {
         m_pause = new Pause(Link.this);
         m_pause.setCancelable(false);
 
-        m_selectMenu.m_myMediaPlayer.play(2);
+        m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
 
         //a = Link.this;
     }
@@ -56,7 +57,7 @@ public class Link extends Activity {
                 m_pause.m_return = true;
                 m_pause.show();
 
-                m_selectMenu.m_myMediaPlayer.pause(2);
+                m_selectMenu.m_myMediaPlayer.pause(AppManager.MUSIC_MAINGAME_BGM);
                 break;
         }
         return super.onKeyDown(keyCode, event);

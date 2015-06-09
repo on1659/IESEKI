@@ -16,8 +16,13 @@ public class AppManager {
     private Vibrator m_vibe;
     private PreferenceManager m_preference;
     private Thread m_thread;
-
     private moveSensor m_moveSensor;
+
+    final public static int MUSIC_SELECT_BGM = 0;
+    final public static int MUSIC_MAINGAME_BGM = 1;
+
+    final public static int EFFECT_MONSTER_DIE = 0;
+
     static final int X = 0;
 
     static final int Y = 1;
@@ -26,23 +31,37 @@ public class AppManager {
     int screen_width, screen_height;
 
     public static AppManager getInstance(){
-        if(s_instance  == null) s_instance = new AppManager();
+        if (s_instance == null)
+            s_instance = new AppManager();
+
         return s_instance;
     }
 
-    void setGameView(GameView _gameview){
+    public void setGameView(GameView _gameview) {
         m_gameview = _gameview;
     }
-    void setResuorces(Resources _resource){
+
+    public void setResuorces(Resources _resource) {
         m_resource = _resource;
     }
-    void setMoveSensor(moveSensor _moveSensor){m_moveSensor = _moveSensor;}
-    void setPreference(PreferenceManager _preferenceManager){m_preference = _preferenceManager;}
-    void setVibeSensor(Context context){m_vibe = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);}
-    void setThread(Thread _thread){
+
+    public void setMoveSensor(moveSensor _moveSensor) {
+        m_moveSensor = _moveSensor;
+    }
+
+    public void setPreference(PreferenceManager _preferenceManager) {
+        m_preference = _preferenceManager;
+    }
+
+    public void setVibeSensor(Context context) {
+        m_vibe = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    public void setThread(Thread _thread) {
         m_thread = _thread;
     }
-    void setSize(int _width, int _height)
+
+    public void setSize(int _width, int _height)
     {
         screen_width = _width;
         screen_height = _height;

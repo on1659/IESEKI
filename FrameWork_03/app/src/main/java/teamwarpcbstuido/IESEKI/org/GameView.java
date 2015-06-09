@@ -61,11 +61,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         AppManager.getInstance().setGameView(this);
         AppManager.getInstance().setResuorces(getResources());
         AppManager.getInstance().setSize(width, height);
-        AppManager.getInstance().setMoveSensor(m_moveSensor);
         AppManager.getInstance().setPreference(m_preferenceManager);
         AppManager.getInstance().setVibeSensor(context);
-
-
 
         getHolder().addCallback(this);
         gameState = new GameState();
