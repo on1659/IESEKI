@@ -88,6 +88,4 @@ public class Player extends SpriteAnimation {
     public double getDegree(){return m_deree;}
 
 
-
-
 }

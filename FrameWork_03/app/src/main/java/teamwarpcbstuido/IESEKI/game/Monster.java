@@ -53,8 +53,8 @@ public class Monster extends SpriteAnimation
 
         revise = AppManager.getInstance().getPreference().SensorLoad();
         m_deree = (float)MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - (int) revise[0]), (AppManager.getInstance().getSensorY()) - (int) revise[1]);
-        m.postRotate(m_deree);
-        //m_bitmap = Bitmap.createBitmap(m_bitmap, 0, 0, m_bitmap.getWidth(), m_bitmap.getHeight(), m, false);
+        m.postRotate(m_deree, m_bitmap.getWidth() / 2,  m_bitmap.getHeight() / 2 );
+        m_bitmap = Bitmap.createBitmap(m_bitmap, 0, 0, m_bitmap.getWidth(), m_bitmap.getHeight(), m, false);
 ;
 
 

@@ -23,13 +23,13 @@ import teamwarpcbstuido.IESEKI.org.Debug;
 
 public class LoadingCanvas extends View {
 
-    // ¼¾¼­¿¡µû¶ó ¿òÁ÷ÀÏ ¾ÆÀÌÄÜÀÇ ÁÂÇ¥
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥
     private int width, height;
     private int DPI[] = new int[2];
     Rect pos;
     Bitmap background;
     Paint pnt;
-    int alpha = 200;
+    int alpha = 255;
 
     public LoadingCanvas(Context context) {
         super(context);
@@ -40,7 +40,7 @@ public class LoadingCanvas extends View {
 
         pnt = new Paint();
         pnt.setAlpha(alpha);
-        pnt.setColor(Color.WHITE);
+        pnt.setColor(Color.BLACK);
         pos  = new Rect();
         pos.set(0,0,width,height);
     }
