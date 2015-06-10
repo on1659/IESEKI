@@ -1,19 +1,12 @@
 package teamwarpcbstuido.IESEKI.game;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
+import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.AppManager;
 
@@ -58,12 +51,14 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
-                m_selectMenu.m_myMediaPlayer.stop(AppManager.MUSIC_MAINGAME_BGM);
-                System.exit(0);
+                //ª∂¿Ã≥≥¥œ¥Ÿ..
+                AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+              //  m_selectMenu.finish();
+                //System.exit(0);
                 break;
 
             case R.id.pause_btn_return:
-                m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
+                AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
                 m_return = false;
                 dismiss();
                 break;
@@ -72,5 +67,7 @@ public class Pause extends Dialog implements View.OnClickListener {
                 break;
         }
     }//onClick
+
+
 
 }

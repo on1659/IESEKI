@@ -14,9 +14,9 @@ ADDED from AndroidManifest.xml:2:1
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
 uses-permission#android.permission.VIBRATE
-ADDED from AndroidManifest.xml:4:5
+ADDED from AndroidManifest.xml:5:5
 	android:name
-		ADDED from AndroidManifest.xml:4:22
+		ADDED from AndroidManifest.xml:5:22
 application
 ADDED from AndroidManifest.xml:7:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
@@ -29,12 +29,12 @@ MERGED from com.android.support:support-v4:21.0.3:16:5
 		ADDED from AndroidManifest.xml:9:9
 	android:theme
 		ADDED from AndroidManifest.xml:11:9
-activity#teamwarpcbstuido.IESEKI.game.SelectMenu
+activity#teamwarpcbstuido.IESEKI.Layout.Loading
 ADDED from AndroidManifest.xml:12:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:14:13
-	android:label
 		ADDED from AndroidManifest.xml:15:13
+	android:label
+		ADDED from AndroidManifest.xml:14:13
 	android:name
 		ADDED from AndroidManifest.xml:13:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
@@ -47,30 +47,36 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:19:17
 	android:name
 		ADDED from AndroidManifest.xml:19:27
-activity#teamwarpcbstuido.IESEKI.game.Link
-ADDED from AndroidManifest.xml:23:9
+activity#teamwarpcbstuido.IESEKI.Layout.Link
+ADDED from AndroidManifest.xml:22:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:25:13
-	android:name
 		ADDED from AndroidManifest.xml:24:13
-activity#teamwarpcbstuido.IESEKI.game.Help
-ADDED from AndroidManifest.xml:27:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:29:13
 	android:name
-		ADDED from AndroidManifest.xml:28:13
-activity#teamwarpcbstuido.IESEKI.game.Option
+		ADDED from AndroidManifest.xml:23:13
+activity#teamwarpcbstuido.IESEKI.Layout.Help
+ADDED from AndroidManifest.xml:25:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:27:13
+	android:name
+		ADDED from AndroidManifest.xml:26:13
+activity#teamwarpcbstuido.IESEKI.Layout.Option
+ADDED from AndroidManifest.xml:28:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:30:13
+	android:name
+		ADDED from AndroidManifest.xml:29:13
+activity#teamwarpcbstuido.IESEKI.Layout.ZeroSetting
 ADDED from AndroidManifest.xml:31:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:33:13
 	android:name
 		ADDED from AndroidManifest.xml:32:13
-activity#teamwarpcbstuido.IESEKI.game.ZeroInTest
-ADDED from AndroidManifest.xml:35:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:37:13
-	android:name
+activity#teamwarpcbstuido.IESEKI.Layout.SelectMenu
+ADDED from AndroidManifest.xml:34:9
+	android:label
 		ADDED from AndroidManifest.xml:36:13
+	android:name
+		ADDED from AndroidManifest.xml:35:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5

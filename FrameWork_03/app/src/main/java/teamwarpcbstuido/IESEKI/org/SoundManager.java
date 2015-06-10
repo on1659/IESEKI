@@ -26,7 +26,7 @@ public class SoundManager {
     //}
 
     //public void Init(Context context){
-    //    /* SoundPool(한번에 실행가능한 사운드수 , 스트림 타입 , 음질);*/
+    //    /* SoundPool(y한번에 실행가능한 사운드수 , 스트림 타입 , 음질);*/
     //    m_SoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
     //    m_SoundPoolMap = new HashMap();
     //    m_AudioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);

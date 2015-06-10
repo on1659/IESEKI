@@ -1,12 +1,8 @@
 package teamwarpcbstuido.IESEKI.game;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 
+import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
 import teamwarpcbstuido.IESEKI.org.Collision;
 import teamwarpcbstuido.IESEKI.org.Debug;
 
@@ -15,14 +11,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
 import teamwarpcbstuido.IESEKI.R;
-import teamwarpcbstuido.IESEKI.org.GameView;
 import teamwarpcbstuido.IESEKI.org.IState;
 import teamwarpcbstuido.IESEKI.org.AppManager;
 
@@ -94,8 +87,8 @@ public class GameState implements IState {
         m_ui = new UI();
         m_gameover = new GameOver();
 
-        //m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.character_ray));
         m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
+
         FPS = 0;
 
         current_time = System.currentTimeMillis();
@@ -268,7 +261,7 @@ public class GameState implements IState {
                         if (m_effect.get(j).getType() == ITEM_PIWheel || m_effect.get(j).getType() == ITEM_BloodyShield || m_effect.get(j).getType() == ITEM_Meruss) {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
                                 m_monster.remove(i);
-                                m_selectmenu.m_mySoundPool.play(AppManager.EFFECT_MONSTER_DIE);
+                                AppManager.getInstance().get_myMediaPlayer().play(AppManager.EFFECT_MONSTER_DIE);
                             }
                         }
                     }

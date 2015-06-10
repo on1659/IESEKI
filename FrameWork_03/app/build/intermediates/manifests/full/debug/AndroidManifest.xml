@@ -16,7 +16,7 @@
         android:label="IESEKI"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="teamwarpcbstuido.IESEKI.game.SelectMenu"
+            android:name="teamwarpcbstuido.IESEKI.Layout.Loading"
             android:label="IESEKI"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -26,17 +26,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="teamwarpcbstuido.IESEKI.game.Link"
+            android:name="teamwarpcbstuido.IESEKI.Layout.Link"
             android:screenOrientation="portrait" />
         <activity
-            android:name="teamwarpcbstuido.IESEKI.game.Help"
+            android:name="teamwarpcbstuido.IESEKI.Layout.Help"
             android:screenOrientation="portrait" />
         <activity
-            android:name="teamwarpcbstuido.IESEKI.game.Option"
+            android:name="teamwarpcbstuido.IESEKI.Layout.Option"
             android:screenOrientation="portrait" />
         <activity
-            android:name="teamwarpcbstuido.IESEKI.game.ZeroInTest"
+            android:name="teamwarpcbstuido.IESEKI.Layout.ZeroSetting"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="teamwarpcbstuido.IESEKI.Layout.SelectMenu"
+            android:label="@string/title_activity_loading" >
+        </activity>
     </application>
 
 </manifest>

@@ -23,7 +23,8 @@ public class MySoundPool {
 
     public MySoundPool(Context context) {
 
-        /* SoundPool(한번에 실행가능한 사운드수 , 스트림 타입 , 음질);*/
+        /* SoundPool(
+        한번에 실행가능한 사운드수 , 스트림 타입 , 음질);*/
         m_SoundPool = new SoundPool(200, AudioManager.STREAM_MUSIC, 0);
         m_SoundPoolMap = new HashMap();
 

@@ -1,11 +1,14 @@
 package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import java.util.Random;
 
 import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.MathCalu;
 import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
 /**
  * Created by Administrator on 2015-05-13.
@@ -41,6 +44,24 @@ public class Monster extends SpriteAnimation
     }
 
     public void setDir(Rect _Destiny) {
+
+        float revise[] = new float[2];
+        float m_deree;
+        Bitmap bitmap;
+        Matrix m;
+        m = new Matrix();
+
+        revise = AppManager.getInstance().getPreference().SensorLoad();
+        m_deree = (float)MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - (int) revise[0]), (AppManager.getInstance().getSensorY()) - (int) revise[1]);
+        m.postRotate(m_deree);
+        //m_bitmap = Bitmap.createBitmap(m_bitmap, 0, 0, m_bitmap.getWidth(), m_bitmap.getHeight(), m, false);
+;
+
+
+
+
+
+
         xDestiny = _Destiny.left;
         yDestiny = _Destiny.top;
 
@@ -88,4 +109,5 @@ public class Monster extends SpriteAnimation
         m_speed = _changeSpeed;
         m_speed += _offsetSpeed;
     }
+
 }

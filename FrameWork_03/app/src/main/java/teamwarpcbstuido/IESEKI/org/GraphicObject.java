@@ -65,7 +65,7 @@ public class GraphicObject {
     public int GetHeight(){return m_h;}
     public int getRadius(){return m_w/2;}
     public Rect getPos(){return m_pos;}
-
+    public void resetBitmap(Bitmap _bitmap){ m_bitmap = _bitmap; }
     public int getWidth() {
         return m_w;
     }

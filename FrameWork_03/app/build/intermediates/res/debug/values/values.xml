@@ -166,6 +166,7 @@
     <string name="app_name">FrameWork_03</string>
     <string name="hello_world">Hello world!</string>
     <string name="score_show">점수는 : </string>
+    <string name="title_activity_loading">Loading</string>
     <!-- From: file:/D:/Prject_3D/IESEKI/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">

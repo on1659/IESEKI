@@ -55,7 +55,6 @@ public class UI extends GraphicObject {
     }
 
     public void onDraw(Canvas canvas) {
-
         canvas.drawBitmap(m_healthbar, m_src_healthbar, m_dst_healthbar, null);
     }
 

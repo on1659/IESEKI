@@ -35,42 +35,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private IState m_state;
     private SurfaceHolder m_surfaceHolder;
-    private GameView m_gameview;
-    private SoundManager soundManger;
     private GameViewThread m_thread;
-    private moveSensor m_moveSensor;
-    private PreferenceManager m_preferenceManager;
-
     private  GameState gameState;
 
     public GameView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setFocusable(true);
 
-        Display dispaly = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
-        //m_thread = new GameViewThread((getHolder(), this);
-        width = dispaly.getWidth();
-        height = dispaly.getHeight();
-
-        DPI[AppManager.X] = width / 18;
-        DPI[AppManager.Y] = height / 32;
-
-        m_moveSensor = new moveSensor(context);
-        m_preferenceManager = new PreferenceManager(context);
-
         AppManager.getInstance().setGameView(this);
-        AppManager.getInstance().setResuorces(getResources());
-        AppManager.getInstance().setSize(width, height);
-        AppManager.getInstance().setPreference(m_preferenceManager);
-        AppManager.getInstance().setVibeSensor(context);
 
         getHolder().addCallback(this);
+
         gameState = new GameState();
         ChangeGameState(gameState);
 
-
-        // getHolder().addCallback(this);
-       m_thread = new GameViewThread(getHolder(), this);
+        m_thread = new GameViewThread(getHolder(), this);
+        AppManager.getInstance().setThread(m_thread);
     }
 
 
@@ -98,7 +78,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-       // AppManager.getInstance().getGameView().ChangeGameState(new CreditState());
         m_state.onTouchEvent(event);
         return true;
     }

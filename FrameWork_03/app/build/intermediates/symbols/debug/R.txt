@@ -364,6 +364,7 @@ int drawable itm_piwheel 0x7f020044
 int drawable itm_reflect 0x7f020045
 int drawable player 0x7f020046
 int drawable select_background 0x7f020047
+int drawable warplogo 0x7f020048
 int id action_bar 0x7f0a0031
 int id action_bar_activity_content 0x7f0a0000
 int id action_bar_container 0x7f0a0030
@@ -469,11 +470,13 @@ int layout abc_simple_dropdown_hint 0x7f040016
 int layout custom_dialog 0x7f040017
 int layout custom_view 0x7f040018
 int layout help 0x7f040019
-int layout main 0x7f04001a
-int layout option 0x7f04001b
-int layout select_menu 0x7f04001c
-int layout support_simple_spinner_dropdown_item 0x7f04001d
-int menu menu_main 0x7f0e0000
+int layout loading 0x7f04001a
+int layout main 0x7f04001b
+int layout option 0x7f04001c
+int layout select_menu 0x7f04001d
+int layout support_simple_spinner_dropdown_item 0x7f04001e
+int menu menu_loading 0x7f0e0000
+int menu menu_main 0x7f0e0001
 int mipmap ic_launcher 0x7f030000
 int raw effectmusic_monsterdie 0x7f060000
 int raw music_maingame 0x7f060001
@@ -498,6 +501,7 @@ int string action_settings 0x7f0c0010
 int string app_name 0x7f0c0011
 int string hello_world 0x7f0c0012
 int string score_show 0x7f0c0013
+int string title_activity_loading 0x7f0c0014
 int style AppTheme 0x7f0d0000
 int style Base_TextAppearance_AppCompat 0x7f0d0001
 int style Base_TextAppearance_AppCompat_Body1 0x7f0d0002

@@ -54,7 +54,7 @@ public class SpriteAnimation extends GraphicObject {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
-        canvas.drawCircle( m_cx, m_cy,m_w/2,paint);
+        canvas.drawCircle(m_cx, m_cy, m_w / 2, paint);
     }
 
     public void onDraw(Canvas canvas, double angle) {
@@ -66,9 +66,9 @@ public class SpriteAnimation extends GraphicObject {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
-        canvas.drawCircle( m_cx, m_cy,m_w/2,paint);
+        canvas.drawCircle(m_cx, m_cy, m_w / 2, paint);
 
-        canvas.rotate((float)angle * -1.0f, m_cx, m_cy);
+        canvas.rotate((float) angle * -1.0f, m_cx, m_cy);
     }
 
     public void SpriteUpdate(long GameTime) {
@@ -93,4 +93,5 @@ public class SpriteAnimation extends GraphicObject {
     public boolean getAnimationEnd() {
         return mbEnd;
     }
+
 }

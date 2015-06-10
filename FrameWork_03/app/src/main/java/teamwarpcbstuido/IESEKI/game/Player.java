@@ -3,9 +3,8 @@ package teamwarpcbstuido.IESEKI.game;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import java.util.Vector;
-
 import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.MathCalu;
 import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
 
 /**
@@ -38,8 +37,7 @@ public class Player extends SpriteAnimation {
 
         //this.InitSpriteData(10, 1 ,10, 6);
         this.InitSpriteData(1, 1 ,1, 1);
-
-        this.SetPosition(DPI,5,6,5,5);
+        this.SetPosition(width / 2, height/ 2, DPI[0] * 5, DPI[1] * 5);
     }
 
     public void  onUpdate(long GameTime)
@@ -71,7 +69,7 @@ public class Player extends SpriteAnimation {
         m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
     }
 
-    void setSensorRevise()
+   public void setSensorRevise()
     {
         reviseX =(int) AppManager.getInstance().getSensorX();
         reviseY =(int) AppManager.getInstance().getSensorY();
