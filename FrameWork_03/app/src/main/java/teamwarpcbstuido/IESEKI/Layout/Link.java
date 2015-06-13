@@ -46,7 +46,7 @@ public class Link extends Activity {
        // m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
         //a = Link.this;
 
-        AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+       AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
 
     }
 

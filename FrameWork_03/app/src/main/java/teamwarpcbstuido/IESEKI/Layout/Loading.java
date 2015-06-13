@@ -30,8 +30,6 @@ public class Loading extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         //捞吧 力老 刚历 秦具壩
         AppManager.getInstance().setAppManager(this);
 

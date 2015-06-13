@@ -28,7 +28,7 @@ public class AppManager {
     final public static int MUSIC_SELECT_BGM = 0;
     final public static int MUSIC_MAINGAME_BGM = 1;
 
-    final public static int EFFECT_MONSTER_DIE = 0;
+    public static int EFFECT_MONSTER_DIE = 0;
 
     static final int X = 0;
 

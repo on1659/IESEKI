@@ -261,7 +261,7 @@ public class GameState implements IState {
                         if (m_effect.get(j).getType() == ITEM_PIWheel || m_effect.get(j).getType() == ITEM_BloodyShield || m_effect.get(j).getType() == ITEM_Meruss) {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
                                 m_monster.remove(i);
-                                AppManager.getInstance().get_myMediaPlayer().play(AppManager.EFFECT_MONSTER_DIE);
+                                AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
                             }
                         }
                     }

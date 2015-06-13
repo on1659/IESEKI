@@ -54,7 +54,6 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         btn_option.setOnClickListener(this);
 
         AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
-
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

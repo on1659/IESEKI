@@ -28,8 +28,8 @@ public class MySoundPool {
         m_SoundPool = new SoundPool(200, AudioManager.STREAM_MUSIC, 0);
         m_SoundPoolMap = new HashMap();
 
-        //SoundPool용 사운드 로드, 번호 1번
-        monsterdie_sound = m_SoundPool.load(context, R.raw.effectmusic_monsterdie, AppManager.EFFECT_MONSTER_DIE);
+        //SoundPool용 사운드 로드 (context, 리소스id, 우선순위)
+        AppManager.EFFECT_MONSTER_DIE = m_SoundPool.load(context, R.raw.effectmusic_monsterdie, 0);
     }
 
     public void play(int choice) {

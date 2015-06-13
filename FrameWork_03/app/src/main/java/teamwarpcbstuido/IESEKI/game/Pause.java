@@ -2,10 +2,12 @@ package teamwarpcbstuido.IESEKI.game;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 
+import teamwarpcbstuido.IESEKI.Layout.Link;
 import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.AppManager;
@@ -18,8 +20,6 @@ public class Pause extends Dialog implements View.OnClickListener {
     ImageButton btn_return;
     ImageButton btn_gomain;
 
-    SelectMenu m_selectMenu;
-
     public static boolean m_return;
 
     public Pause(Context context) {
@@ -30,9 +30,9 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         setContentView(R.layout.custom_dialog);
 
-        //------------------------------------------------¾×Æ¼ºñÆ¼ ¶Ç´Â Ä¿½ºÅÒ ´ÙÀÌ¾ó·Î±× Å©±â ¼³Á¤
-        double d_width = AppManager.getInstance().getWidth() * 0.7; //Display »çÀÌÁîÀÇ 70%
-        double d_height = AppManager.getInstance().getHeight() * 0.7;  //Display »çÀÌÁîÀÇ 70%
+        //------------------------------------------------ï¿½ï¿½Æ¼ï¿½ï¿½Æ¼ ï¿½Ç´ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        double d_width = AppManager.getInstance().getWidth() * 0.7; //Display ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 70%
+        double d_height = AppManager.getInstance().getHeight() * 0.7;  //Display ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 70%
         getWindow().getAttributes().width = (int) d_width;
         getWindow().getAttributes().height = (int) d_height;
 
@@ -51,9 +51,8 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
-                //»¶ÀÌ³³´Ï´Ù..
+                //ï¿½ï¿½ï¿½Ì³ï¿½ï¿½Ï´ï¿½..
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-              //  m_selectMenu.finish();
                 //System.exit(0);
                 break;
 
