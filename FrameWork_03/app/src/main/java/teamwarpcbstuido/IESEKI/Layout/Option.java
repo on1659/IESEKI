@@ -37,10 +37,19 @@ public class Option extends Activity implements View.OnClickListener {
 
         swt_music_onoff = (Switch) findViewById(R.id.option_switch_music);
 
+        swt_music_onoff.setChecked(AppManager.getInstance().getPreference().MusicOptionLoad());
         swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
                 AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
+
+                if(isChecking == true) {
+                    //AppManager.getInstance().MUSIC_ONOFF = true;
+
+                }
+                else {
+                    //AppManager.getInstance().MUSIC_ONOFF = false;
+                }
             }
         });
     }

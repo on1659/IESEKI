@@ -21,7 +21,7 @@
             android:id="@+id/select_btn_start"
             android:background="@drawable/btn_gamestart"
 
-            sl:scale_left="125"
+            sl:scale_left="120"
             sl:scale_top="350"
             sl:scale_width="250"
             sl:scale_height="125" />
@@ -32,7 +32,7 @@
             android:id="@+id/select_btn_help"
             android:background="@drawable/btn_help"
 
-            sl:scale_left="125"
+            sl:scale_left="120"
             sl:scale_top="450"
             sl:scale_width="250"
             sl:scale_height="125" />
@@ -43,7 +43,7 @@
             android:id="@+id/select_btn_option"
             android:background="@drawable/btn_option"
 
-            sl:scale_left="125"
+            sl:scale_left="120"
             sl:scale_top="550"
             sl:scale_width="250"
             sl:scale_height="125" />
@@ -54,7 +54,7 @@
             android:id="@+id/select_btn_quit"
             android:background="@drawable/btn_quit"
 
-            sl:scale_left="125"
+            sl:scale_left="120"
             sl:scale_top="650"
             sl:scale_width="250"
             sl:scale_height="125" />

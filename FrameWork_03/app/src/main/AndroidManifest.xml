@@ -8,7 +8,8 @@
         android:allowBackup="true"
         android:icon="@drawable/player"
         android:label="IESEKI"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity
             android:name=".Layout.Loading"
             android:label="IESEKI"

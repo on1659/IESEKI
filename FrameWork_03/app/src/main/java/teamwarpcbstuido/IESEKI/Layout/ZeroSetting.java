@@ -7,6 +7,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import teamwarpcbstuido.IESEKI.R;
+
 /**
  * Created by JYJ on 2015-06-08.
  */
@@ -33,7 +35,7 @@ public class ZeroSetting extends Activity {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (SettingVIew.m_Button.contains(tx, ty)) {
-                    Toast.makeText(this.getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this.getApplicationContext(), getString(R.string.zero_set), Toast.LENGTH_LONG).show();
                     SettingVIew.setSensorRevise();
                 }
                 break;

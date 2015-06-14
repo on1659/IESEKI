@@ -26,9 +26,10 @@ public class ZeroSettingCanvas extends View {
 
     public Rect m_Button;
 
+
     Bitmap background;
     Bitmap bnt_zeroin;
-
+    Rect back;
 
     private Player m_player;
 
@@ -37,31 +38,32 @@ public class ZeroSettingCanvas extends View {
 
         m_player = new Player(BitmapFactory.decodeResource(context.getResources(), R.drawable.player));
 
-        Display dispaly = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
-        width = dispaly.getWidth();
-        height = dispaly.getHeight();
+        width = AppManager.getInstance().getWidth();
+        height = AppManager.getInstance().getHeight();
 
-        DPI[0] = width / 36;
-        DPI[1] = height / 64;
-        ;
+        DPI = AppManager.getInstance().getDPI();
 
         // 아이콘을 그려준다.
-        background = BitmapFactory.decodeResource(context.getResources(), R.drawable.game_background);
+        background = BitmapFactory.decodeResource(context.getResources(), R.drawable.game_background2);
         bnt_zeroin = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_zeroin);
 
-        int l = DPI[0] * 15;
-        int t = DPI[1] * 15;
-        int w = DPI[0] * 15;
-        int h = DPI[1] * 13;
+        int l = DPI[0] * 20;
+        int t = DPI[1] * 50;
+        int w = DPI[0] * 20;
+        int h = DPI[1] * 10;
+
         m_Button = new Rect();
         m_Button.set(l, t, l + w, t + h);
+
+        back  = new Rect();
+        back.set(0, 0, width, height);
     }
 
 
     public void onDraw(Canvas canvas) {
 
 
-        canvas.drawBitmap(background, 0, 0, null);
+        canvas.drawBitmap(background,null,back,null);
         m_player.onDrawPalyer(canvas);
         m_player.onUpdate(System.currentTimeMillis());
         canvas.drawBitmap(bnt_zeroin, null, m_Button, null);

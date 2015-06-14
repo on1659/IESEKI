@@ -31,8 +31,9 @@ public class AppManager {
     public static int EFFECT_MONSTER_DIE = 0;
 
     static final int X = 0;
-
     static final int Y = 1;
+
+    static public boolean MUSIC_ONOFF = true;
 
     static final  int DPI[] = new int[2];
     int screen_width, screen_height;

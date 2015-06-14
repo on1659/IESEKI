@@ -26,7 +26,7 @@
             sl:scale_top="250"
             sl:scale_width="250"
             sl:scale_height="100"
-            sl:scale_textsize="30" />
+            sl:scale_textsize="20" />
 
         <Switch
             android:layout_width="wrap_content"

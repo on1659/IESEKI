@@ -25,7 +25,7 @@ public class MyMediaPlayer {
 
     public void play(int choice) {
 
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
         switch (choice) {
 
             case AppManager.MUSIC_SELECT_BGM:
@@ -45,7 +45,7 @@ public class MyMediaPlayer {
 
 
     public void stop(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
             switch (choice) {
 
                 case AppManager.MUSIC_SELECT_BGM:
@@ -63,7 +63,7 @@ public class MyMediaPlayer {
     }
 
     public void pause(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
             switch (choice) {
 
                 case AppManager.MUSIC_SELECT_BGM:
