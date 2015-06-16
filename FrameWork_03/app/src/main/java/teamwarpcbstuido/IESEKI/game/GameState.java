@@ -107,6 +107,7 @@ public class GameState implements IState {
     @Override
     public void Render(Canvas canvas)
     {
+
         m_background.onDraw(canvas);
         m_gameover.onDraw(canvas);
 

@@ -25,6 +25,7 @@ public class Loading extends Activity {
     private moveSensor m_moveSensor;
     private SoundManager soundManger;
 
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Loading extends Activity {
         AppManager.getInstance().setResuorces(getResources());
         AppManager.getInstance().set_myMediaPlayer();
         AppManager.getInstance().set_mySoundPool();
+
 
         setContentView(new LoadingCanvas(this));
 

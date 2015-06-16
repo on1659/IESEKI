@@ -1,5 +1,7 @@
 package teamwarpcbstuido.IESEKI.game;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,13 +21,15 @@ public class Pause extends Dialog implements View.OnClickListener {
 
     ImageButton btn_return;
     ImageButton btn_gomain;
-
+    Context m_context;
     public static boolean m_return;
+
+    SelectMenu fd;
 
     public Pause(Context context) {
 
         super(context);
-
+        m_context = context;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.custom_dialog);
@@ -53,7 +57,6 @@ public class Pause extends Dialog implements View.OnClickListener {
             case R.id.pause_btn_gomain:
                 //���̳��ϴ�..
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-                System.exit(0);
                 break;
 
             case R.id.pause_btn_return:

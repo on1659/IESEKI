@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onPause() {
+        /*
         super.onPause();
         Thread thread = AppManager.getInstance().getThread();
         boolean run = true;
@@ -52,7 +53,7 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
-
+        */
     }
 
     @Override

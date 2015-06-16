@@ -23,10 +23,6 @@ import teamwarpcbstuido.IESEKI.org.moveSensor;
  */
 public class SelectMenu extends Activity implements View.OnClickListener {
 
-   // static public MyMediaPlayer m_myMediaPlayer;
-   // static public MySoundPool m_mySoundPool;
-
-
     ImageButton btn_start;
     ImageButton btn_quit;
     ImageButton btn_help;
@@ -35,6 +31,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -53,7 +50,9 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         btn_option = (ImageButton) findViewById(R.id.select_btn_option);
         btn_option.setOnClickListener(this);
 
+
         AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,7 +68,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
                intent = new Intent(this, Link.class);
                 startActivity(intent);
-                //finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
+               // finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
                 break;
 
             case R.id.select_btn_help:
