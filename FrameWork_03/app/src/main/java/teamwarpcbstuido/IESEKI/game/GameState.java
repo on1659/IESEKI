@@ -207,7 +207,7 @@ public class GameState implements IState {
     @Override
     public void Update() {
 
-        if (m_pause.m_return == false) {
+        if (m_pause.m_return == false && GameOver_Check == false) {
             long GameTime = System.currentTimeMillis();
             FPS = this.FramePerSecond();
 

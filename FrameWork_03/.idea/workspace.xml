@@ -7,27 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="0784670e-8f4b-43cf-9c3a-efeaa7e3c4ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gameover_background.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameOver.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameOver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Link.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Link.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Loading.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Loading.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/MyMediaPlayer.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/MyMediaPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/MySoundPool.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/MySoundPool.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/SelectMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/SelectMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/UI.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/UI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="IESEKI.iws" />
@@ -83,21 +71,21 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
+              <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pause.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Pause.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.31538463">
+              <caret line="46" column="71" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1902#2277#0" expanded="true" />
-                <element signature="e#2276#2277#0" expanded="true" />
+                <element signature="e#1860#2090#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10769231">
-              <caret line="397" column="59" selection-start-line="397" selection-start-column="59" selection-end-line="397" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="438" column="32" selection-start-line="438" selection-start-column="32" selection-end-line="438" selection-end-column="32" />
               <folding>
                 <element signature="e#1524#1533#0" expanded="true" />
                 <element signature="e#1581#1587#0" expanded="true" />
@@ -1390,10 +1378,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/MyMediaPlayer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/SelectMenu.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Link.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/UI.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameOver.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" />
       </list>
     </option>
   </component>
@@ -1616,6 +1604,8 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -1872,7 +1862,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434471081926</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="//Update 15.06.17/전제용//오후02:15&#10;&#10;1. 게임오버/score출력&#10;2. 사운드옵션&#10;3. 전체적인 flow구성됨">
+      <created>1434518238729</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1434518238729</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1924,7 +1920,9 @@
     <MESSAGE value="//Update 15.06.14/전제용//오전01:30  &#10;&#10;1. 도움말 레이아웃 확인 차 Commit&#10;" />
     <MESSAGE value="//Update 15.06.14/전제용//오후04:30  &#10;&#10;1. 도움말 레이아웃 만듬, xml파일에 out of memory가 뜨자 &#10;불가피하게 매니페스트에 android:largeHeap=&quot;true&quot;를 사용함&#10;2. 니가 수정한 zerosettingcanvas 수정본 넣었음&#10;----------------------------------------------------------해야할것&#10;1. 아이템 생성비율 조정&#10;2. 아이템, 몬스터 움직임 조정&#10;3. pause에서 메인메뉴로 갈 시 문제 해결&#10;4. 메인게임내 UI처리&#10;5. 게임오버시, 메인게임으로 가기 처리&#10;(3번 문제와 동일하기 때문에 아직 해결 불가)&#10;" />
     <MESSAGE value="//Update 15.06.17/전제용//오전01:09&#10;&#10;1. 임시백업(AppManager 사운드클래스 및 종료 관련)" />
-    <option name="LAST_COMMIT_MESSAGE" value="//Update 15.06.17/전제용//오전01:09&#10;&#10;1. 임시백업(AppManager 사운드클래스 및 종료 관련)" />
+    <MESSAGE value="//Update 15.06.17/전제용//오후02:15&#10;&#10;1. 게임오버/score출력&#10;2. 사운드옵션&#10;3. 전체적인 flow구성됨" />
+    <MESSAGE value="//Update 15.06.17/전제용//오후06:30&#10;&#10;//------------------------------앞으로 해야할 것&#10;1. 메인게임 UI 확정하기&#10;2. 게임오버 조건 기획 확정하기&#10;3. 아이템 생성비율 결정하기&#10;4. 몬스터 움직임,  아이템 움직임 로직 짜기&#10;5. 몬스터 움직임 타이머로 바꾸기&#10;(Pause 걸리고 풀릴 시 순간이동 되는 문제)&#10;6. 기타 리소스 및 버그 수정?" />
+    <option name="LAST_COMMIT_MESSAGE" value="//Update 15.06.17/전제용//오후06:30&#10;&#10;//------------------------------앞으로 해야할 것&#10;1. 메인게임 UI 확정하기&#10;2. 게임오버 조건 기획 확정하기&#10;3. 아이템 생성비율 결정하기&#10;4. 몬스터 움직임,  아이템 움직임 로직 짜기&#10;5. 몬스터 움직임 타이머로 바꾸기&#10;(Pause 걸리고 풀릴 시 순간이동 되는 문제)&#10;6. 기타 리소스 및 버그 수정?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2200,8 +2198,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
           <folding>
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1113#1114#0" expanded="false" />
+            <element signature="e#1145#1146#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2357,30 +2355,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1902#2277#0" expanded="true" />
-            <element signature="e#2276#2277#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/SelectMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="47" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -2393,14 +2371,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10769231">
-          <caret line="397" column="59" selection-start-line="397" selection-start-column="59" selection-end-line="397" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="438" column="32" selection-start-line="438" selection-start-column="32" selection-end-line="438" selection-end-column="32" />
           <folding>
             <element signature="e#1524#1533#0" expanded="true" />
             <element signature="e#1581#1587#0" expanded="true" />
             <element signature="e#1639#1647#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31538463">
+          <caret line="46" column="71" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1860#2090#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
           </folding>
         </state>
       </provider>

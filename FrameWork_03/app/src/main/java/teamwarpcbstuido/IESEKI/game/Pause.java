@@ -29,8 +29,6 @@ public class Pause extends Dialog implements View.OnClickListener {
 
     Switch swt_music_onoff;
 
-    private boolean MUSIC_ONOFF = false;
-
     public Pause(Context context) {
 
         super(context);
@@ -58,11 +56,6 @@ public class Pause extends Dialog implements View.OnClickListener {
         swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
                 AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
-
-                if (isChecking == true)
-                     MUSIC_ONOFF = true;
-                else
-                     MUSIC_ONOFF = false;
             }
         });
 
@@ -80,11 +73,8 @@ public class Pause extends Dialog implements View.OnClickListener {
                 break;
 
             case R.id.pause_btn_return:
+                AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
 
-                if(MUSIC_ONOFF == true)
-                    AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
-                else
-                    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
                 m_return = false;
                 dismiss();
                 break;
