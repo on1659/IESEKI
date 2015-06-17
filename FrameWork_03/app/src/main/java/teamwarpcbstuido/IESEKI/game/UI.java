@@ -25,7 +25,7 @@ public class UI extends GraphicObject {
 
     int width, height;
 
-    static public int score;
+    static private int m_score;
 
     public UI() {
         super(null);
@@ -40,7 +40,7 @@ public class UI extends GraphicObject {
         r_gameui = new Rect();
         r_gameui.set(0, 0, width, height);
 
-        score = 0;
+        m_score = 0;
     }
 
     @Override
@@ -60,7 +60,16 @@ public class UI extends GraphicObject {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("Score : " +score, DPI[X] * 5, DPI[Y] * 7, paint);
+        canvas.drawText("Score : " + m_score, DPI[X] * 5, DPI[Y] * 7, paint);
     }
 
+    public void updateScore()
+    {
+        m_score ++;
+    }
+
+    public int getScore()
+    {
+        return m_score;
+    }
 }

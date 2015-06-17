@@ -78,7 +78,8 @@ public class GameState implements IState {
     Rect button = new Rect();
 
     boolean GameOver_Check;
-
+    private long mGameTimer;
+    private int mCreatMonsetNum;
     @Override
     public void Init()
     {
@@ -97,7 +98,7 @@ public class GameState implements IState {
         current_time = System.currentTimeMillis();
 
         Make_Monster(4, Monster_Type_01);
-        Make_Item(5, ITEM_BloodyShield);
+        Make_Item(2, ITEM_BloodyShield);
 
         button.set(DPI[X] * 25, DPI[Y] * 40, DPI[X] * 30, DPI[Y] * 45);
         debugBtn.set(DPI[X] * 25, DPI[Y] * 20, DPI[X] * 30, DPI[Y] * 25);
@@ -108,6 +109,8 @@ public class GameState implements IState {
 
         GameOver_Check = false;
 
+        mCreatMonsetNum = 4;
+        mGameTimer =0;
         MainGame_TimerManager();
     }
     @Override
@@ -172,7 +175,7 @@ public class GameState implements IState {
          }
         */
 
-        m_player.onDrawPalyer(canvas);
+        m_player.onDrawPlayer(canvas);
         m_ui.onDraw(canvas);
 
         if(GameOver_Check == true)
@@ -227,7 +230,7 @@ public class GameState implements IState {
             //Move
             if (m_monster.size() > 0) {
                 for (int i = 0; i < m_monster.size() - 1; i++) {
-                    m_monster.get(i).Move(FPS);
+                    m_monster.get(i).onUpdate(FPS);
                     if (m_monster.get(i).Die()) m_monster.remove(i);
 
                 }
@@ -240,8 +243,7 @@ public class GameState implements IState {
                 }
             }
 
-            this.AddMonster();
-            this.AddItem();
+
             this.Collision();
         }
     }
@@ -260,25 +262,25 @@ public class GameState implements IState {
                 {
                     m_monster.remove(i);
 
-                    if(m_ui.score > AppManager.getInstance().getPreference().BestScoreLoad())
-                        AppManager.getInstance().getPreference().BestScoreSave(m_ui.score);
+                    if(m_ui.getScore()> AppManager.getInstance().getPreference().BestScoreLoad())
+                        AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
 
-                    GameOver_Check = true;
+                    //GameOver_Check = true;
                 }
 
-                if (m_effect.size() > 0) {
-                    for (int j = 0; j < m_effect.size() - j; j++) {
-
+                    for (int effNum = 0; effNum < m_effect.size(); effNum++)
+                    {
                         //Circle Collision
-
-                        if (m_effect.get(j).getType() == ITEM_PIWheel || m_effect.get(j).getType() == ITEM_BloodyShield || m_effect.get(j).getType() == ITEM_Meruss) {
-                            if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
+                        if (m_effect.get(effNum).getType() == ITEM_PIWheel || m_effect.get(effNum).getType() == ITEM_BloodyShield || m_effect.get(effNum).getType() == ITEM_Meruss)
+                        {
+                            if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(effNum).getX(), m_effect.get(effNum).getY(), m_effect.get(effNum).getRadius()))
+                            {
                                 m_monster.remove(i);
                                 AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
                             }
                         }
                     }
-                }
+
 
             }
         }
@@ -298,26 +300,74 @@ public class GameState implements IState {
     //AddItem
     public void AddItem() {
 
-        Random rnd = new Random();
-        long GameTime = System.currentTimeMillis();
+        if (m_item.size() == 3) {
+            for (int i = 0; i < m_item.size(); i++) {
+                if (m_item.get(i).getWallCount() > 2) {
+                    Random rnd = new Random();
+                    Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
+                    break;
+                }
 
-        //Item Effect
-        if (System.currentTimeMillis() - LastRegenItem >= 3000) {
-            LastRegenItem = System.currentTimeMillis();
+            }
+        }
+
+        if (m_item.size() < 3) {
+            Random rnd = new Random();
             Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
         }
     }
 
     //AddMonster
     public void AddMonster() {
-        Random rnd =new Random();
-        long GameTime = System.currentTimeMillis();
 
-        if (System.currentTimeMillis() - LastRegenEnemy >= 1000)
-        {
-            LastRegenEnemy = System.currentTimeMillis();
-            Make_Monster(4, Monster_Type_01);
-        }
+
+        if(mGameTimer % 20 == 0)
+            Make_Monster(mCreatMonsetNum, Monster_Type_01);
+        //mCreatMonsetNum++;
+
+
+
+        if(mGameTimer == 60)
+            mCreatMonsetNum = 5;
+
+        else if(mGameTimer == 120)
+            mCreatMonsetNum = 6;
+
+        else if(mGameTimer == 220)
+            mCreatMonsetNum = 7;
+
+        else if(mGameTimer == 320)
+            mCreatMonsetNum = 8;
+
+        else if(mGameTimer == 420)
+            mCreatMonsetNum = 9;
+
+        else if(mGameTimer == 520)
+            mCreatMonsetNum = 10;
+
+        else if(mGameTimer == 660)
+            mCreatMonsetNum = 11;
+
+        else if(mGameTimer == 780)
+            mCreatMonsetNum = 12;
+
+        else if(mGameTimer == 860)
+            mCreatMonsetNum = 13;
+
+        else if(mGameTimer == 940)
+            mCreatMonsetNum = 14;
+
+
+
+
+        //Random rnd =new Random();
+        //long GameTime = System.currentTimeMillis();
+
+        //if (System.currentTimeMillis() - LastRegenEnemy >= 1000)
+        //{
+        //    LastRegenEnemy = System.currentTimeMillis();
+        //    Make_Monster(4, Monster_Type_01);
+        //}
     }
 
     //Item Effect
@@ -348,7 +398,7 @@ public class GameState implements IState {
                     break;
             }
 
-            itm.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
+            itm.SetPosition(DPI, rnd.nextInt(25) + 2, -rnd.nextInt(5), 5, 5); //Max DPI[X] is 36
             itm.setDir(m_player.getX(), m_player.getY());
             m_item.add(itm);
         }
@@ -385,8 +435,6 @@ public class GameState implements IState {
             case ITEM_Adrenaline:
                 effect = new Effect(null, ITEM_Adrenaline);
                 effect.Eff_Adrenaline();
-
-                m_ui.score += m_monster.size();
 
                 for (int i = 0; i < m_monster.size(); i++)
                     m_monster.remove(i);
@@ -473,7 +521,13 @@ public class GameState implements IState {
             public void run() {
                 try {
                     if(m_pause.m_return == false && GameOver_Check == false)
-                        m_ui.score++;
+                    {
+                        m_ui.updateScore();
+                        mGameTimer++;
+
+                        AddMonster();
+                        AddItem();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -481,6 +535,6 @@ public class GameState implements IState {
         };
 
         Timer Timer1 = new Timer();
-        Timer1.schedule(maingame_timer, 0, 100); //실제시계 1초 마다 실행
+        Timer1.schedule(maingame_timer, 0, 100);
     }
 }

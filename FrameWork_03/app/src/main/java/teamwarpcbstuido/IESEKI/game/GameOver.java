@@ -70,8 +70,8 @@ public class GameOver extends GraphicObject {
         paint.setColor(Color.WHITE);
         paint.setTextSize(DPI[X] * 4);
 
-        String s_score = "Score : " + m_ui.score;
-        canvas.drawText("Score : " + m_ui.score, width / 2 - (DPI[X] * s_score.length()), (height / 4 * 2) - DPI[X] * 5, paint);
+        String s_score = "Score : " + m_ui.getScore();
+        canvas.drawText("Score : " + m_ui.getScore(), width / 2 - (DPI[X] * s_score.length()), (height / 4 * 2) - DPI[X] * 5, paint);
 
     }
 

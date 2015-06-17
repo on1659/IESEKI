@@ -64,7 +64,7 @@ public class ZeroSettingCanvas extends View {
 
 
         canvas.drawBitmap(background,null,back,null);
-        m_player.onDrawPalyer(canvas);
+        m_player.onDrawPlayer(canvas);
         m_player.onUpdate(System.currentTimeMillis());
         canvas.drawBitmap(bnt_zeroin, null, m_Button, null);
 

@@ -72,7 +72,7 @@ public class Player extends SpriteAnimation {
         AppManager.getInstance().getPreference().SensorSave(reviseX, reviseY);
     }
 
-     public void onDrawPalyer(Canvas canvas)
+     public void onDrawPlayer(Canvas canvas)
      {
         onDraw(canvas,m_deree );
      }

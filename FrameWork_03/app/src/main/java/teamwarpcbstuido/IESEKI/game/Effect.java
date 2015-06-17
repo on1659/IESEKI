@@ -3,6 +3,7 @@ package teamwarpcbstuido.IESEKI.game;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import java.security.PrivateKey;
@@ -33,6 +34,12 @@ public class Effect extends SpriteAnimation {
 
     public int m_activeTime = 0;
 
+    Paint pnt = new Paint();
+    int m_alpha;
+
+    Paint pnt2 = new Paint();
+    int m_alpha2;
+
     public Effect(Bitmap bitmap, int type) {
         super(bitmap);
         m_type = type;
@@ -42,7 +49,13 @@ public class Effect extends SpriteAnimation {
         height = AppManager.getInstance().getHeight();
         DPI = AppManager.getInstance().getDPI();
 
-        m_activeTime = 3;
+        m_alpha = 255;
+        pnt.setAlpha(m_alpha);
+
+        m_alpha2 = 200;
+        pnt2.setAlpha(m_alpha2);
+
+        m_activeTime = 5;
     }
 
     public void Eff_BloodyShield(Item item) //타이머로 시간재고 일정시간동안 돌리기 (효과발동 ~ 효과끝)
@@ -95,7 +108,8 @@ public class Effect extends SpriteAnimation {
 
     public void Eff_Adrenaline() {
         //바로뒤져라 이거임
-        m_activeTime = 0;
+        m_activeTime = 3;
+        pnt2.setColor(Color.WHITE);
         return;
     }
 
@@ -104,18 +118,22 @@ public class Effect extends SpriteAnimation {
         switch (m_type) {
             case GameState.ITEM_PIWheel:
                 canvas.rotate(rota, m_cx, m_cy);
-                onDraw(canvas);
+                onDraw(canvas, pnt);
                 canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
             case GameState.ITEM_BloodyShield:
                 canvas.rotate(rota, m_cx, m_cy);
-                onDraw(canvas);
+                onDraw(canvas, pnt);
                 canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
             case GameState.ITEM_Meruss:
                 onDraw(canvas);
+                break;
+
+            case GameState.ITEM_Adrenaline:
+                canvas.drawRect(0, 0, width, height, pnt2);
                 break;
         }
     }
@@ -141,6 +159,16 @@ public class Effect extends SpriteAnimation {
                 m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
                 break;
 
+        }
+
+        if(m_alpha > 5) {
+            m_alpha -= 2;
+            pnt.setAlpha(m_alpha);
+        }
+
+        if(m_alpha2 > 5) {
+            m_alpha2 -= 5;
+            pnt2.setAlpha(m_alpha2);
         }
     }
 

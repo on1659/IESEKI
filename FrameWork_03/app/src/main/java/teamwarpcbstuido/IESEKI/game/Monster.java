@@ -31,7 +31,7 @@ public class Monster extends SpriteAnimation
         height = AppManager.getInstance().getHeight();
     }
 
-    public void Move(float fps)
+    public void onUpdate(float fps)
     {
         m_cy += (m_speed * yDir) * fps;
         m_cx += (m_speed * xDir / 3) * fps;

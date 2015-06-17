@@ -104,4 +104,9 @@ public class Item extends SpriteAnimation {
 
         return false;
     }
+
+    public int getWallCount()
+    {
+        return wallCount;
+    }
 }

@@ -19,8 +19,8 @@ public class Monster_Type_01 extends  Monster {
         m_speed = DPI[1] * 5;
     }
 
+    public void MonUpdate(float frame_time) {
 
-    public void onUpdate(float frame_time) {
-        this.Move(frame_time);
+        this.onUpdate(frame_time);
     }
 }
