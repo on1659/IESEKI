@@ -45,18 +45,7 @@ public class UI extends GraphicObject {
 
     @Override
     public void Draw(Canvas canvas) {
-        canvas.drawBitmap(m_gameui, null, r_gameui, null);
 
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("Best Score : " + score, DPI[X] * 5, DPI[Y] * 4, paint);
-
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("Score : " +score, DPI[X] * 5, DPI[Y] * 7, paint);
     }
 
     public void onDraw(Canvas canvas) {

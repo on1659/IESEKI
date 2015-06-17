@@ -58,15 +58,6 @@ public class GameOver extends GraphicObject {
     @Override
     public void Draw(Canvas canvas) {
 
-        canvas.drawBitmap(m_background, null, r_background, null);
-        canvas.drawBitmap(m_gomain, null, r_gomain, null);
-
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(DPI[X] * 5);
-        canvas.drawText("Score : " + m_ui.score, width / 2 - DPI[X] * 8, (height / 4 * 2) - DPI[X] * 5, paint);
-
     }
 
     public void onDraw(Canvas canvas) {
@@ -77,8 +68,10 @@ public class GameOver extends GraphicObject {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
-        paint.setTextSize(DPI[X] * 5);
-        canvas.drawText("Score : " + m_ui.score, width / 2 - DPI[X] * 8, (height / 4 * 2) - DPI[X] * 5, paint);
+        paint.setTextSize(DPI[X] * 4);
+
+        String s_score = "Score : " + m_ui.score;
+        canvas.drawText("Score : " + m_ui.score, width / 2 - (DPI[X] * s_score.length()), (height / 4 * 2) - DPI[X] * 5, paint);
 
     }
 

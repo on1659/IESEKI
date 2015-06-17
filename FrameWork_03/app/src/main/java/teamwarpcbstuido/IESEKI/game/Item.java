@@ -21,7 +21,10 @@ public class Item extends SpriteAnimation {
     protected float xDir, yDir;
     protected int width, height;
 
+    protected  int wallCount;
+    protected boolean isReflect;
     protected int m_type;
+
 
     public Item(Bitmap bitmap, int DPI[], int _type) {
         super(bitmap);
@@ -35,11 +38,45 @@ public class Item extends SpriteAnimation {
 
         this.InitSpriteData(1, 1, 1, 1);
         m_speed = DPI[1] * 5;
+        wallCount = 0;
+        isReflect = false;
     }
 
     public void Move(float fps) {
+
+
         m_cy += (m_speed * yDir) * fps;
         m_cx += (m_speed * xDir / 3) * fps;
+
+        if(wallCount >= 3)return;
+
+        //초기에 생성했을때 화면안에 들어왔는지 아닌지 체크해야된다
+        // if(!isView)
+        // {
+        //  if(m_w/2 <= m_cx && m_cx <= width && m_cy/2  <= m_cy && m_cy + m_h <= height)
+        //      isView = true;
+        //  }
+        //else
+        //{
+
+        if(m_cx >= width - m_w/2 || m_cx <= m_w/2)
+        {
+            xDir *= -1;
+            wallCount ++;
+        }
+
+        if(m_cy >= height - m_h/2)
+        {
+            yDir *= -1;
+            isReflect= true;
+            wallCount++;
+        }
+        if(isReflect && m_cy <= m_h/2)
+        {
+            yDir *= -1;
+            wallCount++;
+        }
+        //}
     }
 
     public void setDir(int px, int py) {

@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import java.util.Random;
+import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
@@ -53,7 +54,7 @@ public class GameState implements IState {
     private Pause m_pause;
     private GameOver m_gameover;
 
-    TimerTask m_timer;
+    TimerTask eff_timer;
 
     private Vector<Monster> m_monster = new Vector<Monster>();
     private Vector<Item> m_item = new Vector<Item>();
@@ -106,6 +107,8 @@ public class GameState implements IState {
         tmpTime = 0;
 
         GameOver_Check = false;
+
+        MainGame_TimerManager();
     }
     @Override
     public void Render(Canvas canvas)
@@ -272,8 +275,6 @@ public class GameState implements IState {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
                                 m_monster.remove(i);
                                 AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
-
-                                m_ui.score++;
                             }
                         }
                     }
@@ -394,7 +395,7 @@ public class GameState implements IState {
         }
 
         m_effect.add(effect);
-        effect.Effect_TimerManager(m_timer);
+        effect.Effect_TimerManager(eff_timer);
     }
 
     //Make
@@ -463,5 +464,23 @@ public class GameState implements IState {
             return (rnd.nextInt(start - end) + start);
         }
         return (rnd.nextInt(end - start) + start);
+    }
+
+    //-------------------------------------------------------타이머 매니저
+    public void MainGame_TimerManager() {
+        //------------------------------------------------타이머1
+        TimerTask maingame_timer = new TimerTask() {
+            public void run() {
+                try {
+                    if(m_pause.m_return == false && GameOver_Check == false)
+                        m_ui.score++;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Timer Timer1 = new Timer();
+        Timer1.schedule(maingame_timer, 0, 100); //실제시계 1초 마다 실행
     }
 }
