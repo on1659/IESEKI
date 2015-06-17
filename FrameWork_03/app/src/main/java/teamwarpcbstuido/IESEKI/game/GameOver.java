@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -29,6 +31,8 @@ public class GameOver extends GraphicObject {
 
     int width, height;
 
+    UI m_ui;
+
     public GameOver() {
         super(null);
 
@@ -44,9 +48,9 @@ public class GameOver extends GraphicObject {
         r_background = new Rect();
 
         r_gomain.set(width / 2 + DPI[X] - DPI[X] * 6,
-                height / 2 + DPI[Y] - DPI[X] * 3,
+                (height / 4 * 2) + DPI[Y] - DPI[X] * 3,
                 width / 2 + DPI[X] + DPI[X] * 6,
-                height / 2 + DPI[Y] + DPI[Y] * 3);
+                (height / 4 * 2) + DPI[Y] + DPI[Y] * 3);
 
         r_background.set(0, 0, width, height);
     }
@@ -57,12 +61,24 @@ public class GameOver extends GraphicObject {
         canvas.drawBitmap(m_background, null, r_background, null);
         canvas.drawBitmap(m_gomain, null, r_gomain, null);
 
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 5);
+        canvas.drawText("Score : " + m_ui.score, width / 2 - DPI[X] * 8, (height / 4 * 2) - DPI[X] * 5, paint);
+
     }
 
     public void onDraw(Canvas canvas) {
 
         canvas.drawBitmap(m_background, null, r_background, null);
         canvas.drawBitmap(m_gomain, null, r_gomain, null);
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 5);
+        canvas.drawText("Score : " + m_ui.score, width / 2 - DPI[X] * 8, (height / 4 * 2) - DPI[X] * 5, paint);
 
     }
 

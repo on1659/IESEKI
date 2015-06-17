@@ -256,6 +256,10 @@ public class GameState implements IState {
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
                 {
                     m_monster.remove(i);
+
+                    if(m_ui.score > AppManager.getInstance().getPreference().BestScoreLoad())
+                        AppManager.getInstance().getPreference().BestScoreSave(m_ui.score);
+
                     GameOver_Check = true;
                 }
 
@@ -380,6 +384,9 @@ public class GameState implements IState {
             case ITEM_Adrenaline:
                 effect = new Effect(null, ITEM_Adrenaline);
                 effect.Eff_Adrenaline();
+
+                m_ui.score += m_monster.size();
+
                 for (int i = 0; i < m_monster.size(); i++)
                     m_monster.remove(i);
                 m_monster.clear();
@@ -412,7 +419,7 @@ public class GameState implements IState {
 
             }//switch
 
-            mon.SetPosition(DPI, this.random(2, 25), -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
+            mon.SetPosition(DPI, this.random(-2, 38), -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
             mon.setDir(m_player.getPos());
             m_monster.add(mon);
         }//for

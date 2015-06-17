@@ -74,5 +74,21 @@ public class PreferenceManager {
         return music_onoff;
     }
 
+    public void BestScoreSave(int _score) {
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putInt("BestScore", _score);
+        ed.commit();
+
+    }
+
+    public int BestScoreLoad() {
+        int bestscore;
+        bestscore = 0;
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        bestscore = pref.getInt("BestScore", 0);
+        return bestscore;
+    }
+
 
 }

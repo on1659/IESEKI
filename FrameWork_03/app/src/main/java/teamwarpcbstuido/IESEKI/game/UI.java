@@ -66,7 +66,7 @@ public class UI extends GraphicObject {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("Best Score : " + score, DPI[X] * 5, DPI[Y] * 4, paint);
+        canvas.drawText("Best Score : " +AppManager.getInstance().getPreference().BestScoreLoad(), DPI[X] * 5, DPI[Y] * 4, paint);
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
