@@ -15,31 +15,6 @@
         sl:scale_base_width="480"
         sl:scale_base_height="800">
 
-        <Switch
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="음악/효과음"
-            android:id="@+id/option_switch_music"
-
-            sl:scale_left="120"
-            sl:scale_top="250"
-            sl:scale_width="250"
-            sl:scale_height="100"
-            sl:scale_textsize="20" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="진동"
-            android:id="@+id/option_switch_vibe"
-
-            sl:scale_left="120"
-            sl:scale_top="400"
-            sl:scale_width="250"
-            sl:scale_height="100"
-            sl:scale_textsize="30" />
-
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +26,34 @@
             sl:scale_width="250"
             sl:scale_height="125" />
 
+        <Switch
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/option_switch_music"
+
+            sl:scale_left="120"
+            sl:scale_top="370"
+            sl:scale_width="250"
+            sl:scale_height="100"
+            sl:scale_textsize="20" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:background="@drawable/swt_text"
+
+            sl:scale_left="120"
+            sl:scale_top="400"
+            sl:scale_width="100"
+            sl:scale_height="50"
+            sl:scale_textsize="20" />
+
+
+
     </teamwarpcbstuido.IESEKI.org.ScalableLayout>
+
+
 
 </RelativeLayout>

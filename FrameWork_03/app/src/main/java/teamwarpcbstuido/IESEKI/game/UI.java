@@ -20,9 +20,8 @@ public class UI extends GraphicObject {
     int DPI[] = new int[2];
     int k;
 
-    Bitmap m_healthbar;
-    Rect m_src_healthbar;
-    Rect m_dst_healthbar;
+    Bitmap m_gameui;
+    Rect r_gameui;
 
     int width, height;
 
@@ -36,44 +35,43 @@ public class UI extends GraphicObject {
 
         DPI = AppManager.getInstance().getDPI();
 
-        m_healthbar = AppManager.getInstance().getBitmap(R.drawable.health_bar);
-        m_healthbar = Bitmap.createScaledBitmap(m_healthbar, m_healthbar.getWidth() / DPI[X] * 8, m_healthbar.getHeight() / DPI[Y] * 8, true);
+        m_gameui = AppManager.getInstance().getBitmap(R.drawable.maingame_ui);
 
-        m_src_healthbar = new Rect();
-        m_dst_healthbar = new Rect();
-
-        m_src_healthbar.set(0, 0, m_healthbar.getWidth() / 5 * 5, m_healthbar.getHeight());
-        m_dst_healthbar.set(0, DPI[Y], m_healthbar.getWidth() / 5 * 5, DPI[Y] + m_healthbar.getHeight());
+        r_gameui = new Rect();
+        r_gameui.set(0, 0, width, height);
 
         score = 0;
     }
 
-    public void onUpdate(int hp) {
-        if (hp >= 0) {
-            m_src_healthbar.set(0, 0, m_healthbar.getWidth() / 5 * hp, m_healthbar.getHeight());
-            m_dst_healthbar.set(0, DPI[Y], m_src_healthbar.right, DPI[Y] + m_healthbar.getHeight());
-        }
-    }
-
     @Override
     public void Draw(Canvas canvas) {
-        canvas.drawBitmap(m_healthbar, m_src_healthbar, m_dst_healthbar, null);
+        canvas.drawBitmap(m_gameui, null, r_gameui, null);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("SCORE : " +score, DPI[X] * 3, DPI[Y] * 3, paint);
+        canvas.drawText("Best Score : " + score, DPI[X] * 5, DPI[Y] * 4, paint);
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 2);
+        canvas.drawText("Score : " +score, DPI[X] * 5, DPI[Y] * 7, paint);
     }
 
     public void onDraw(Canvas canvas) {
-        canvas.drawBitmap(m_healthbar, m_src_healthbar, m_dst_healthbar, null);
+        canvas.drawBitmap(m_gameui, null, r_gameui, null);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         paint.setTextSize(DPI[X] * 2);
-        canvas.drawText("SCORE : " +score, DPI[X] * 3, DPI[Y] * 3, paint);
+        canvas.drawText("Best Score : " + score, DPI[X] * 5, DPI[Y] * 4, paint);
+
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 2);
+        canvas.drawText("Score : " +score, DPI[X] * 5, DPI[Y] * 7, paint);
     }
 
 }

@@ -5,6 +5,8 @@ import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
@@ -34,6 +36,7 @@ public class Pause extends Dialog implements View.OnClickListener {
         super(context);
         m_context = context;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         setContentView(R.layout.custom_dialog);
 

@@ -103,7 +103,6 @@ public class GameState implements IState {
 
         debugCheck= false;
 
-        m_player.hp = 5;
         tmpTime = 0;
 
         GameOver_Check = false;
@@ -132,7 +131,7 @@ public class GameState implements IState {
 
         if (debugCheck) Debug.debugLine(canvas);
 
-
+        /*
         {
             debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, Color.BLUE);
 
@@ -158,16 +157,17 @@ public class GameState implements IState {
                 debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, Color.YELLOW);
             }
 
-        }
+             debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
 
-        debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
+              Paint paint = new Paint();
+              paint.setStyle(Paint.Style.FILL);
+              paint.setColor(Color.RED);
+              canvas.drawRect(button, paint);
+              paint.setColor(Color.BLUE);
+              canvas.drawRect(debugBtn, paint);
 
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.RED);
-        canvas.drawRect(button, paint);
-        paint.setColor(Color.BLUE);
-        canvas.drawRect(debugBtn, paint);
+         }
+        */
 
         m_player.onDrawPalyer(canvas);
         m_ui.onDraw(canvas);
@@ -201,7 +201,7 @@ public class GameState implements IState {
         float frame_time = System.currentTimeMillis() - current_time;
         float frame_rate = 1.0f / frame_time;
         current_time += frame_time;
-        return 1/fps;
+        return 0.04f;
     }
 
     @Override
@@ -256,11 +256,7 @@ public class GameState implements IState {
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
                 {
                     m_monster.remove(i);
-                    --m_player.hp;
-                    m_ui.onUpdate(m_player.hp);
-
-                    if(m_player.hp < 0)
-                        GameOver_Check = true;
+                    GameOver_Check = true;
                 }
 
                 if (m_effect.size() > 0) {
@@ -370,7 +366,7 @@ public class GameState implements IState {
                 break;
 
             case ITEM_Meruss:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.dragon_mou), ITEM_Meruss);
+                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_meruss), ITEM_Meruss);
                 effect.Eff_Meruss(m_item.get(item_num));
                 break;
 

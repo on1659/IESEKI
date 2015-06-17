@@ -5,7 +5,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/select_background">
+    android:background="@drawable/pause_ui">
 
     <teamwarpcbstuido.IESEKI.org.ScalableLayout
         android:layout_width="match_parent"
@@ -26,29 +26,30 @@
             sl:scale_width="150"
             sl:scale_height="75" />
 
-        <Switch
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="음악/효과음"
-            android:id="@+id/custom_switch_music"
+            android:id="@+id/imageView"
+            android:background="@drawable/swt_text"
 
             sl:scale_left="50"
-            sl:scale_top="250"
-            sl:scale_width="250"
+            sl:scale_top="300"
+            sl:scale_width="100"
             sl:scale_height="50"
             sl:scale_textsize="15" />
 
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="진동"
-            android:id="@+id/custom_switch_vibe"
+
+            android:id="@+id/custom_switch_music"
 
             sl:scale_left="50"
-            sl:scale_top="350"
+            sl:scale_top="300"
             sl:scale_width="250"
             sl:scale_height="50"
-            sl:scale_textsize="25" />
+            sl:scale_textsize="15" />
+
 
         <ImageButton
             android:layout_width="wrap_content"
