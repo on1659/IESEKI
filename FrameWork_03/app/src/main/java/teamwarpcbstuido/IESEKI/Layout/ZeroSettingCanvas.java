@@ -47,7 +47,7 @@ public class ZeroSettingCanvas extends View {
         background = BitmapFactory.decodeResource(context.getResources(), R.drawable.game_background2);
         bnt_zeroin = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_zeroin);
 
-        int l = DPI[0] * 10;
+        int l = DPI[0] * 8;
         int t = DPI[1] * 50;
         int w = DPI[0] * 20;
         int h = DPI[1] * 10;

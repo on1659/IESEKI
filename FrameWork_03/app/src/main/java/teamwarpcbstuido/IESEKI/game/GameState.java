@@ -72,10 +72,6 @@ public class GameState implements IState {
 
     long tmpTime;
 
-    boolean debugCheck;
-    Rect debugBtn = new Rect();
-
-    Rect button = new Rect();
 
     boolean GameOver_Check;
     private long mGameTimer;
@@ -100,10 +96,8 @@ public class GameState implements IState {
         Make_Monster(4, Monster_Type_01);
         Make_Item(2, ITEM_BloodyShield);
 
-        button.set(DPI[X] * 25, DPI[Y] * 40, DPI[X] * 30, DPI[Y] * 45);
-        debugBtn.set(DPI[X] * 25, DPI[Y] * 20, DPI[X] * 30, DPI[Y] * 25);
 
-        debugCheck= false;
+
 
         tmpTime = 0;
 
@@ -134,8 +128,6 @@ public class GameState implements IState {
                 m_effect.get(i).Eff_Draw(canvas);
         }
 
-
-        if (debugCheck) Debug.debugLine(canvas);
 
         /*
         {
@@ -180,8 +172,6 @@ public class GameState implements IState {
 
         if(GameOver_Check == true)
             m_gameover.onDraw(canvas);
-
-        if (debugCheck) Debug.debugLine(canvas);
 
     }
     public float FramePerSecond()
@@ -265,7 +255,7 @@ public class GameState implements IState {
                     if(m_ui.getScore()> AppManager.getInstance().getPreference().BestScoreLoad())
                         AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
 
-                    //GameOver_Check = true;
+                    GameOver_Check = true;
                 }
 
                     for (int effNum = 0; effNum < m_effect.size(); effNum++)
@@ -275,6 +265,7 @@ public class GameState implements IState {
                         {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(effNum).getX(), m_effect.get(effNum).getY(), m_effect.get(effNum).getRadius()))
                             {
+                                m_ui.killMonster(50);
                                 m_monster.remove(i);
                                 AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
                             }
@@ -436,6 +427,8 @@ public class GameState implements IState {
                 effect = new Effect(null, ITEM_Adrenaline);
                 effect.Eff_Adrenaline();
 
+                m_ui.killMonster(m_monster.size() * 30);
+
                 for (int i = 0; i < m_monster.size(); i++)
                     m_monster.remove(i);
                 m_monster.clear();
@@ -488,16 +481,7 @@ public class GameState implements IState {
         int x = (int)tx;
         int y = (int)ty;
 
-        if(button.contains(x,y))
-        {
-            m_player.setSensorRevise();
 
-        }
-        if(debugBtn.contains(x,y))
-        {
-            if (debugCheck) debugCheck = false;
-            else debugCheck= true;
-        }
         if(GameOver_Check == true && m_gameover.r_gomain.contains(x,y))
         {
             AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);

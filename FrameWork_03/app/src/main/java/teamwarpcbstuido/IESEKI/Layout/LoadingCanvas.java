@@ -49,7 +49,6 @@ public class LoadingCanvas extends View {
     public void onDraw(Canvas canvas) {
         canvas.drawBitmap(background, null, pos, null);
         canvas.drawRect(0, 0, width, height, pnt);
-        Debug.drawText(canvas, " alpha : " + alpha, 100,100, 50, Color.RED);
         alpha -= 2;
         if(alpha < 100)alpha +=1;
         if(alpha < 0)alpha=0;

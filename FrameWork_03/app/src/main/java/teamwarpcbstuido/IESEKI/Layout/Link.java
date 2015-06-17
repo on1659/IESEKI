@@ -47,6 +47,17 @@ public class Link extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        m_pause.Exit();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         switch (keyCode) {

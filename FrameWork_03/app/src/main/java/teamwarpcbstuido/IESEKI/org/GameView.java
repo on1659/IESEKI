@@ -73,7 +73,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void onUpdate(){
-      m_state.Update();
+
+        m_state.Update();
     }
 
     @Override
@@ -89,6 +90,22 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
           _state.Init();
           m_state = _state;
       }
+
+    public void Destory()
+    {
+        boolean retry = true;
+        m_thread.setRunning(false);
+        while(retry){
+            try{
+                m_thread.join();
+                retry = false;
+            }catch (InterruptedException e){
+
+            }
+        }
+
+
+    }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {

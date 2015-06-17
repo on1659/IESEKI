@@ -65,6 +65,12 @@ public class Pause extends Dialog implements View.OnClickListener {
         m_return = false;
     }
 
+    public void Exit()
+    {
+        AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+        System.exit(0);
+    }
+
     @Override
     public void onClick(View v) {
 

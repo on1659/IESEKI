@@ -25,7 +25,7 @@ public class UI extends GraphicObject {
 
     int width, height;
 
-    static private int m_score;
+    static public int m_score;
 
     public UI() {
         super(null);
@@ -63,13 +63,18 @@ public class UI extends GraphicObject {
         canvas.drawText("Score : " + m_score, DPI[X] * 5, DPI[Y] * 7, paint);
     }
 
+    public void killMonster(int score)
+    {
+        m_score += score;
+    }
+
     public void updateScore()
     {
         m_score ++;
     }
 
-    public int getScore()
+    static public int getScore()
     {
-        return m_score;
+        return  m_score;
     }
 }
