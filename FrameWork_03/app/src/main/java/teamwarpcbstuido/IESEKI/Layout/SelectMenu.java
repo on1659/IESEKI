@@ -3,6 +3,7 @@ package teamwarpcbstuido.IESEKI.Layout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.KeyEvent;
@@ -33,7 +34,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
 
-       requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.select_menu);
 
@@ -49,13 +50,33 @@ public class SelectMenu extends Activity implements View.OnClickListener {
 
         btn_option = (ImageButton) findViewById(R.id.select_btn_option);
         btn_option.setOnClickListener(this);
-
-
-        AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
-
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //이걸 제일 먼저 해야됌
+        AppManager.getInstance().setAppManager(this);
+
+        AppManager.getInstance().setSize();
+        AppManager.getInstance().setVibeSensor();
+        AppManager.getInstance().setPreference();
+        AppManager.getInstance().setMoveSensor();
+        AppManager.getInstance().setResuorces(getResources());
+        AppManager.getInstance().set_myMediaPlayer();
+        AppManager.getInstance().set_mySoundPool();
+
+
+        AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
+}
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
+    }
 
     @Override
     public void onClick(View v) {
@@ -66,9 +87,9 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.select_btn_start:
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
-               intent = new Intent(this, Link.class);
+                intent = new Intent(this, Link.class);
                 startActivity(intent);
-               // finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
+                //finish(); //이거 finish 해주는게 확실히 맞는지 확인하고, 생애주기와 더불어 추후에 수정여부 결정
                 break;
 
             case R.id.select_btn_help:

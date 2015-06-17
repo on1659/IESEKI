@@ -23,7 +23,9 @@ public class GameOver extends GraphicObject {
     int DPI[] = new int[2];
 
     Bitmap m_gomain;
-    Rect r_gomain;
+    Bitmap m_background;
+    static public Rect r_gomain;
+    static public Rect r_background;
 
     int width, height;
 
@@ -35,23 +37,33 @@ public class GameOver extends GraphicObject {
 
         DPI = AppManager.getInstance().getDPI();
 
-        m_gomain = AppManager.getInstance().getBitmap(R.drawable.btn_option);
+        m_gomain = AppManager.getInstance().getBitmap(R.drawable.btn_gomain);
+        m_background = AppManager.getInstance().getBitmap(R.drawable.gameover_background);
 
         r_gomain = new Rect();
+        r_background = new Rect();
 
-        r_gomain.set(width / 2 + DPI[X] - DPI[X] * 5,
-                height / 2 + DPI[Y] - DPI[Y] * 2,
-                width / 2 + DPI[X] + DPI[X] * 5,
-                height / 2 + DPI[Y] + DPI[Y] * 2);
+        r_gomain.set(width / 2 + DPI[X] - DPI[X] * 6,
+                height / 2 + DPI[Y] - DPI[X] * 3,
+                width / 2 + DPI[X] + DPI[X] * 6,
+                height / 2 + DPI[Y] + DPI[Y] * 3);
+
+        r_background.set(0, 0, width, height);
     }
 
     @Override
     public void Draw(Canvas canvas) {
+
+        canvas.drawBitmap(m_background, null, r_background, null);
         canvas.drawBitmap(m_gomain, null, r_gomain, null);
+
     }
 
     public void onDraw(Canvas canvas) {
+
+        canvas.drawBitmap(m_background, null, r_background, null);
         canvas.drawBitmap(m_gomain, null, r_gomain, null);
+
     }
 
 }

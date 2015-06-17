@@ -2,6 +2,8 @@ package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 import teamwarpcbstuido.IESEKI.R;
@@ -24,6 +26,8 @@ public class UI extends GraphicObject {
 
     int width, height;
 
+    static public int score;
+
     public UI() {
         super(null);
 
@@ -40,6 +44,8 @@ public class UI extends GraphicObject {
 
         m_src_healthbar.set(0, 0, m_healthbar.getWidth() / 5 * 5, m_healthbar.getHeight());
         m_dst_healthbar.set(0, DPI[Y], m_healthbar.getWidth() / 5 * 5, DPI[Y] + m_healthbar.getHeight());
+
+        score = 0;
     }
 
     public void onUpdate(int hp) {
@@ -52,10 +58,22 @@ public class UI extends GraphicObject {
     @Override
     public void Draw(Canvas canvas) {
         canvas.drawBitmap(m_healthbar, m_src_healthbar, m_dst_healthbar, null);
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 2);
+        canvas.drawText("SCORE : " +score, DPI[X] * 3, DPI[Y] * 3, paint);
     }
 
     public void onDraw(Canvas canvas) {
         canvas.drawBitmap(m_healthbar, m_src_healthbar, m_dst_healthbar, null);
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(DPI[X] * 2);
+        canvas.drawText("SCORE : " +score, DPI[X] * 3, DPI[Y] * 3, paint);
     }
 
 }

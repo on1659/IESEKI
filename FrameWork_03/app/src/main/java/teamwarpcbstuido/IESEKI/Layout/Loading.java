@@ -15,6 +15,8 @@ import android.view.WindowManager;
 
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.MyMediaPlayer;
+import teamwarpcbstuido.IESEKI.org.MySoundPool;
 import teamwarpcbstuido.IESEKI.org.PreferenceManager;
 import teamwarpcbstuido.IESEKI.org.SoundManager;
 import teamwarpcbstuido.IESEKI.org.moveSensor;
@@ -25,6 +27,8 @@ public class Loading extends Activity {
     private moveSensor m_moveSensor;
     private SoundManager soundManger;
 
+    static public MyMediaPlayer m_mediaplayer;
+    static public MySoundPool m_soundpool;
 
     /** Called when the activity is first created. */
     @Override
@@ -41,7 +45,6 @@ public class Loading extends Activity {
         AppManager.getInstance().setResuorces(getResources());
         AppManager.getInstance().set_myMediaPlayer();
         AppManager.getInstance().set_mySoundPool();
-
 
         setContentView(new LoadingCanvas(this));
 

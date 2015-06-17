@@ -7,9 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.Window;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 
 import teamwarpcbstuido.IESEKI.Layout.Link;
+import teamwarpcbstuido.IESEKI.Layout.Loading;
 import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.AppManager;
@@ -24,7 +27,9 @@ public class Pause extends Dialog implements View.OnClickListener {
     Context m_context;
     public static boolean m_return;
 
-    SelectMenu fd;
+    Switch swt_music_onoff;
+
+    private boolean MUSIC_ONOFF = false;
 
     public Pause(Context context) {
 
@@ -47,6 +52,20 @@ public class Pause extends Dialog implements View.OnClickListener {
         btn_return.setOnClickListener(this);
         btn_gomain.setOnClickListener(this);
 
+        swt_music_onoff = (Switch) findViewById(R.id.custom_switch_music);
+
+        swt_music_onoff.setChecked(AppManager.getInstance().getPreference().MusicOptionLoad());
+        swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
+                AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
+
+                if (isChecking == true)
+                     MUSIC_ONOFF = true;
+                else
+                     MUSIC_ONOFF = false;
+            }
+        });
+
         m_return = false;
     }
 
@@ -57,10 +76,15 @@ public class Pause extends Dialog implements View.OnClickListener {
             case R.id.pause_btn_gomain:
                 //���̳��ϴ�..
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+                System.exit(0);
                 break;
 
             case R.id.pause_btn_return:
-                AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+
+                if(MUSIC_ONOFF == true)
+                    AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+                else
+                    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
                 m_return = false;
                 dismiss();
                 break;

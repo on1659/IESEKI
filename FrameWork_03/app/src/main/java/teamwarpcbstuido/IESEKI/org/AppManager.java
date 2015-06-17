@@ -33,8 +33,6 @@ public class AppManager {
     static final int X = 0;
     static final int Y = 1;
 
-    static public boolean MUSIC_ONOFF = true;
-
     static final  int DPI[] = new int[2];
     int screen_width, screen_height;
 
@@ -81,7 +79,6 @@ public class AppManager {
     public void set_mySoundPool(){ m_mySoundPool = new MySoundPool(m_context);}
 
 
-
     public float getSensorX(){return m_moveSensor.getX();}
     public float getSensorY(){return m_moveSensor.getY();}
     public int getWidth(){return screen_width;}
@@ -91,8 +88,6 @@ public class AppManager {
     public void getShake(long _time){m_vibe.vibrate(_time);}
 
 
-
-
     public GameView getGameView(){return m_gameview;}
     public Resources getresource(){return m_resource;}
     public Bitmap getBitmap(int r){return BitmapFactory.decodeResource(m_resource, r);}
@@ -100,6 +95,5 @@ public class AppManager {
     public Thread getThread(){return m_thread;}
     public MyMediaPlayer get_myMediaPlayer(){ return m_myMediaPlayer; }
     public MySoundPool get_mySoundPool(){ return m_mySoundPool; }
-
 
 }

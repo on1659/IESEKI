@@ -34,20 +34,20 @@ public class MySoundPool {
 
     public void play(int choice) {
 
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             //실행할 사운드 ID, 왼쪽볼륨, 오른쪽볼륨, 재생우선순위, 반복여부, 재생속도
             m_SoundPool.play(choice, 5, 5, 0, 0, 1);
         }
     }
 
     public void stop(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             m_SoundPool.stop(choice);
         }
     }
 
     public void pause(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             m_SoundPool.pause(choice);
         }
     }

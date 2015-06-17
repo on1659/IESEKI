@@ -2,6 +2,7 @@ package teamwarpcbstuido.IESEKI.game;
 
 import android.graphics.Canvas;
 
+import teamwarpcbstuido.IESEKI.Layout.Loading;
 import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
 import teamwarpcbstuido.IESEKI.org.Collision;
 import teamwarpcbstuido.IESEKI.org.Debug;
@@ -51,7 +52,6 @@ public class GameState implements IState {
     private Debug debug = new Debug();
     private Pause m_pause;
     private GameOver m_gameover;
-    private SelectMenu m_selectmenu;
 
     TimerTask m_timer;
 
@@ -75,6 +75,8 @@ public class GameState implements IState {
     Rect debugBtn = new Rect();
 
     Rect button = new Rect();
+
+    boolean GameOver_Check;
 
     @Override
     public void Init()
@@ -103,13 +105,14 @@ public class GameState implements IState {
 
         m_player.hp = 5;
         tmpTime = 0;
+
+        GameOver_Check = false;
     }
     @Override
     public void Render(Canvas canvas)
     {
 
         m_background.onDraw(canvas);
-        m_gameover.onDraw(canvas);
 
         if (m_monster.size() != 0) {
             for (int i = 0; i < m_monster.size() - 1; i++)
@@ -168,6 +171,9 @@ public class GameState implements IState {
 
         m_player.onDrawPalyer(canvas);
         m_ui.onDraw(canvas);
+
+        if(GameOver_Check == true)
+            m_gameover.onDraw(canvas);
 
         if (debugCheck) Debug.debugLine(canvas);
 
@@ -252,6 +258,9 @@ public class GameState implements IState {
                     m_monster.remove(i);
                     --m_player.hp;
                     m_ui.onUpdate(m_player.hp);
+
+                    if(m_player.hp < 0)
+                        GameOver_Check = true;
                 }
 
                 if (m_effect.size() > 0) {
@@ -263,6 +272,8 @@ public class GameState implements IState {
                             if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(j).getX(), m_effect.get(j).getY(), m_effect.get(j).getRadius())) {
                                 m_monster.remove(i);
                                 AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
+
+                                m_ui.score++;
                             }
                         }
                     }
@@ -434,6 +445,11 @@ public class GameState implements IState {
         {
             if (debugCheck) debugCheck = false;
             else debugCheck= true;
+        }
+        if(GameOver_Check == true && m_gameover.r_gomain.contains(x,y))
+        {
+            AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+            System.exit(0);
         }
         return false;
     }

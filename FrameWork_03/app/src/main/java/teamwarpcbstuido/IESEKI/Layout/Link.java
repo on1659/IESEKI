@@ -24,11 +24,7 @@ public class Link extends Activity {
      static public MySoundPool m_mySoundPool;
      static public MyMediaPlayer m_myMediaPlayer;
 
-
-
     Pause m_pause;
-
-    SelectMenu m_selectMenu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +42,7 @@ public class Link extends Activity {
        // m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
         //a = Link.this;
 
-       AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+        AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
 
     }
 
@@ -59,10 +55,12 @@ public class Link extends Activity {
                 m_pause.show();
 
                 AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
-               // m_selectMenu.m_myMediaPlayer.pause(AppManager.MUSIC_MAINGAME_BGM);
+                // m_selectMenu.m_myMediaPlayer.pause(AppManager.MUSIC_MAINGAME_BGM);
                 break;
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
 
 }

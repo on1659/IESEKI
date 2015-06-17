@@ -13,6 +13,8 @@ public class MyMediaPlayer {
 
     public MediaPlayer m_music_selectmenu;
     public MediaPlayer m_music_maingame;
+
+
     public MyMediaPlayer(Context context) {
 
         //MediaPlayer용 사운드 로드
@@ -25,7 +27,7 @@ public class MyMediaPlayer {
 
     public void play(int choice) {
 
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
         switch (choice) {
 
             case AppManager.MUSIC_SELECT_BGM:
@@ -45,7 +47,7 @@ public class MyMediaPlayer {
 
 
     public void stop(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             switch (choice) {
 
                 case AppManager.MUSIC_SELECT_BGM:
@@ -63,7 +65,7 @@ public class MyMediaPlayer {
     }
 
     public void pause(int choice) {
-        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true && AppManager.getInstance().MUSIC_ONOFF == true) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
             switch (choice) {
 
                 case AppManager.MUSIC_SELECT_BGM:
