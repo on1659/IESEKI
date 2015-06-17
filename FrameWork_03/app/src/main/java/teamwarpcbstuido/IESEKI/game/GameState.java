@@ -461,7 +461,7 @@ public class GameState implements IState {
 
             }//switch
 
-            mon.SetPosition(DPI, this.random(-2, 38), -rnd.nextInt(2), 5, 5); //Max DPI[X] is 36
+            mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
             mon.setDir(m_player.getPos());
             m_monster.add(mon);
         }//for

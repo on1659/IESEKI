@@ -64,12 +64,6 @@ public class SpriteAnimation extends GraphicObject {
 
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
         canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
-
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.RED);
-        canvas.drawCircle(m_cx, m_cy, m_w / 2, paint);
-
         canvas.rotate((float) angle * -1.0f, m_cx, m_cy);
     }
 
