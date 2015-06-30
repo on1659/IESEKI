@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="D:\Prject_3D\IESEKI_01\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="D:\Prject_3D\IESEKI_01\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-e8b207a69b215ffdee4f01a0a3907b26650f7634.jar" />
-    </item>
-    <item
         jar="D:\Users\Administrator\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="22.0.0"
@@ -16,11 +9,39 @@
         <dex dex="D:\Prject_3D\IESEKI_01\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-2db560221c229daf3c0533b4ccce68f6ad799ff5.jar" />
     </item>
     <item
+        jar="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\pre-dexed\debug\classes-134c2e556745273d757de082d7433394a15c10da.jar" />
+    </item>
+    <item
+        jar="D:\Prject_3D\IESEKI_01\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="D:\Prject_3D\IESEKI_01\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-e8b207a69b215ffdee4f01a0a3907b26650f7634.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\pre-dexed\debug\classes-c91819de792d1d68e8614c6f300e7fc2d3677843.jar" />
+    </item>
+    <item
         jar="D:\Prject_3D\IESEKI_01\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="D:\Prject_3D\IESEKI_01\app\build\intermediates\pre-dexed\debug\classes-1d5426b4a87876a27f89a593f7ffefeb3b762b16.jar" />
+    </item>
+    <item
+        jar="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Dev.YT\OneDrive\2015 Summer Vacation\IESEKI\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-25609be209214d136879dcbc7b93971acd37f1b2.jar" />
     </item>
     <item
         jar="D:\Prject_3D\IESEKI_01\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"

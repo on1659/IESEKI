@@ -103,7 +103,7 @@ public class GameState implements IState {
 
         GameOver_Check = false;
 
-        mCreatMonsetNum = 4;
+        mCreatMonsetNum = 1;
         mGameTimer =0;
         MainGame_TimerManager();
     }
@@ -129,9 +129,10 @@ public class GameState implements IState {
         }
 
 
-        /*
         {
-            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, Color.BLUE);
+            debug.drawText(canvas, "mCreatMonsetNum : " + mCreatMonsetNum, DPI, 1, 13, 55, Color.BLUE);
+        }
+        /*
 
             debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, Color.RED);
             debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, Color.RED);
@@ -248,9 +249,9 @@ public class GameState implements IState {
             for (int i = 0; i < m_monster.size() - 1; i++) {
 
                 //Circle Collision
-                if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
+                if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius() -DPI[0] ))
                 {
-                    m_monster.remove(i);
+                   // m_monster.remove(i);
 
                     if(m_ui.getScore()> AppManager.getInstance().getPreference().BestScoreLoad())
                         AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
@@ -295,6 +296,7 @@ public class GameState implements IState {
             for (int i = 0; i < m_item.size(); i++) {
                 if (m_item.get(i).getWallCount() > 2) {
                     Random rnd = new Random();
+
                     Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
                     break;
                 }
@@ -312,15 +314,16 @@ public class GameState implements IState {
     public void AddMonster() {
 
 
-        if(mGameTimer % 20 == 0)
-            Make_Monster(mCreatMonsetNum, Monster_Type_01);
+        if(mGameTimer % 10 == 0)
+            Make_Monster(mCreatMonsetNum, Monster_Type_01, -4, 40, 7);
         //mCreatMonsetNum++;
 
 
 
-        if(mGameTimer == 60)
-            mCreatMonsetNum = 5;
+        if(mGameTimer % 60 == 0 )
+            mCreatMonsetNum++;
 
+        /*
         else if(mGameTimer == 120)
             mCreatMonsetNum = 6;
 
@@ -347,7 +350,7 @@ public class GameState implements IState {
 
         else if(mGameTimer == 940)
             mCreatMonsetNum = 14;
-
+        */
 
 
 
@@ -461,12 +464,42 @@ public class GameState implements IState {
 
             }//switch
 
-            mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
+            mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), - 1 * this.random(0, 7 * DPI[Y]), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
             mon.setDir(m_player.getPos());
             m_monster.add(mon);
         }//for
 
     }
+
+    //Make
+    public void Make_Monster(int make_num, int make_type,int startX, int endX, int rangeY) {
+        for(int i = 0; i < make_num; i++)
+        {
+            Monster mon = null;
+            Random rnd = new Random();
+
+
+            switch(make_type)
+            {
+                case Monster_Type_01://Monster_Type_01
+                    mon = new Monster_Type_01(DPI);
+                    break;
+
+                case Monster_Type_02://Monster_Type_02:
+                    break;
+
+                case Monster_Type_03://Monster_Type_03:
+                    break;
+
+            }//switch
+
+            mon.SetPosition(this.random(startX * DPI[X], endX * DPI[X] ), - 1 * this.random(0 ,rangeY * DPI[Y] ), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
+            mon.setDir(m_player.getPos());
+            m_monster.add(mon);
+        }//for
+
+    }
+
 
 
     //////////////////////////////////Callback

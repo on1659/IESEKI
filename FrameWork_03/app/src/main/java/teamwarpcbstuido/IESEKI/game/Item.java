@@ -37,7 +37,7 @@ public class Item extends SpriteAnimation {
         m_type = _type;
 
         this.InitSpriteData(1, 1, 1, 1);
-        m_speed = DPI[1] * 5;
+        m_speed = DPI[1] * 7;
         wallCount = 0;
         isReflect = false;
     }
