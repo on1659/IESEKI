@@ -26,8 +26,10 @@ public class GameOver extends GraphicObject {
 
     Bitmap m_gomain;
     Bitmap m_background;
+    Bitmap m_restart;
     static public Rect r_gomain;
     static public Rect r_background;
+    static public Rect r_restart;
 
     int width, height;
 
@@ -43,14 +45,22 @@ public class GameOver extends GraphicObject {
 
         m_gomain = AppManager.getInstance().getBitmap(R.drawable.btn_gomain);
         m_background = AppManager.getInstance().getBitmap(R.drawable.gameover_background);
+        m_restart = AppManager.getInstance().getBitmap(R.drawable.btn_restart);
 
         r_gomain = new Rect();
         r_background = new Rect();
+        r_restart = new Rect();
 
-        r_gomain.set(width / 2 + DPI[X] - DPI[X] * 6,
+        r_gomain.set(width / 2 + DPI[X] - DPI[X] * 6 - DPI[X] * 8,
+                    (height / 4 * 2) + DPI[Y] - DPI[X] * 3,
+                     width / 2 + DPI[X] + DPI[X] * 6 - DPI[X] * 8,
+                   (height / 4 * 2) + DPI[Y] + DPI[Y] * 3);
+
+        r_restart.set(width / 2 + DPI[X] - DPI[X] * 6 + DPI[X] * 7,
                 (height / 4 * 2) + DPI[Y] - DPI[X] * 3,
-                width / 2 + DPI[X] + DPI[X] * 6,
+                width / 2 + DPI[X] + DPI[X] * 6 + DPI[X] * 7,
                 (height / 4 * 2) + DPI[Y] + DPI[Y] * 3);
+
 
         r_background.set(0, 0, width, height);
     }
@@ -64,6 +74,7 @@ public class GameOver extends GraphicObject {
 
         canvas.drawBitmap(m_background, null, r_background, null);
         canvas.drawBitmap(m_gomain, null, r_gomain, null);
+        canvas.drawBitmap(m_restart, null, r_restart, null);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);

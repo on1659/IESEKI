@@ -78,6 +78,7 @@ public class AppManager {
     public void set_myMediaPlayer() { m_myMediaPlayer = new MyMediaPlayer(m_context); }
     public void set_mySoundPool(){ m_mySoundPool = new MySoundPool(m_context);}
 
+    public void ReStartGame() { m_gameview.RestartGame();}
 
     public float getSensorX(){return m_moveSensor.getX();}
     public float getSensorY(){return m_moveSensor.getY();}

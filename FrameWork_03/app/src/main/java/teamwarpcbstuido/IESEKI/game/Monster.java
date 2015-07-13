@@ -17,6 +17,8 @@ public class Monster extends SpriteAnimation
 {
 
    protected int m_speed;
+   protected  int m_speedX;
+   protected  int m_speedY;
    protected int xDestiny, yDestiny;
    protected float xDir, yDir;
    protected  int width, height;
@@ -33,8 +35,9 @@ public class Monster extends SpriteAnimation
 
     public void onUpdate(float fps)
     {
-        m_cy += (m_speed * yDir) * fps;
-        m_cx += (m_speed * xDir / 3) * fps;
+        // m_speed = DPI[1] * 5;
+        m_cy += (m_speedX * yDir) * fps;
+        m_cx += (m_speedY * xDir / 3) * fps;
     }
 
 
@@ -59,11 +62,39 @@ public class Monster extends SpriteAnimation
         xDestiny = _Destiny.left;
         yDestiny = _Destiny.top;
 
-        if (xDestiny > m_cx) {
+        if (xDestiny > m_cx)
+        {
             xDir = 1;
         } else {
             xDir = -1;
         }
+    }
+    public void setDir(Rect _Destiny, boolean hardMode) {
+
+        if(hardMode)
+        {
+            float mGap = yDestiny - m_cy;
+            if (mGap > 0)
+            {
+                yDir = 1;
+            }
+            else {
+                yDir = -1;
+            }
+        }
+        xDestiny = _Destiny.left;
+        yDestiny = _Destiny.top;
+
+        if (xDestiny > m_cx)
+        {
+            xDir = 1;
+        } else {
+            xDir = -1;
+        }
+    }
+    public void SetHardModeDir(float y)
+    {
+        yDir = y;
     }
     public void setDir(int _x, int _y)
     {
@@ -99,9 +130,10 @@ public class Monster extends SpriteAnimation
         yDir *= _yDir;
     }
 
-    public void SetSpeed(int _offsetSpeed, int _changeSpeed) {
-        m_speed = _changeSpeed;
+    /*
+     public void SetSpeed(int _offsetSpeed, int _changeSpeed) {
+         m_speed = _changeSpeed;
         m_speed += _offsetSpeed;
     }
-
+    */
 }

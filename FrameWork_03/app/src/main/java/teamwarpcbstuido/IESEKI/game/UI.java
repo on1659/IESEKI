@@ -45,7 +45,9 @@ public class UI extends GraphicObject {
 
     @Override
     public void Draw(Canvas canvas) {
-
+        int a = 50;
+        int b = 50;
+        canvas.drawText("a + b = " + (a + b), 50, 50, null);
     }
 
     public void onDraw(Canvas canvas) {
@@ -73,8 +75,12 @@ public class UI extends GraphicObject {
         m_score ++;
     }
 
+    public void ScoreInit(){ m_score = 0; }
+
     static public int getScore()
     {
         return  m_score;
     }
+
+
 }

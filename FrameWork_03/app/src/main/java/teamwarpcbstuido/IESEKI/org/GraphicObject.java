@@ -39,7 +39,15 @@ public class GraphicObject {
         m_h = _h;
 
         m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+      }
+
+    public void SetPosition(int _x, int _y)
+    {
+        m_cx = _x;
+        m_cy = _y;
+        m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
     }
+
 
     public void SetPosition(int DPI[], int _x, int _y, int _w, int _h)
     {

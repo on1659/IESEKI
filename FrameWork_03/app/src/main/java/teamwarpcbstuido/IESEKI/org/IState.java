@@ -9,10 +9,11 @@ import android.view.MotionEvent;
 public interface IState{
 
     public void Init();
+    public void RestartGame();
     public void Destroy();
     public void Update();
 
-    public void Render(Canvas canvas) ;
+    public void Render(Canvas canvas);
     public boolean onTouchEvent(MotionEvent event);
 
 }

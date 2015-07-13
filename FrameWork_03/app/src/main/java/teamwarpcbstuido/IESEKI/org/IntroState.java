@@ -15,6 +15,11 @@ public class IntroState implements IState {
     }
 
     @Override
+    public void RestartGame() {
+
+    }
+
+    @Override
     public void Init() {
         icon = AppManager.getInstance().getBitmap(R.drawable.player);
     }

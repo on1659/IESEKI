@@ -53,6 +53,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         AppManager.getInstance().setThread(m_thread);
     }
 
+    public void RestartGame()
+    {
+        m_state.RestartGame();
+    }
 
 
     public void onDrawImage(Canvas canvas) {
