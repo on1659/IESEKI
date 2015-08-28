@@ -1,31 +1,36 @@
 package teamwarpcbstuido.IESEKI.game;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
-import teamwarpcbstuido.IESEKI.Layout.Loading;
-import teamwarpcbstuido.IESEKI.Layout.SelectMenu;
-import teamwarpcbstuido.IESEKI.org.Collision;
-import teamwarpcbstuido.IESEKI.org.Debug;
-
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
+import android.system.OsConstants;
 import android.view.MotionEvent;
+import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Vector;
 
+import teamwarpcbstuido.IESEKI.Layout.Link;
 import teamwarpcbstuido.IESEKI.R;
-import teamwarpcbstuido.IESEKI.org.IState;
 import teamwarpcbstuido.IESEKI.org.AppManager;
+import teamwarpcbstuido.IESEKI.org.Collision;
+import teamwarpcbstuido.IESEKI.org.Debug;
+import teamwarpcbstuido.IESEKI.org.IState;
+
+import static android.graphics.Color.*;
 
 /**
  * Created by Administrator on 2015-04-09.
  */
 public class GameState implements IState {
-
+   // Context context;
+   // public GameState(Context context){
+   //     //self.context = context;
+ //   }
     private static int X = 0;
     private static int Y = 1;
 
@@ -43,6 +48,9 @@ public class GameState implements IState {
     final public static int ITEM_SigmaReflect = 3;
     final public static int ITEM_Adrenaline = 4;
 
+    final public static int NORMAL_MODE = 0;
+    final public static int HARD_MODE   = 1;
+
     private float FPS;
 
 
@@ -57,9 +65,9 @@ public class GameState implements IState {
 
     TimerTask eff_timer;
 
-    private Vector<Monster> m_monster = new Vector<Monster>();
-    private Vector<Item> m_item = new Vector<Item>();
-    private Vector<Effect> m_effect = new Vector<Effect>();
+    private ArrayList<Monster> m_monster = new ArrayList<Monster>();
+      private ArrayList<Item> m_item = new ArrayList<Item>();
+    private ArrayList<Effect> m_effect = new ArrayList<Effect>();
 
 
     private long LastRegenEnemy = System.currentTimeMillis();
@@ -76,12 +84,19 @@ public class GameState implements IState {
 
     boolean GameOver_Check;
     private long mGameTimer;
+    private long mGameLevelDesign;
     private int mCreatMonsetNum;
 
-    private boolean m_hardMode;
+    private int itemCreateTime;
+
+    private int m_mode;
+
+    Rect tempbutton;
+
     @Override
     public void Init()
     {
+
         DPI =  AppManager.getInstance().getDPI();
         width =  AppManager.getInstance().getWidth();
         height =  AppManager.getInstance().getHeight();
@@ -90,22 +105,26 @@ public class GameState implements IState {
         m_ui = new UI();
         m_gameover = new GameOver();
 
-        m_player = new Player(AppManager.getInstance().getBitmap(R.drawable.player));
+        m_player = new Player("Player");
 
         MainGame_TimerManager();
 
         this.RestartGame();
 
+
+
+        tempbutton = new Rect();
+        tempbutton.set(width / 2, height / 2, width / 2 + 50, height / 2 + 50);
     }
 
 
     @Override
     public void RestartGame()
     {
+
         m_monster.clear();
         m_effect.clear();
         m_item.clear();
-
         m_player.SetPosition(width / 2, height / 2);
         m_ui.ScoreInit();
 
@@ -113,7 +132,7 @@ public class GameState implements IState {
 
         current_time = System.currentTimeMillis();
 
-        Make_Monster(4, Monster_Type_01, false);
+        Make_Monster(4, Monster_Type_01, NORMAL_MODE);
         Make_Item(2, ITEM_BloodyShield);
 
         tmpTime = 0;
@@ -122,10 +141,35 @@ public class GameState implements IState {
 
         mCreatMonsetNum = 4;
         mGameTimer =0;
-        m_hardMode = false;
+        m_mode = NORMAL_MODE;
+
+        itemCreateTime = 0;
+
+        mGameLevelDesign = 60;
+
 
     }
 
+    @Override
+    public void onPause()
+    {
+        AppManager.getInstance().SetPauseSaveData("character", m_player);
+        AppManager.getInstance().SetPauseSaveData("item", m_item);
+        AppManager.getInstance().SetPauseSaveData("effect", m_effect);
+        AppManager.getInstance().SetPauseSaveData("background", m_background);
+        AppManager.getInstance().SetPauseSaveData("monster", m_monster);
+    }
+
+    @Override
+    public void onResume()
+    {
+        m_player = (Player) AppManager.getInstance().GetPauseSaveData("character");
+        m_item = (ArrayList<Item>) AppManager.getInstance().GetPauseSaveData("item");
+        m_effect = (ArrayList<Effect>) AppManager.getInstance().GetPauseSaveData("effect");
+        m_background= (BackGround) AppManager.getInstance().GetPauseSaveData("background");
+        m_monster = (ArrayList<Monster>) AppManager.getInstance().GetPauseSaveData("monster");
+
+    }
 
     @Override
     public void Render(Canvas canvas)
@@ -149,49 +193,46 @@ public class GameState implements IState {
         }
 
 
-        /*
+
         {
-            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, Color.BLUE);
+            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, BLUE);
 
-            debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, Color.RED);
-            debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, Color.RED);
-            debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, Color.RED);
-
-
-            debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 10, 21, 35, Color.BLUE);
-            debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 10, 23, 35, Color.BLUE);
-
-            debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, Color.GREEN);
+            debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, RED);
+            debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, RED);
+            debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, RED);
 
 
-            debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, Color.BLACK);
+            debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 10, 21, 35, BLUE);
+            debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 10, 23, 35, BLUE);
+
+            debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, GREEN);
 
 
-            debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, Color.CYAN);
+          //  debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, BLACK);
 
 
-            if (m_effect.size() > 1) {
-                debug.drawText(canvas, "GameTime  : " + m_effect.get(0).m_activeTime, DPI, 10, 31, 35, Color.YELLOW);
-                debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, Color.YELLOW);
-            }
+           // debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, CYAN);
 
-             debug.drawText(canvas, FPS, 250, 550, 55, Color.BLUE);
 
-              Paint paint = new Paint();
-              paint.setStyle(Paint.Style.FILL);
-              paint.setColor(Color.RED);
-              canvas.drawRect(button, paint);
-              paint.setColor(Color.BLUE);
-              canvas.drawRect(debugBtn, paint);
+           /// if (m_effect.size() > 1) {
+           ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(0).m_activeTime, DPI, 10, 31, 35, YELLOW);
+           ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, YELLOW);
+           /// }
+
+            // debug.drawText(canvas, FPS, 250, 550, 55, BLUE);
+
 
          }
-        */
+
 
         m_player.onDrawPlayer(canvas);
         m_ui.onDraw(canvas);
 
         if(GameOver_Check == true)
-            m_gameover.onDraw(canvas);
+             m_gameover.onDraw(canvas);
+
+
+        canvas.drawBitmap(AppManager.getInstance().GetImage("Player"), null, tempbutton, null);
 
     }
 
@@ -260,18 +301,34 @@ public class GameState implements IState {
     }
 
     @Override
-    public void Destroy() {
-
+    public void Destroy()
+    {
+        m_monster = null;
+        m_item = null;
+        m_effect = null;
+        m_background = null;
+        m_ui = null;
+        m_gameover = null;
+        m_player = null;
     }
 
     public void Collision() {
+        boolean isCollision = false;
         if (m_monster.size() != 0) {
             for (int i = 0; i < m_monster.size() - 1; i++) {
 
                 //Circle Collision
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
                 {
-                    m_monster.remove(i);
+                    for(int num = 0; num < m_effect.size(); num++)
+                    {
+                        if(m_effect.get(num).getType() == ITEM_BloodyShield)
+                            isCollision = true;
+                    }
+                   // m_monster.remove(i);
+
+                    if(isCollision)
+                        break;
 
                     if(m_ui.getScore()> AppManager.getInstance().getPreference().BestScoreLoad())
                         AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
@@ -312,6 +369,8 @@ public class GameState implements IState {
     //AddItem
     public void AddItem() {
 
+        if(itemCreateTime < 100) return;
+
         if (m_item.size() == 3) {
             for (int i = 0; i < m_item.size(); i++) {
                 if (m_item.get(i).getWallCount() > 2) {
@@ -332,54 +391,47 @@ public class GameState implements IState {
     //AddMonster
     public void AddMonster() {
 
-
         if(mGameTimer % 20 == 0)
-            Make_Monster(mCreatMonsetNum, Monster_Type_01, true);
-        //mCreatMonsetNum++;
+            Make_Monster(mCreatMonsetNum, Monster_Type_01, m_mode);
 
+        if(mGameTimer == mGameLevelDesign)
+        {
+            mCreatMonsetNum++;
+            mGameLevelDesign += 60;
+            if(mGameLevelDesign > 2000)
+            {
+                mGameLevelDesign = 2000;
+                mCreatMonsetNum--;
+            }
+        }
 
-
-        if(mGameTimer == 60)
-            mCreatMonsetNum = 5;
-
-        else if(mGameTimer == 120)
-            mCreatMonsetNum = 6;
-
-        else if(mGameTimer == 220)
-            mCreatMonsetNum = 7;
-
-        else if(mGameTimer == 320)
-            mCreatMonsetNum = 8;
-
-        else if(mGameTimer == 420)
-            mCreatMonsetNum = 9;
-
-        else if(mGameTimer == 520)
-            mCreatMonsetNum = 10;
-
-        else if(mGameTimer == 660)
-            mCreatMonsetNum = 11;
-
-        else if(mGameTimer == 780)
-            mCreatMonsetNum = 12;
-
-        else if(mGameTimer == 860)
-            mCreatMonsetNum = 13;
-
-        else if(mGameTimer == 940)
-            mCreatMonsetNum = 14;
-
-
-
-
-        //Random rnd =new Random();
-        //long GameTime = System.currentTimeMillis();
-
-        //if (System.currentTimeMillis() - LastRegenEnemy >= 1000)
-        //{
-        //    LastRegenEnemy = System.currentTimeMillis();
-        //    Make_Monster(4, Monster_Type_01);
-        //}
+        //else if(mGameTimer == 120)
+        //    mCreatMonsetNum = 6;
+//
+        //else if(mGameTimer == 220)
+        //    mCreatMonsetNum = 7;
+//
+        //else if(mGameTimer == 320)
+        //    mCreatMonsetNum = 8;
+//
+        //else if(mGameTimer == 420)
+        //    mCreatMonsetNum = 9;
+//
+        //else if(mGameTimer == 520)
+        //    mCreatMonsetNum = 10;
+//
+        //else if(mGameTimer == 660)
+        //    mCreatMonsetNum = 11;
+//
+        //else if(mGameTimer == 780)
+        //    mCreatMonsetNum = 12;
+//
+        //else if(mGameTimer == 860)
+        //    mCreatMonsetNum = 13;
+//
+        //else if(mGameTimer == 940)
+        //    mCreatMonsetNum = 14;
+//
     }
 
     //Item Effect
@@ -390,23 +442,23 @@ public class GameState implements IState {
 
             switch (make_type) {
                 case ITEM_PIWheel:
-                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_piwheel), DPI, ITEM_PIWheel);
+                    itm = new Item("itm_piwheel", DPI, ITEM_PIWheel);
                     break;
 
                 case ITEM_BloodyShield:
-                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_bloodyshield), DPI, ITEM_BloodyShield);
+                    itm = new Item("itm_bloodyshield", DPI, ITEM_BloodyShield);
                     break;
 
                 case ITEM_Meruss:
-                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_meruss), DPI, ITEM_Meruss);
+                    itm = new Item("itm_meruss", DPI, ITEM_Meruss);
                     break;
 
                 case ITEM_SigmaReflect:
-                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_reflect), DPI, ITEM_SigmaReflect);
+                    itm = new Item("itm_reflect", DPI, ITEM_SigmaReflect);
                     break;
 
                 case ITEM_Adrenaline:
-                    itm = new Item(AppManager.getInstance().getBitmap(R.drawable.itm_adrenaline), DPI, ITEM_Adrenaline);
+                    itm = new Item("itm_adrenaline", DPI, ITEM_Adrenaline);
                     break;
             }
 
@@ -423,17 +475,17 @@ public class GameState implements IState {
 
         switch (item_type) {
             case ITEM_PIWheel:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_piwheel), ITEM_PIWheel);
+                effect = new Effect("eff_piwheel", ITEM_PIWheel);
                 effect.Eff_PIWheel(m_player);
                 break;
 
             case ITEM_BloodyShield:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_bloodyshield), ITEM_BloodyShield);
+                effect = new Effect("eff_bloodyshield", ITEM_BloodyShield);
                 effect.Eff_BloodyShield(m_item.get(item_num));
                 break;
 
             case ITEM_Meruss:
-                effect = new Effect(AppManager.getInstance().getBitmap(R.drawable.eff_meruss), ITEM_Meruss);
+                effect = new Effect("eff_meruss", ITEM_Meruss);
                 effect.Eff_Meruss(m_item.get(item_num));
                 break;
 
@@ -461,12 +513,11 @@ public class GameState implements IState {
     }
 
     //Make
-    public void Make_Monster(int make_num, int make_type, boolean hardMode) {
+    public void Make_Monster(int make_num, int make_type, int hardMode) {
         for(int i = 0; i < make_num; i++)
         {
             Monster mon = null;
             Random rnd = new Random();
-
 
             switch(make_type)
             {
@@ -483,25 +534,28 @@ public class GameState implements IState {
             }//switch
 
 
-            if(hardMode)
+            if(hardMode == HARD_MODE)
             {
                 if(this.random())
                 {
-                    mon.SetPosition( -1 * this.random(0,3 * DPI[X]), this.random(- 5 * DPI[Y], height), DPI[X] * 5,DPI[Y] *  5);
+                    mon.SetPosition( -1 * this.random(0 , 15 * DPI[X]), this.random(- 5 * DPI[Y], height), DPI[X] * 5,DPI[Y] *  5);
 
                 }
                 else
                 {
 
-                    mon.SetPosition(this.random(width ,width + 3 * DPI[X]), this.random(- 5 * DPI[Y], height), DPI[X] * 5,DPI[Y] *  5);
+                    mon.SetPosition(this.random(width ,width + 15 * DPI[X]), this.random(- 5 * DPI[Y], height), DPI[X] * 5,DPI[Y] *  5);
                 }
-                mon.setDir(m_player.getPos(), hardMode);
+                mon.setDir(m_player.getPos(), true);
             }
 
-            if(!hardMode)
+            //mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] * 5); //Max DPI[X] is 36
+
+            if(hardMode == NORMAL_MODE )
             {
-                mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] * 5); //Max DPI[X] is 36
-                mon.setDir(m_player.getPos());
+               // mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] * 5); //Max DPI[X] is 36
+                mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), - 1 * this.random(0, 15 * DPI[Y]), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
+                mon.setDir(m_player.getPos(), false);
             }
 
             m_monster.add(mon);
@@ -515,17 +569,21 @@ public class GameState implements IState {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float tx,ty;
-        tx =event.getX();
-        ty =event.getY();
+
+        tx = event.getX();
+        ty = event.getY();
 
         int x = (int)tx;
         int y = (int)ty;
 
-
+        //죽어쓸때
         if(GameOver_Check == true && m_gameover.r_gomain.contains(x,y))
         {
            AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-           System.exit(0);
+          // System.exit(0);
+           // Link.link.Finish();
+            AppManager.getInstance().getLink().Finish();
+            return false;
            //this.RestartGame();
         }
 
@@ -534,8 +592,15 @@ public class GameState implements IState {
             this.RestartGame();
         }
 
+        if(tempbutton.contains(x,y))
+        {
+            AppManager.getInstance().getLink().Share();
+        }
+
         return false;
     }
+
+
 
     private int random(int dpi, int start, int end) {
         Random rnd = new Random();
@@ -553,8 +618,8 @@ public class GameState implements IState {
         }
         return (rnd.nextInt(end - start) + start);
     }
-    private boolean random()
-    {
+
+    private boolean random() {
         Random rnd = new Random();
         return rnd.nextBoolean();
     }
@@ -570,7 +635,7 @@ public class GameState implements IState {
                     {
                         m_ui.updateScore();
                         mGameTimer++;
-
+                        itemCreateTime++;
                         AddMonster();
                         AddItem();
                     }

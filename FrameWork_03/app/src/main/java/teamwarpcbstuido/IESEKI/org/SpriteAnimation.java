@@ -22,16 +22,17 @@ public class SpriteAnimation extends GraphicObject {
     protected boolean mbReply = true;
     protected boolean mbEnd = false;
 
-    public SpriteAnimation(Bitmap bitmap) {
-        super(bitmap);
+    public SpriteAnimation(String name) {
+        super(name);
         mSRectangle = new Rect(0, 0, 0, 0);
         mFrameTimer = 0;
         mCurrentFrame = 0;
     }
 
-    public void InitSpriteData(int _w, int _h, int theFPS, int theFrameCount) {
-        mSpriteWidth = m_bitmap.getWidth() / _w;
-        mSpriteHeight = m_bitmap.getHeight() / _h;
+    public void InitSpriteData(int _w, int _h, int theFPS, int theFrameCount)
+    {
+        mSpriteWidth = AppManager.getInstance().GetImage(m_name).getWidth() / _w;
+        mSpriteHeight = AppManager.getInstance().GetImage(m_name).getHeight() / _h;
         mSRectangle.top = 0;
         mSRectangle.bottom = mSpriteHeight;
         mSRectangle.left = 0;
@@ -43,29 +44,31 @@ public class SpriteAnimation extends GraphicObject {
     @Override
     public void Draw(Canvas canvas) {
         Rect dest = new Rect((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        canvas.drawBitmap(m_bitmap, mSRectangle, dest, null);
+        canvas.drawBitmap(AppManager.getInstance().GetImage(m_name), mSRectangle, dest, null);
     }
 
     public void onDraw(Canvas canvas) {
 
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
+        canvas.drawBitmap(AppManager.getInstance().GetImage(m_name), mSRectangle, m_pos, null);
     }
 
 
     public void onDraw(Canvas canvas, Paint _pnt) {
 
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, _pnt);
+        canvas.drawBitmap(AppManager.getInstance().GetImage(m_name), mSRectangle, m_pos, _pnt);
     }
 
     public void onDraw(Canvas canvas, double angle) {
         canvas.rotate((float)angle, m_cx, m_cy);
-
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        canvas.drawBitmap(m_bitmap, mSRectangle, m_pos, null);
+        canvas.drawBitmap(AppManager.getInstance().GetImage(m_name), mSRectangle, m_pos, null);
         canvas.rotate((float) angle * -1.0f, m_cx, m_cy);
     }
+
+
+
 
     public void SpriteUpdate(long GameTime) {
         if (!mbEnd) {

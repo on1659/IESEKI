@@ -22,22 +22,32 @@ public class Monster extends SpriteAnimation
    protected int xDestiny, yDestiny;
    protected float xDir, yDir;
    protected  int width, height;
+    private boolean m_hardMode;
 
-    public Monster(Bitmap bitmap)
+    public Monster(String name)
     {
-        super(bitmap);
+        super(name);
         xDir = 1;
         yDir = 1;
 
         width = AppManager.getInstance().getWidth();
         height = AppManager.getInstance().getHeight();
+
+        m_hardMode = false;
     }
 
-    public void onUpdate(float fps)
-    {
+    public void onUpdate(float fps) {
         // m_speed = DPI[1] * 5;
-        m_cy += (m_speedX * yDir) * fps;
-        m_cx += (m_speedY * xDir / 3) * fps;
+        if(m_hardMode)
+        {
+            m_cy += (m_speedX * yDir) * fps;
+            m_cx += (m_speedY * xDir / 3) * fps;
+        }
+       else
+        {
+            m_cy += (m_speedX * yDir) * fps;
+            m_cx += (m_speedY * xDir / 3) * fps;
+        }
     }
 
 
@@ -54,11 +64,6 @@ public class Monster extends SpriteAnimation
         Matrix m;
         m = new Matrix();
 
-       //revise = AppManager.getInstance().getPreference().SensorLoad();
-       //m_deree = (float)MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - (int) revise[0]), (AppManager.getInstance().getSensorY()) - (int) revise[1]);
-       //m.postRotate(m_deree, m_bitmap.getWidth() / 2,  m_bitmap.getHeight() / 2 );
-       //m_bitmap = Bitmap.createBitmap(m_bitmap, 0, 0, m_bitmap.getWidth(), m_bitmap.getHeight(), m, false);
-
         xDestiny = _Destiny.left;
         yDestiny = _Destiny.top;
 
@@ -69,19 +74,21 @@ public class Monster extends SpriteAnimation
             xDir = -1;
         }
     }
+
     public void setDir(Rect _Destiny, boolean hardMode) {
 
-        if(hardMode)
+        m_hardMode = hardMode;
+
+        float mGap = yDestiny - m_cy;
+        if (mGap > 0)
         {
-            float mGap = yDestiny - m_cy;
-            if (mGap > 0)
-            {
-                yDir = 1;
-            }
-            else {
-                yDir = -1;
-            }
+            yDir = 1;
         }
+        else {
+            yDir = -1;
+        }
+            m_speed *= AppManager.getInstance().getDPI()[1] * AppManager.getInstance().Random(1,5);
+
         xDestiny = _Destiny.left;
         yDestiny = _Destiny.top;
 
@@ -92,12 +99,13 @@ public class Monster extends SpriteAnimation
             xDir = -1;
         }
     }
+
     public void SetHardModeDir(float y)
     {
         yDir = y;
     }
-    public void setDir(int _x, int _y)
-    {
+
+    public void setDir(int _x, int _y) {
         xDestiny = _x;
         yDestiny = _y;
 
@@ -117,8 +125,7 @@ public class Monster extends SpriteAnimation
         }
     }
 
-    public boolean Die()
-    {
+    public boolean Die() {
         if (m_cy > height + m_h || m_cx < -m_w || m_cx > width + m_w) //어떤 해상도이든 몬스터 가로세로길이
             return true;
 

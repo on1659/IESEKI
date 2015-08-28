@@ -16,11 +16,11 @@ public class Player extends SpriteAnimation {
     public int width, height;
     protected  int reviseX, reviseY;
     private double m_deree;
+    int DPI[] = new int[2];
 
-    public Player(Bitmap bitmap)
+    public Player(String name)
     {
-        super(bitmap);
-        int DPI[] = new int[2];
+        super(name);
 
         width =  AppManager.getInstance().getWidth();
         height=  AppManager.getInstance().getHeight();
@@ -42,6 +42,8 @@ public class Player extends SpriteAnimation {
         this.SpriteUpdate(GameTime);
         m_deree = MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY);
 
+
+        //position
         m_cx -= (int)AppManager.getInstance().getSensorX() - reviseX;
         m_cy -= (int)AppManager.getInstance().getSensorY() - reviseY;
 
@@ -67,14 +69,14 @@ public class Player extends SpriteAnimation {
 
    public void setSensorRevise()
     {
-        reviseX =(int) AppManager.getInstance().getSensorX();
-        reviseY =(int) AppManager.getInstance().getSensorY();
+        reviseX = (int) AppManager.getInstance().getSensorX();
+        reviseY = (int) AppManager.getInstance().getSensorY();
         AppManager.getInstance().getPreference().SensorSave(reviseX, reviseY);
     }
 
      public void onDrawPlayer(Canvas canvas)
      {
-        onDraw(canvas,m_deree );
+        onDraw(canvas, m_deree);
      }
 
 

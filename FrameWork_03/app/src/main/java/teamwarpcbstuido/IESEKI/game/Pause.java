@@ -27,6 +27,8 @@ public class Pause extends Dialog implements View.OnClickListener {
     ImageButton btn_return;
     ImageButton btn_gomain;
     Context m_context;
+
+    //public 일부로 public로 선언함
     public static boolean m_return;
 
     Switch swt_music_onoff;
@@ -68,7 +70,8 @@ public class Pause extends Dialog implements View.OnClickListener {
     public void Exit()
     {
         AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-        System.exit(0);
+        //System.exit(0);
+        AppManager.getInstance().getLink().Finish();
     }
 
     @Override
@@ -76,9 +79,9 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
-                //���̳��ϴ�..
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-                System.exit(0);
+               // System.exit(0);
+                this.Exit();
                 break;
 
             case R.id.pause_btn_return:

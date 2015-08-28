@@ -26,8 +26,8 @@ public class Item extends SpriteAnimation {
     protected int m_type;
 
 
-    public Item(Bitmap bitmap, int DPI[], int _type) {
-        super(bitmap);
+    public Item(String name, int DPI[], int _type) {
+        super(name);
         xDir = 1;
         yDir = 1;
 

@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pause_btn_return"
             android:background="@drawable/btn_return"
+            android:onClick="OnClick"
 
             sl:scale_left="10"
             sl:scale_top="450"
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pause_btn_gomain"
             android:background="@drawable/btn_gomain"
+            android:onClick="OnClick"
 
             sl:scale_left="176"
             sl:scale_top="450"

@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/select_btn_start"
             android:background="@drawable/btn_gamestart"
+            android:onClick="OnClick"
 
             sl:scale_left="120"
             sl:scale_top="350"
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/select_btn_help"
             android:background="@drawable/btn_help"
+            android:onClick="OnClick"
 
             sl:scale_left="120"
             sl:scale_top="450"
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/select_btn_option"
             android:background="@drawable/btn_option"
+            android:onClick="OnClick"
 
             sl:scale_left="120"
             sl:scale_top="550"
@@ -53,6 +56,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/select_btn_quit"
             android:background="@drawable/btn_quit"
+            android:onClick="OnClick"
 
             sl:scale_left="120"
             sl:scale_top="650"

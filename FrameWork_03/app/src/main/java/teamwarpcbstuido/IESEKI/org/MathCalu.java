@@ -15,6 +15,13 @@ public class MathCalu {
         return ( x * x2) + (y * y2);
     }
 
+    public static double VectorScale(double x, double y, double z)
+    {
+
+        return Math.sqrt(x*x + y*y + z*z);
+    }
+
+
     public static double VectorScale(double x, double y, double x2, double y2)
     {
         return Math.sqrt(Math.pow(x,2.0f) + Math.pow(y, 2.0f)) + Math.sqrt(Math.pow(x2,2.0f) + Math.pow(y2, 2.0f));
@@ -45,5 +52,18 @@ public class MathCalu {
             return 360 - getACOS(x,y,x2,y2);
 
     }
+
+     public static double[] getNormalize(double x, double y, double z)
+     {
+         double data[] = new double[3];
+         double scale = VectorScale(x,y,z);
+
+         data[0] = x  / scale;
+         data[1] = y  / scale;
+         data[2] = z  / scale;
+         return data;
+      }
+
+
 
 }

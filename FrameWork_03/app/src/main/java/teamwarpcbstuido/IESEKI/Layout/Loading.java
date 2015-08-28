@@ -46,6 +46,7 @@ public class Loading extends Activity {
         AppManager.getInstance().set_myMediaPlayer();
         AppManager.getInstance().set_mySoundPool();
 
+
         setContentView(new LoadingCanvas(this));
 
     Handler handler = new Handler();

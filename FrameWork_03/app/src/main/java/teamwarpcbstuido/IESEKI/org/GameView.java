@@ -58,6 +58,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         m_state.RestartGame();
     }
 
+    public void onPause(){ m_state.onPause(); }
+
+    public void onResume(){m_state.onResume();}
+
 
     public void onDrawImage(Canvas canvas) {
         canvas.drawColor(Color.BLACK);

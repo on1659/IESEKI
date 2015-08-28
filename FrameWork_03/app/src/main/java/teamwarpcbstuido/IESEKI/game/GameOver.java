@@ -56,9 +56,9 @@ public class GameOver extends GraphicObject {
                      width / 2 + DPI[X] + DPI[X] * 6 - DPI[X] * 8,
                    (height / 4 * 2) + DPI[Y] + DPI[Y] * 3);
 
-        r_restart.set(width / 2 + DPI[X] - DPI[X] * 6 + DPI[X] * 7,
+        r_restart.set(width / 2 + DPI[X] - DPI[X] * 6 + DPI[X] * 6,
                 (height / 4 * 2) + DPI[Y] - DPI[X] * 3,
-                width / 2 + DPI[X] + DPI[X] * 6 + DPI[X] * 7,
+                width / 2 + DPI[X] + DPI[X] * 6 + DPI[X] * 6,
                 (height / 4 * 2) + DPI[Y] + DPI[Y] * 3);
 
 
@@ -85,5 +85,4 @@ public class GameOver extends GraphicObject {
         canvas.drawText("Score : " + m_ui.getScore(), width / 2 - (DPI[X] * s_score.length()), (height / 4 * 2) - DPI[X] * 5, paint);
 
     }
-
 }

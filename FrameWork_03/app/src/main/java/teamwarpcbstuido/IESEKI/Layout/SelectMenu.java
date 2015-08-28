@@ -22,7 +22,7 @@ import teamwarpcbstuido.IESEKI.org.moveSensor;
 /**
  * Created by JYJ on 2015-06-03.
  */
-public class SelectMenu extends Activity implements View.OnClickListener {
+public class SelectMenu extends Activity  {
 
     ImageButton btn_start;
     ImageButton btn_quit;
@@ -39,17 +39,17 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         setContentView(R.layout.select_menu);
 
 
-        btn_start = (ImageButton) findViewById(R.id.select_btn_start);
-        btn_start.setOnClickListener(this);
+       //btn_start = (ImageButton) findViewById(R.id.select_btn_start);
+       //btn_start.setOnClickListener(this);
 
-        btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
-        btn_quit.setOnClickListener(this);
+       //btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
+       //btn_quit.setOnClickListener(this);
 
-        btn_help = (ImageButton) findViewById(R.id.select_btn_help);
-        btn_help.setOnClickListener(this);
+       //btn_help = (ImageButton) findViewById(R.id.select_btn_help);
+       //btn_help.setOnClickListener(this);
 
-        btn_option = (ImageButton) findViewById(R.id.select_btn_option);
-        btn_option.setOnClickListener(this);
+       //btn_option = (ImageButton) findViewById(R.id.select_btn_option);
+       //btn_option.setOnClickListener(this);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
 
-        //ÀÌ°É Á¦ÀÏ ¸ÕÀú ÇØ¾ß‰Î
+        //ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ß‰ï¿½
         AppManager.getInstance().setAppManager(this);
 
         AppManager.getInstance().setSize();
@@ -69,7 +69,18 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         AppManager.getInstance().set_mySoundPool();
 
         AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
+
+
+
 }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+
+    }
+
 
     @Override
     protected void onPause() {
@@ -77,8 +88,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
     }
 
-    @Override
-    public void onClick(View v) {
+    public void OnClick(View v) {
 
         Intent intent;
         intent = null;
@@ -88,11 +98,9 @@ public class SelectMenu extends Activity implements View.OnClickListener {
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
                 intent = new Intent(this, Link.class);
                 startActivity(intent);
-                //finish(); //ÀÌ°Å finish ÇØÁÖ´Â°Ô È®½ÇÈ÷ ¸Â´ÂÁö È®ÀÎÇÏ°í, »ý¾ÖÁÖ±â¿Í ´õºÒ¾î ÃßÈÄ¿¡ ¼öÁ¤¿©ºÎ °áÁ¤
                 break;
 
             case R.id.select_btn_help:
-
                 intent = new Intent(this, Help.class);
                 startActivity(intent);
                 break;
@@ -104,7 +112,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.select_btn_quit:
-
+                AppManager.getInstance().Destroy();
                 finish();
                 System.exit(0);
                 break;
@@ -120,8 +128,7 @@ public class SelectMenu extends Activity implements View.OnClickListener {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 finish();
-                //this.Destory()
-                System.exit(0);
+                //System.exit(0);
                 break;
         }
         return super.onKeyDown(keyCode, event);

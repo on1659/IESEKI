@@ -20,10 +20,10 @@ public class UI extends GraphicObject {
     int DPI[] = new int[2];
     int k;
 
-    Bitmap m_gameui;
     Rect r_gameui;
 
     int width, height;
+
 
     static public int m_score;
 
@@ -35,10 +35,11 @@ public class UI extends GraphicObject {
 
         DPI = AppManager.getInstance().getDPI();
 
-        m_gameui = AppManager.getInstance().getBitmap(R.drawable.maingame_ui);
 
         r_gameui = new Rect();
         r_gameui.set(0, 0, width, height);
+
+
 
         m_score = 0;
     }
@@ -48,10 +49,11 @@ public class UI extends GraphicObject {
         int a = 50;
         int b = 50;
         canvas.drawText("a + b = " + (a + b), 50, 50, null);
+
     }
 
     public void onDraw(Canvas canvas) {
-        canvas.drawBitmap(m_gameui, null, r_gameui, null);
+        canvas.drawBitmap(AppManager.getInstance().GetImage("Ui"), null, r_gameui, null);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);

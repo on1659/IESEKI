@@ -36,7 +36,7 @@ public class ZeroSettingCanvas extends View {
     public ZeroSettingCanvas(Context context) {
         super(context);
 
-        m_player = new Player(BitmapFactory.decodeResource(context.getResources(), R.drawable.player));
+        m_player = new Player("플레이어");
 
         width = AppManager.getInstance().getWidth();
         height = AppManager.getInstance().getHeight();

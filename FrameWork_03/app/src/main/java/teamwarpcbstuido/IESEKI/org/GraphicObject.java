@@ -11,18 +11,20 @@ import android.graphics.Rect;
  */
 public class GraphicObject {
 
-    protected Bitmap m_bitmap;
+   // protected Bitmap m_bitmap;
 
     public int m_cx;
     public int m_cy;
     public int m_w;
     public int m_h;
     protected Rect m_pos;
+    protected String m_name;
 
 
-    public GraphicObject(Bitmap bitmap)
+    public GraphicObject(String name)
     {
-        m_bitmap = bitmap;
+        //m_bitmap = bitmap;
+        m_name = name;
         m_cx = 0;
         m_cy = 0;
         m_w = 0;
@@ -56,11 +58,11 @@ public class GraphicObject {
         m_w =  DPI[0] * _w;
         m_h =  DPI[1] * _h;
 
-        m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+        m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
     }
     public void Draw(Canvas canvas){
          m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
-        canvas.drawBitmap(m_bitmap, null, m_pos, null);
+        canvas.drawBitmap(AppManager.getInstance().GetImage(m_name), null, m_pos, null);
 
     }
 
@@ -73,7 +75,7 @@ public class GraphicObject {
     public int GetHeight(){return m_h;}
     public int getRadius(){return m_w/2;}
     public Rect getPos(){return m_pos;}
-    public void resetBitmap(Bitmap _bitmap){ m_bitmap = _bitmap; }
+   // public void resetBitmap(Bitmap _bitmap){ AppManager.getInstance().GetImage(m_name) = _bitmap; }
     public int getWidth() {
         return m_w;
     }
@@ -82,6 +84,6 @@ public class GraphicObject {
         return m_h;
     }
 
-    public int GetBitmapWidth(){return m_bitmap.getWidth();}
-    public int GetBitmapHeight(){return m_bitmap.getHeight();}
+    public int GetBitmapWidth(){return AppManager.getInstance().GetImage(m_name).getWidth();}
+    public int GetBitmapHeight(){return AppManager.getInstance().GetImage(m_name).getHeight();}
 }

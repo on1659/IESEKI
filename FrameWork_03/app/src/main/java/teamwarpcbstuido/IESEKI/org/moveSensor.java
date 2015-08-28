@@ -43,6 +43,15 @@ public class moveSensor extends View implements SensorEventListener {
                   Heading = event.values[0];
                     Pitch = event.values[1];
                      Roll = event.values[2];
+                  float x,y;
+                  double data[] = new double[3];
+                  x = Pitch;
+                  y = Roll;
+                 data = MathCalu.getNormalize((double)x, (double)y, 0);
+
+                 //Pitch = (float)data[0];
+                 //Roll = (float)data[1];
+
                   break;
           }
       }

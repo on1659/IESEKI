@@ -12,6 +12,8 @@ public interface IState{
     public void RestartGame();
     public void Destroy();
     public void Update();
+    public void onPause();
+    public void onResume();
 
     public void Render(Canvas canvas);
     public boolean onTouchEvent(MotionEvent event);

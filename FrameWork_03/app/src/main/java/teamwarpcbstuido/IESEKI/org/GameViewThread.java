@@ -22,6 +22,7 @@ public class GameViewThread extends  Thread{
         m_run = run;
     }
 
+
     @Override
     public void run() {
         Canvas _canvas;

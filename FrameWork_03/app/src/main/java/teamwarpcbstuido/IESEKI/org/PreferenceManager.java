@@ -14,6 +14,7 @@ public class PreferenceManager {
     {
         m_context = _context;
     }
+
     public void DataSave(String str, int data)
     {
         SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
