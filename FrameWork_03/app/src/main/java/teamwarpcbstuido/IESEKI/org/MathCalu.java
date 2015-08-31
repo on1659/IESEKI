@@ -64,6 +64,28 @@ public class MathCalu {
          return data;
       }
 
+    public static double[] getNormalize(double x, double y)
+    {
+        double data[] = new double[2];
+        double scale = VectorScale(x,y,0);
+
+        data[0] = x  / scale;
+        data[1] = y  / scale;
+        return data;
+    }
+
+
+    public static double[] getDirectionVector(double x1, double y1, double x2, double y2)
+    {
+        double direction[] = new double[2];
+        double x,y;
+        x = x2 - x1;
+        y = y2 - y1;
+        direction = getNormalize(x,y);
+        return direction;
+    }
+
+
 
 
 }

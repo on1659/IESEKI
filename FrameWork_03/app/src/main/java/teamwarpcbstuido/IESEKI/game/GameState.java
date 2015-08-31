@@ -268,6 +268,7 @@ public class GameState implements IState {
         if (m_pause.m_return == false && GameOver_Check == false) {
             long GameTime = System.currentTimeMillis();
             FPS = this.FramePerSecond();
+            this.Collision();
 
             m_player.onUpdate(GameTime);
             m_background.onUpdate(GameTime);
@@ -296,7 +297,6 @@ public class GameState implements IState {
             }
 
 
-            this.Collision();
         }
     }
 
@@ -366,25 +366,37 @@ public class GameState implements IState {
         }
     }
 
+    public void MakeItem()
+    {
+        if(mGameTimer % 10 == 0)
+        {
+            Random rnd = new Random();
+            if(rnd.nextBoolean())
+             Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
+            else
+                return;
+        }
+    }
+
     //AddItem
     public void AddItem() {
 
-        if(itemCreateTime < 100) return;
-
+        if(itemCreateTime < 0) return;
         if (m_item.size() == 3) {
-            for (int i = 0; i < m_item.size(); i++) {
-                if (m_item.get(i).getWallCount() > 2) {
-                    Random rnd = new Random();
-                    Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
+            for (int i = 0; i < m_item.size(); i++)
+            {
+                if (m_item.get(i).getWallCount() > 2)
+                {
+                  MakeItem();
                     break;
                 }
 
             }
         }
 
-        if (m_item.size() < 3) {
-            Random rnd = new Random();
-            Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
+        if (m_item.size() < 3)
+        {
+           MakeItem();
         }
     }
 
@@ -402,6 +414,7 @@ public class GameState implements IState {
             {
                 mGameLevelDesign = 2000;
                 mCreatMonsetNum--;
+                m_mode = HARD_MODE;
             }
         }
 

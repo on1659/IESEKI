@@ -38,6 +38,7 @@ public class Monster extends SpriteAnimation
 
     public void onUpdate(float fps) {
         // m_speed = DPI[1] * 5;
+
         if(m_hardMode)
         {
             m_cy += (m_speedX * yDir) * fps;
@@ -78,26 +79,40 @@ public class Monster extends SpriteAnimation
     public void setDir(Rect _Destiny, boolean hardMode) {
 
         m_hardMode = hardMode;
+        double dir[] = new double[2];
+        dir = MathCalu.getDirectionVector(m_cx, m_cy,_Destiny.left, _Destiny.top);
 
-        float mGap = yDestiny - m_cy;
-        if (mGap > 0)
+        xDir = (float)dir[0];
+        yDir = (float)dir[1];
+
+       //float mGap = yDestiny - m_cy;
+       //if (mGap > 0)
+       //{
+       //    yDir = 1;
+       //}
+       //else {
+       //    yDir = -1;
+       //}
+           // m_speed *= AppManager.getInstance().getDPI()[1] * AppManager.getInstance().Random(5,5);
+        if(m_hardMode == true)
         {
-            yDir = 1;
+            m_speedY *= 3;
+            m_speedX *= 3;
         }
-        else {
-            yDir = -1;
-        }
-            m_speed *= AppManager.getInstance().getDPI()[1] * AppManager.getInstance().Random(1,5);
-
-        xDestiny = _Destiny.left;
-        yDestiny = _Destiny.top;
-
-        if (xDestiny > m_cx)
+        else
         {
-            xDir = 1;
-        } else {
-            xDir = -1;
+            m_speedX *= 2;
+            m_speedY *= 2;
         }
+       // xDestiny = _Destiny.left;
+       // yDestiny = _Destiny.top;
+//
+       // if (xDestiny > m_cx)
+       // {
+       //     xDir = 1;
+       // } else {
+       //     xDir = -1;
+       // }
     }
 
     public void SetHardModeDir(float y)

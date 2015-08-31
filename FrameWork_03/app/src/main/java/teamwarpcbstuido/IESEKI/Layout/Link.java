@@ -89,10 +89,12 @@ public class Link extends Activity {
         m_pause.Exit();
     }
 
+
     public void Share()
     {
-         View rootView = findViewById(android.R.id.content).getRootView();
-          AppManager.getInstance().implement_Capture_Share(this, rootView);// Take_Capture.getInstance().takeScreenshot(rootView);
+        //View rootView = findViewById(android.R.id.content).getRootView();
+        LinearLayout relativeLayout = (LinearLayout)findViewById(R.id.customview_linearlayout);
+        AppManager.getInstance().implement_Capture_Share(this, relativeLayout);// Take_Capture.getInstance().takeScreenshot(rootView);
     }
 
 

@@ -20,7 +20,7 @@ import java.util.Date;
  *
  *    View 파라미터에는 Layout을 넣어주면 스크린샷이 찍인다0
  *
- *    path 는 /DCIM/Beenzido/image명
+ *    path 는 /DCIM/IESEKI/image명
  *
  *   Take_Capture.getInstance().takeScreenshot(linearLayout);
  *
@@ -34,7 +34,8 @@ import java.util.Date;
 
 
 public class Take_Capture {
-    private static Take_Capture instance =null;
+    private static Take_Capture instance = null;
+
     public static Take_Capture getInstance(){
         if(instance==null){
             instance = new Take_Capture();
@@ -91,13 +92,13 @@ public class Take_Capture {
     public Bitmap createSquaredBitmap(Bitmap srcBmp)
     {
         int move;
-        int dim = Math.max(srcBmp.getWidth(), srcBmp.getHeight());
-        Bitmap dstBmp = Bitmap.createBitmap(dim, dim, Bitmap.Config.ARGB_8888);
+        //int dim = Math.max(srcBmp.getWidth(), srcBmp.getHeight());
+        Bitmap dstBmp = Bitmap.createBitmap(srcBmp.getWidth(), srcBmp.getHeight(), Bitmap.Config.ARGB_8888);
 
         move = (srcBmp.getHeight() - srcBmp.getWidth()) / 2;
         Canvas canvas = new Canvas(dstBmp);
         canvas.drawColor(Color.WHITE);
-        canvas.drawBitmap(srcBmp, move, 0, null);
+        canvas.drawBitmap(srcBmp, 0, 0, null);
 
         return dstBmp;
 

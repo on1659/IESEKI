@@ -58,7 +58,7 @@ public class Effect extends SpriteAnimation {
         m_activeTime = 5;
     }
 
-    public void Eff_BloodyShield(Item item) //타m이머로 시간재고 일정시간동안 돌리기 (효과발동 ~ 효과끝)
+    public void Eff_BloodyShield(Item item) //타이머로 시간재고 일정시간동안 돌리기 (효과발동 ~ 효과끝)
     {
         m_cx = item.m_cx;
         m_cy = item.m_cy;
