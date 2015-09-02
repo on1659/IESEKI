@@ -11,6 +11,11 @@ public class IntroState implements IState {
     int x, y;
 
     @Override
+    public void ShowPause(boolean flag) {
+
+    }
+
+    @Override
     public void Destroy(){
     }
 

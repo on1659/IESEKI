@@ -2,6 +2,7 @@ package teamwarpcbstuido.IESEKI.game;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -69,8 +70,9 @@ public class Pause extends Dialog implements View.OnClickListener {
 
     public void Exit()
     {
-        AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+       // AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
         //System.exit(0);
+
         AppManager.getInstance().getLink().Finish();
     }
 
@@ -80,12 +82,17 @@ public class Pause extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+               AppManager.getInstance().getGameView().ShowPause(false);
                // System.exit(0);
+
+                AppManager.getInstance().Timer1.cancel(); //타이머1 종료
+
                 this.Exit();
                 break;
 
             case R.id.pause_btn_return:
                 AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+                AppManager.getInstance().getGameView().ShowPause(false);
 
                 m_return = false;
                 dismiss();

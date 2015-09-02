@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.system.OsConstants;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
@@ -63,6 +64,7 @@ public class GameState implements IState {
     private Pause m_pause;
     private GameOver m_gameover;
 
+
     TimerTask eff_timer;
 
     private ArrayList<Monster> m_monster = new ArrayList<Monster>();
@@ -93,6 +95,11 @@ public class GameState implements IState {
 
     Rect tempbutton;
 
+    private boolean m_showPause;
+
+    //private TimerTask maingame_timer;
+    //private Timer Timer1;
+
     @Override
     public void Init()
     {
@@ -110,8 +117,6 @@ public class GameState implements IState {
         MainGame_TimerManager();
 
         this.RestartGame();
-
-
 
         tempbutton = new Rect();
         tempbutton.set(width / 2, height / 2, width / 2 + 50, height / 2 + 50);
@@ -147,12 +152,13 @@ public class GameState implements IState {
 
         mGameLevelDesign = 60;
 
-
+        m_showPause = false;
     }
 
     @Override
     public void onPause()
     {
+        AppManager.getInstance().setPasueFlag(true);
         AppManager.getInstance().SetPauseSaveData("character", m_player);
         AppManager.getInstance().SetPauseSaveData("item", m_item);
         AppManager.getInstance().SetPauseSaveData("effect", m_effect);
@@ -195,17 +201,29 @@ public class GameState implements IState {
 
 
         {
-            debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, BLUE);
+           //if (GameOver_Check)
+           //    debug.drawText(canvas, "GameOver_Check True", DPI, 5, 13, 55, BLUE);
 
-            debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, RED);
-            debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, RED);
-            debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, RED);
+           //else
+           //    debug.drawText(canvas, "GameOver_Check False", DPI, 5, 13, 55, BLUE);
+
+           //if (m_showPause)
+           //    debug.drawText(canvas, "m_showPause True", DPI, 5, 18, 55, BLUE);
+
+           //else
+           //    debug.drawText(canvas, "m_showPause False", DPI, 5, 18, 55, BLUE);
+
+            //debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, BLUE);
+
+           //debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, RED);
+           //debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, RED);
+           //debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, RED);
 
 
-            debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 10, 21, 35, BLUE);
-            debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 10, 23, 35, BLUE);
+          debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 4, 21, 35, BLUE);
+          debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 4, 23, 35, BLUE);
 
-            debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, GREEN);
+           //debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, GREEN);
 
 
           //  debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, BLACK);
@@ -262,15 +280,14 @@ public class GameState implements IState {
         return 0.04f;
     }
 
-    @Override
-    public void Update() {
-
+    public void onUpdate()
+    {
         if (m_pause.m_return == false && GameOver_Check == false) {
             long GameTime = System.currentTimeMillis();
             FPS = this.FramePerSecond();
             this.Collision();
 
-            m_player.onUpdate(GameTime);
+            m_player.onUpdate(FPS);
             m_background.onUpdate(GameTime);
 
             if (m_effect.size() > 0) {
@@ -298,11 +315,53 @@ public class GameState implements IState {
 
 
         }
+
+    }
+
+
+    @Override
+    public void Update() {
+        if (m_pause.m_return == false && GameOver_Check == false) {
+            long GameTime = System.currentTimeMillis();
+            FPS = this.FramePerSecond();
+            this.Collision();
+
+            m_player.onUpdate(FPS);
+            m_background.onUpdate(GameTime);
+
+            if (m_effect.size() > 0) {
+                for (int i = 0; i < m_effect.size(); i++) {
+                    m_effect.get(i).onUpdate(m_player, FPS);
+
+                    if (m_effect.get(i).Die()) m_effect.remove(i);
+                }
+            }
+            //Move
+            if (m_monster.size() > 0) {
+                for (int i = 0; i < m_monster.size() - 1; i++) {
+                    m_monster.get(i).onUpdate(FPS);
+                    if (m_monster.get(i).Die()) m_monster.remove(i);
+
+                }
+            }
+
+            if (m_item.size() > 0) {
+                for (int i = 0; i < m_item.size() - 1; i++) {
+                    m_item.get(i).Move(FPS);
+                    if (m_item.get(i).DIe()) m_item.remove(i);
+                }
+            }
+
+
+        }
+
     }
 
     @Override
     public void Destroy()
     {
+        AppManager.getInstance().SetTimerTask(null);
+        AppManager.getInstance().SetTiemr(null);
         m_monster = null;
         m_item = null;
         m_effect = null;
@@ -313,9 +372,13 @@ public class GameState implements IState {
     }
 
     public void Collision() {
+
         boolean isCollision = false;
-        if (m_monster.size() != 0) {
+
+        if (m_monster.size() != 0)
+        {
             for (int i = 0; i < m_monster.size() - 1; i++) {
+
 
                 //Circle Collision
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
@@ -577,6 +640,14 @@ public class GameState implements IState {
     }
 
 
+
+    @Override
+    public void ShowPause(boolean flag)
+    {
+        m_showPause = flag;
+    }
+
+
     //////////////////////////////////Callback
 
     @Override
@@ -595,7 +666,10 @@ public class GameState implements IState {
            AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
           // System.exit(0);
            // Link.link.Finish();
+
+            AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
             AppManager.getInstance().getLink().Finish();
+
             return false;
            //this.RestartGame();
         }
@@ -641,10 +715,11 @@ public class GameState implements IState {
     //-------------------------------------------------------타이머 매니저
     public void MainGame_TimerManager() {
         //------------------------------------------------타이머1
-        TimerTask maingame_timer = new TimerTask() {
+        AppManager.getInstance().maingame_timer = new TimerTask()
+        {
             public void run() {
                 try {
-                    if(m_pause.m_return == false && GameOver_Check == false)
+                    if(m_showPause == false && GameOver_Check == false)
                     {
                         m_ui.updateScore();
                         mGameTimer++;
@@ -658,7 +733,7 @@ public class GameState implements IState {
             }
         };
 
-        Timer Timer1 = new Timer();
-        Timer1.schedule(maingame_timer, 0, 100);
+        AppManager.getInstance().Timer1 = new Timer();
+        AppManager.getInstance().Timer1.schedule(AppManager.getInstance().maingame_timer, 0, 100);
     }
 }

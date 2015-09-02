@@ -14,6 +14,7 @@ public interface IState{
     public void Update();
     public void onPause();
     public void onResume();
+    public void ShowPause(boolean flag);
 
     public void Render(Canvas canvas);
     public boolean onTouchEvent(MotionEvent event);

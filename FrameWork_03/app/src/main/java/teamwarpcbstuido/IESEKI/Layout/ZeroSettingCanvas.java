@@ -36,7 +36,7 @@ public class ZeroSettingCanvas extends View {
     public ZeroSettingCanvas(Context context) {
         super(context);
 
-        m_player = new Player("플레이어");
+        m_player = new Player("Player");
 
         width = AppManager.getInstance().getWidth();
         height = AppManager.getInstance().getHeight();

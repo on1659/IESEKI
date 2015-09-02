@@ -93,7 +93,7 @@ public class Effect extends SpriteAnimation {
         m_h = item.getHight() / 2 * 3;
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
         this.InitSpriteData(1, 1, 1, 1);
-        m_speed = DPI[0] * 5;
+        m_speed = DPI[0] * 4;
         /*
         1. 빙글빙글 돌아가게 하기
         2. 몬스터와 충돌처리
@@ -162,7 +162,7 @@ public class Effect extends SpriteAnimation {
         }
 
         if(m_alpha > 5) {
-            m_alpha -= 2;
+            m_alpha -= 1;
             pnt.setAlpha(m_alpha);
         }
 

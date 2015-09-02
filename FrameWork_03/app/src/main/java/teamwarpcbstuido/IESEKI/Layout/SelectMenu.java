@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,6 +30,9 @@ public class SelectMenu extends Activity  {
     ImageButton btn_help;
     ImageButton btn_option;
 
+    boolean m_flagPause;
+    boolean m_flagPausebtn;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,8 @@ public class SelectMenu extends Activity  {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.select_menu);
-
+        m_flagPause = false;
+        m_flagPausebtn  = false;
 
        //btn_start = (ImageButton) findViewById(R.id.select_btn_start);
        //btn_start.setOnClickListener(this);
@@ -75,9 +80,33 @@ public class SelectMenu extends Activity  {
 }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        //if(AppManager.getInstance().GetPauseFlag())
+        //{
+        //    m_flagPausebtn = true;
+        //    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
+        //    Intent intent = new Intent(this, Link.class);
+        //    startActivity(intent);
+        //}
+        //AppManager.getInstance().setPasueFlag(false);
+       // Log.d("TAG", "onRestart(SelectMenu)");
+    }
+
+    @Override
     protected void onPostResume() {
         super.onPostResume();
 
+      //  Log.d("TAG", "onPostResume(SelectMenu)");
+      // if(m_flagPause)
+      // {
+      //     m_flagPause = false;
+      //     AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
+      //     Intent intent = new Intent(this, Link.class);
+      //     startActivity(intent);
+      // }
+      // m_flagPause = false;
 
     }
 
@@ -85,6 +114,14 @@ public class SelectMenu extends Activity  {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d("TAG", "onPause(SelectMenu)");
+
+        AppManager.getInstance().setPasueFlag(false);
+
+        if(!m_flagPausebtn)
+            m_flagPause = true;
+         m_flagPausebtn = false;
+
         AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
     }
 
@@ -95,6 +132,7 @@ public class SelectMenu extends Activity  {
 
         switch (v.getId()) {
             case R.id.select_btn_start:
+                m_flagPausebtn = true;
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
                 intent = new Intent(this, Link.class);
                 startActivity(intent);

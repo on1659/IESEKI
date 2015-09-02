@@ -29,7 +29,7 @@ public class GameViewThread extends  Thread{
         while(m_run){
             _canvas = null;
             try{
-                m_gameview.onUpdate();
+                 m_gameview.onUpdate();
                 _canvas = m_surfaceHolder.lockCanvas(null);
                 synchronized (m_surfaceHolder){
                     m_gameview.onDrawImage(_canvas);

@@ -14,7 +14,7 @@ public class SpriteAnimation extends GraphicObject {
     private int mNoOfFrames;
     private int mCurrentFrame;
 
-    private long mFrameTimer;
+    private float mFrameTimer;
 
     private int mSpriteHeight;
     private int mSpriteWidth;
@@ -70,7 +70,7 @@ public class SpriteAnimation extends GraphicObject {
 
 
 
-    public void SpriteUpdate(long GameTime) {
+    public void SpriteUpdate(float GameTime) {
         if (!mbEnd) {
             if (GameTime > mFrameTimer + mFPS) {
                 mFrameTimer = GameTime;

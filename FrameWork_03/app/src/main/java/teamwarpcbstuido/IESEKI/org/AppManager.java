@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.opengl.Matrix;
 import android.os.Environment;
 import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -19,6 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 
 import teamwarpcbstuido.IESEKI.Layout.Link;
@@ -54,7 +57,64 @@ public class AppManager {
     static final int Y = 1;
 
     static final  int DPI[] = new int[2];
+    static final int dp[] = new int[2];
     int screen_width, screen_height;
+
+    //타이머 태스크와 타이머1
+    public TimerTask maingame_timer;
+    public Timer Timer1;
+
+
+    //Pause값
+    boolean pauseflag = false;
+
+    public void setPasueFlag(boolean flag){ pauseflag = flag; }
+
+    public boolean GetPauseFlag(){return pauseflag;}
+
+
+    public void SetTimerTask(TimerTask timeTask)
+    {
+        maingame_timer = timeTask;
+    }
+    public void SetTiemr(Timer timer)
+    {
+        Timer1 = timer;
+    }
+
+    public TimerTask GetTimerTask()
+    {
+        return maingame_timer;
+    }
+
+
+    public int[] setDPI()
+    {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        Display dis = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        dis.getMetrics(metrics);
+        int pxWidth  = displayMetrics.widthPixels;
+        int pxHeight = displayMetrics.heightPixels;
+
+//--- displayMetrics.density : density / 160, 0.75 (ldpi), 1.0 (mdpi), 1.5 (hdpi)
+        dp[X] = (int)(displayMetrics.widthPixels  / displayMetrics.density);
+        dp[Y] = (int)(displayMetrics.heightPixels / displayMetrics.density);
+        return dp;
+        //DPI[X] = dis.getWidth() / metrics.widthPixels * metrics.densityDpi;
+        //DPI[Y] = dis.getHeight() / metrics.heightPixels * metrics.densityDpi;
+
+    }
+
+
+    public Timer GetTimer()
+    {
+        Timer temp = Timer1;
+        return Timer1;
+    }
+
+
 
     public static AppManager getInstance(){
         if (s_instance == null)
@@ -91,6 +151,27 @@ public class AppManager {
         Display dispaly = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
         screen_width = dispaly.getWidth();
         screen_height = dispaly.getHeight();
+
+        //**********************************************//
+        //                    임시                      //
+        //**********************************************//
+
+        //Display dis = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        //DisplayMetrics metrics = new DisplayMetrics();
+        //dis.getMetrics(metrics);
+
+        //metrics.density;
+        //metrics.densityDpi;
+
+        //metrics.widthPixels;
+        //metrics.heightPixels;
+
+        //metricx.xdpi;
+        //metrics.ydpi;
+
+        //DPI[X] = dis.getWidth() / metrics.widthPixels * metrics.densityDpi;
+        //DPI[Y] = dis.getHeight() / metrics.heightPixels * metrics.densityDpi;
+
         DPI[X] = screen_width / 36;
         DPI[Y] = screen_height / 64;
     }
@@ -157,7 +238,6 @@ public class AppManager {
         Object obj =  m_PauseData.get(name);
         return obj;
     }
-
 
     public void RenderManager()
     {

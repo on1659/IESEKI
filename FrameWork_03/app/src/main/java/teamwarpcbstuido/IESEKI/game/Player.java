@@ -12,10 +12,11 @@ import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
  */
 public class Player extends SpriteAnimation {
 
-    long m_gameTime;
+    private float m_gameTime;
     public int width, height;
     protected  int reviseX, reviseY;
     private double m_deree;
+    private double m_speed;
     int DPI[] = new int[2];
 
     public Player(String name)
@@ -36,7 +37,8 @@ public class Player extends SpriteAnimation {
         this.SetPosition(width / 2, height/ 2, DPI[0] * 5, DPI[1] * 5);
     }
 
-    public void  onUpdate(long GameTime)
+    public void
+    onUpdate(float GameTime)
     {
         m_gameTime = GameTime;
         this.SpriteUpdate(GameTime);
@@ -44,8 +46,8 @@ public class Player extends SpriteAnimation {
 
 
         //position
-        m_cx -= (int)AppManager.getInstance().getSensorX() - reviseX;
-        m_cy -= (int)AppManager.getInstance().getSensorY() - reviseY;
+        m_cx -= ((int)AppManager.getInstance().getSensorX() - reviseX);
+        m_cy -= ((int)AppManager.getInstance().getSensorY() - reviseY);
 
         if(m_cx >= width - m_w/2) {
             m_cx = width - m_w/2;

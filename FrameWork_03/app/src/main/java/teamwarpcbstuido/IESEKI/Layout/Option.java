@@ -62,6 +62,7 @@ public class Option extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.option_btn_zeroin:
+                AppManager.getInstance().RenderManager();
                 intent = new Intent(this, ZeroSetting.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
