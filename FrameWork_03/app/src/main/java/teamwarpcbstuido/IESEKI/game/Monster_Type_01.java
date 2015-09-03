@@ -16,10 +16,10 @@ public class Monster_Type_01 extends  Monster {
         //this.InitSpriteData(5, 1 ,10, 6);//w,h, speed, coutn
         this.InitSpriteData(1, 1 ,1, 1);//w,h, speed, coutn
 
-        //DPI = AppManager.getInstance().set();
+       // DPI = AppManager.getInstance().
         m_speed = DPI[1] * 5;
-        m_speedX = DPI[1] * 5;
-        m_speedY = DPI[1] * 5;
+        m_speedX = DPI[1] * 5 * AppManager.getInstance().getGameSpeed();
+        m_speedY = DPI[1] * 5 * AppManager.getInstance().getGameSpeed();
     }
 
     public void MonUpdate(float frame_time) {

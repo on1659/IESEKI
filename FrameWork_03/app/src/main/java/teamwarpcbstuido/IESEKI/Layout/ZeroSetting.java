@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import teamwarpcbstuido.IESEKI.R;
+import teamwarpcbstuido.IESEKI.org.AppManager;
 
 /**
  * Created by JYJ on 2015-06-08.
@@ -37,6 +38,13 @@ public class ZeroSetting extends Activity {
                 if (SettingVIew.m_Button.contains(tx, ty)) {
                     Toast.makeText(this.getApplicationContext(), getString(R.string.zero_set), Toast.LENGTH_LONG).show();
                     SettingVIew.setSensorRevise();
+                }
+
+                if(SettingVIew.m_GameSpeedButtonUp.contains(tx, ty)) {
+                    AppManager.getInstance().GameSpeedUp();
+                }
+                if(SettingVIew.m_GameSpeedButtonDown.contains(tx,ty)) {
+                    AppManager.getInstance().GameSpeedDown();
                 }
                 break;
             case MotionEvent.ACTION_UP:

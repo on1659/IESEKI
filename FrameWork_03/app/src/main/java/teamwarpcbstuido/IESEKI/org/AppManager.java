@@ -58,7 +58,8 @@ public class AppManager {
 
     static final  int DPI[] = new int[2];
     static final int dp[] = new int[2];
-    int screen_width, screen_height;
+    private int screen_width, screen_height;
+    private int m_gameSpeed;
 
     //타이머 태스크와 타이머1
     public TimerTask maingame_timer;
@@ -86,27 +87,6 @@ public class AppManager {
     {
         return maingame_timer;
     }
-
-
-    public int[] setDPI()
-    {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-
-        Display dis = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        dis.getMetrics(metrics);
-        int pxWidth  = displayMetrics.widthPixels;
-        int pxHeight = displayMetrics.heightPixels;
-
-//--- displayMetrics.density : density / 160, 0.75 (ldpi), 1.0 (mdpi), 1.5 (hdpi)
-        dp[X] = (int)(displayMetrics.widthPixels  / displayMetrics.density);
-        dp[Y] = (int)(displayMetrics.heightPixels / displayMetrics.density);
-        return dp;
-        //DPI[X] = dis.getWidth() / metrics.widthPixels * metrics.densityDpi;
-        //DPI[Y] = dis.getHeight() / metrics.heightPixels * metrics.densityDpi;
-
-    }
-
 
     public Timer GetTimer()
     {
@@ -152,26 +132,6 @@ public class AppManager {
         screen_width = dispaly.getWidth();
         screen_height = dispaly.getHeight();
 
-        //**********************************************//
-        //                    임시                      //
-        //**********************************************//
-
-        //Display dis = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        //DisplayMetrics metrics = new DisplayMetrics();
-        //dis.getMetrics(metrics);
-
-        //metrics.density;
-        //metrics.densityDpi;
-
-        //metrics.widthPixels;
-        //metrics.heightPixels;
-
-        //metricx.xdpi;
-        //metrics.ydpi;
-
-        //DPI[X] = dis.getWidth() / metrics.widthPixels * metrics.densityDpi;
-        //DPI[Y] = dis.getHeight() / metrics.heightPixels * metrics.densityDpi;
-
         DPI[X] = screen_width / 36;
         DPI[Y] = screen_height / 64;
     }
@@ -187,11 +147,10 @@ public class AppManager {
 
     public void ReStartGame() { m_gameview.RestartGame();}
 
-    public float getSensorX(){return m_moveSensor.getX();}
-    public float getSensorY(){return m_moveSensor.getY();}
+    public float getSensorX(){return m_moveSensor.getX() * this.getGameSpeed();}
+    public float getSensorY(){return m_moveSensor.getY() * this.getGameSpeed();}
     public int getWidth(){return screen_width;}
     public int getHeight(){return screen_height;}
-    public int getDPI(int select){return DPI[select];}
     public int[] getDPI(){return DPI;}
     public void getShake(long _time){m_vibe.vibrate(_time);}
 
@@ -322,6 +281,28 @@ public class AppManager {
         m_link  = null;
         m_PauseData = null;
         bitmapList  = null;
+
+    }
+
+    public float getGameSpeed()
+    {
+        return m_preference.GameSpeedLoad();
+    }
+
+    public float GameSpeedDown()
+    {
+        float speed = m_preference.GameSpeedLoad();
+        speed -= 0.1f;
+        m_preference.GameSpeedSave(speed);
+        return speed;
+    }
+
+    public float GameSpeedUp()
+    {
+        float speed = m_preference.GameSpeedLoad();
+        speed += 0.1f;
+        m_preference.GameSpeedSave(speed);
+        return speed;
 
     }
 

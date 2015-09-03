@@ -30,11 +30,18 @@ public class PreferenceManager {
         ed.commit();
     }
 
-    public int DataLoad(String str,int type)
+    public int DataLoad(String str, boolean type)
     {
         SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
         return pref.getInt(str, 0);
     }
+
+    public int DataLoad(String str)
+    {
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        return pref.getInt(str, 0);
+    }
+
     public float DataLoad(String str,float type)
     {
         SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
@@ -50,6 +57,20 @@ public class PreferenceManager {
         ed.commit();
 
     }
+
+    public void GameSpeedSave(float speed)
+    {
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putFloat("GameSpeed", speed);
+        ed.commit();
+    }
+    public float GameSpeedLoad()
+    {
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        return pref.getFloat("GameSpeed", 1.0f);
+    }
+
     public float[] SensorLoad()
     {
         float revise[] = new float[2];

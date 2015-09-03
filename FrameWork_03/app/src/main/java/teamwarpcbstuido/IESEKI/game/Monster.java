@@ -17,8 +17,8 @@ public class Monster extends SpriteAnimation
 {
 
    protected int m_speed;
-   protected  int m_speedX;
-   protected  int m_speedY;
+   protected  float m_speedX;
+   protected  float m_speedY;
    protected int xDestiny, yDestiny;
    protected float xDir, yDir;
    protected  int width, height;

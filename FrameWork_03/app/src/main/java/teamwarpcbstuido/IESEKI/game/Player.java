@@ -46,9 +46,8 @@ public class Player extends SpriteAnimation {
 
 
         //position
-        m_cx -= ((int)AppManager.getInstance().getSensorX() - reviseX);
-        m_cy -= ((int)AppManager.getInstance().getSensorY() - reviseY);
-
+        m_cx -= ((int)AppManager.getInstance().getSensorX() * 1.0 - reviseX);
+        m_cy -=  ((int)AppManager.getInstance().getSensorY() *1.0 - reviseY);
         if(m_cx >= width - m_w/2) {
             m_cx = width - m_w/2;
         }
