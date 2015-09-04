@@ -650,15 +650,15 @@ public class GameState implements IState {
 
     public void MonsterSpawnCycle_Check()
     {
-        if(AppManager.getInstance().getGameSpeed() == 2.5f)
+        if(AppManager.getInstance().getGameSpeed() == 2.7f)
             MonsterSpawnCycle = 10;
-        else if(AppManager.getInstance().getGameSpeed() == 2.0f)
+        else if(AppManager.getInstance().getGameSpeed() == 2.2f)
             MonsterSpawnCycle = 15;
-        else if(AppManager.getInstance().getGameSpeed() == 1.5f)
+        else if(AppManager.getInstance().getGameSpeed() == 1.7f)
             MonsterSpawnCycle = 20;
-        else if(AppManager.getInstance().getGameSpeed() == 1.0f)
+        else if(AppManager.getInstance().getGameSpeed() == 1.2f)
             MonsterSpawnCycle = 25;
-        else if(AppManager.getInstance().getGameSpeed() == 0.5f)
+        else if(AppManager.getInstance().getGameSpeed() == 0.7f)
             MonsterSpawnCycle = 30;
     }
 

@@ -62,6 +62,8 @@ public class ZeroSettingCanvas extends View {
         DPI = AppManager.getInstance().getDPI();
 
 
+        //RenderManager is not use
+        //this image is only use this activity
         background = BitmapFactory.decodeResource(context.getResources(), R.drawable.game_background2);
         bnt_zeroin = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_zeroin);
 
@@ -93,7 +95,7 @@ public class ZeroSettingCanvas extends View {
         m_SpeedText = new Rect();
         m_SpeedText.set(l, t, l + w, t + h);
 
-        //���ǵ� �ٿ� ��ư
+
         l = DPI[0] * 3;
         t = DPI[1] * 9;
         w = DPI[0] * 5;
@@ -102,7 +104,7 @@ public class ZeroSettingCanvas extends View {
         m_GameSpeedButtonDown = new Rect();
         m_GameSpeedButtonDown.set(l, t, l + w, t + h);
 
-        //���ǵ� �����ܰ� �̹���
+
         l = DPI[0] * 9;
         t = DPI[1] * 10;
         w = DPI[0] * 3;
@@ -131,14 +133,6 @@ public class ZeroSettingCanvas extends View {
         m_GameSpeed_5 = new Rect();
         m_GameSpeed_5.set(l, t, l + w, t + h);
 
-        //���ǵ� ������ġ �̹���
-
-        l = SpeedPosCheck(DPI[0]);
-
-        m_GameSpeed_pos = new Rect();
-        m_GameSpeed_pos.set(l, t, l + w, t + h);
-
-        //���ǵ� �� ��ư
         l = DPI[0] * 29;
         t = DPI[1] * 9;
         w = DPI[0] * 5;
@@ -147,25 +141,53 @@ public class ZeroSettingCanvas extends View {
         m_GameSpeedButtonUp = new Rect();
         m_GameSpeedButtonUp.set(l, t, l + w, t + h);
 
+        m_GameSpeed_pos = new Rect();
+        m_GameSpeed_pos.set(this.SpeedPosCheck());
     }
+
+    public void SetSpeed(Rect r)
+    {
+        m_GameSpeed_pos.set(r);
+    }
+
 
     static public int SpeedPosCheck(int x)
     {
-        int left = 0;
+        if(AppManager.getInstance().getGameSpeed() == 0.7f)
+            return x * 9;
+        else if(AppManager.getInstance().getGameSpeed() == 1.2f)
+            return x * 13;
+        else if(AppManager.getInstance().getGameSpeed() == 1.7f)
+            return x * 17;
+        else if(AppManager.getInstance().getGameSpeed() == 2.2f)
+            return x * 21;
+        else if(AppManager.getInstance().getGameSpeed() == 2.7f)
+            return x * 25;
 
-        if(AppManager.getInstance().getGameSpeed() == 0.5f)
-            left = x * 9;
-        else if(AppManager.getInstance().getGameSpeed() == 1.0f)
-            left = x * 13;
-        else if(AppManager.getInstance().getGameSpeed() == 1.5f)
-            left = x * 17;
-        else if(AppManager.getInstance().getGameSpeed() == 2.0f)
-            left = x * 21;
-        else if(AppManager.getInstance().getGameSpeed() == 2.5f)
-            left = x * 25;
-
-        return left;
+        return 0;
     }
+
+    public Rect SpeedPosCheck()
+    {
+        if(AppManager.getInstance().getGameSpeed() == 0.7f)
+            return m_GameSpeed_1;
+        else if(AppManager.getInstance().getGameSpeed() == 1.2f)
+            return m_GameSpeed_2;
+        else if(AppManager.getInstance().getGameSpeed() == 1.7f)
+            return m_GameSpeed_3;
+        else if(AppManager.getInstance().getGameSpeed() == 2.2f)
+            return m_GameSpeed_4;
+        else if(AppManager.getInstance().getGameSpeed() == 2.7f)
+            return m_GameSpeed_5;
+
+        return null;
+    }
+
+    public void Invalidate()
+    {
+        this.invalidate();
+    }
+
 
     public void onDraw(Canvas canvas) {
 

@@ -26,7 +26,7 @@ public class ZeroSetting extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-         super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -55,24 +55,15 @@ public class ZeroSetting extends Activity {
                 }
 
                 if(SettingVIew.m_GameSpeedButtonUp.contains(tx, ty)) {
+                    AppManager.getInstance().GameSpeedUp();
+                    SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
+                    SettingVIew.Invalidate();
 
-                    if(AppManager.getInstance().getGameSpeed() != 2.5f) {
-                        AppManager.getInstance().GameSpeedUp();
-
-                        l = ZeroSettingCanvas.SpeedPosCheck(DPI[0]);
-
-                        ZeroSettingCanvas.m_GameSpeed_pos.set(l, t, l + w, t + h);
-                    }
                 }
                 if(SettingVIew.m_GameSpeedButtonDown.contains(tx,ty)) {
-
-                    if(AppManager.getInstance().getGameSpeed() != 0.5f) {
-                        AppManager.getInstance().GameSpeedDown();
-
-                        l = ZeroSettingCanvas.SpeedPosCheck(DPI[0]);
-
-                        ZeroSettingCanvas.m_GameSpeed_pos.set(l, t, l + w, t + h);
-                    }
+                    AppManager.getInstance().GameSpeedDown();
+                    SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
+                    SettingVIew.Invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:

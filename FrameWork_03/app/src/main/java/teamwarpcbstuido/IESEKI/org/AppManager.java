@@ -2,6 +2,7 @@ package teamwarpcbstuido.IESEKI.org;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -293,6 +294,7 @@ public class AppManager {
     {
         float speed = m_preference.GameSpeedLoad();
         speed -= 0.5f;
+        if(speed < 1.2f)speed = 0.7f;
         m_preference.GameSpeedSave(speed);
         return speed;
     }
@@ -301,10 +303,17 @@ public class AppManager {
     {
         float speed = m_preference.GameSpeedLoad();
         speed += 0.5f;
+        if(speed > 2.7f) speed = 2.7f;
         m_preference.GameSpeedSave(speed);
         return speed;
 
     }
 
+    public boolean IsTablet () {
+        // TODO: This hacky stuff goes away when we allow users to target devices
+        int xlargeBit = 4; // Configuration.SCREENLAYOUT_SIZE_XLARGE;  // upgrade to HC SDK to get this
+        Configuration config = m_context.getResources().getConfiguration();
+        return (config.screenLayout & xlargeBit) == xlargeBit;
+    }
 
 }
