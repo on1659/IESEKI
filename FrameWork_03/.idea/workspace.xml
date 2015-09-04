@@ -46,19 +46,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSettingCanvas.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSettingCanvas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeAssets/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/androidTest/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/androidTest/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="IESEKI.iws" />
@@ -104,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+              <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -122,22 +113,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pause.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Pause.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AppManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.566667">
+            <state vertical-scroll-proportion="-9.133333">
               <caret line="305" column="38" selection-start-line="305" selection-start-column="38" selection-end-line="305" selection-end-column="38" />
               <folding>
                 <element signature="e#2061#2062#0" expanded="true" />
@@ -181,28 +160,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="98" column="1" selection-start-line="98" selection-start-column="1" selection-end-line="98" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.25">
+              <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2580#2581#0" expanded="true" />
-                <element signature="e#2619#2620#0" expanded="true" />
+                <element signature="e#2730#2731#0" expanded="true" />
+                <element signature="e#2769#2770#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZeroSetting.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ZeroSetting.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2748538">
+            <state vertical-scroll-proportion="0.0">
               <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreferenceManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1477,7 +1466,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/GameViewThread.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Monster_Type_01.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Link.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/option.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_dialog.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/Option.java" />
@@ -1485,8 +1473,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/GameState.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSettingCanvas.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java" />
       </list>
     </option>
   </component>
@@ -2170,7 +2159,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441394557949</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="&#10;'15.09.05 Update&#10;&#10;1. 속도수치 조정 &#10;옵션에서 영점조절 갈 시에 왜 뻑나지 ㅠㅠ&#10;&#10;2. 태블릿 1차 테스트 완료&#10;">
+      <created>1441397011957</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1441397011957</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2187,17 +2182,17 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32912844" sideWeight="0.52141327" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33926585" sideWeight="0.2457356" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33926585" sideWeight="0.23187633" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20689656" sideWeight="0.5954158" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20689656" sideWeight="0.61460555" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32798165" sideWeight="0.4828694" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1679644" sideWeight="0.21588486" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1679644" sideWeight="0.20309168" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5194954" sideWeight="0.4828694" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32992464" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20689656" sideWeight="0.40458423" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20689656" sideWeight="0.38539445" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16573972" sideWeight="0.5778252" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19616205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2244,7 +2239,9 @@
     <MESSAGE value="&#10;'15.09.02Update&#10;&#10; 점수 올라간ㄴ거 막음&#10;" />
     <MESSAGE value="&#10;'15.09.04 Update&#10;&#10;1. 일시정지 시 점수 계속 올라가는 문제 해결&#10;2. 속도계 이미지 업로드 및 속도계 설정&#10;3. 속도에 따른 몬스터 생성주기 짧아지게 함&#10;4. 기타 이미지 수정&#10;" />
     <MESSAGE value="&#10;'15.09.05 Update&#10;&#10;1. 몬스터 생성주기 버그 고침 (나누기로 하면 안됨;;)&#10;2. 진동추가, 진동옵션추가&#10;3. 기타 이미지 리소스 수정 및 추가&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;'15.09.05 Update&#10;&#10;1. 몬스터 생성주기 버그 고침 (나누기로 하면 안됨;;)&#10;2. 진동추가, 진동옵션추가&#10;3. 기타 이미지 리소스 수정 및 추가&#10;" />
+    <MESSAGE value="&#10;'15.09.05 Update&#10;&#10;1. 속도수치 조정 &#10;옵션에서 영점조절 갈 시에 왜 뻑나지 ㅠㅠ&#10;&#10;2. 태블릿 1차 테스트 완료&#10;" />
+    <MESSAGE value="&#10;'15.09.05 Update&#10;&#10;1. 태블릿에서의 플레이어 이동, 방향전환 테스트 후 맞게 적용함&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;'15.09.05 Update&#10;&#10;1. 태블릿에서의 플레이어 이동, 방향전환 테스트 후 맞게 적용함&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2599,14 +2596,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="111" column="25" selection-start-line="111" selection-start-column="25" selection-end-line="111" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/option.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2677,6 +2666,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSettingCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2685,29 +2684,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="1" selection-start-line="98" selection-start-column="1" selection-end-line="98" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2580#2581#0" expanded="true" />
-            <element signature="e#2619#2620#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/AppManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.566667">
+        <state vertical-scroll-proportion="-9.133333">
           <caret line="305" column="38" selection-start-line="305" selection-start-column="38" selection-end-line="305" selection-end-column="38" />
           <folding>
             <element signature="e#2061#2062#0" expanded="true" />
@@ -2730,12 +2709,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/Layout/ZeroSetting.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/org/PreferenceManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2748538">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Effect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/teamwarpcbstuido/IESEKI/game/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25">
+          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2730#2731#0" expanded="true" />
+            <element signature="e#2769#2770#0" expanded="true" />
           </folding>
         </state>
       </provider>

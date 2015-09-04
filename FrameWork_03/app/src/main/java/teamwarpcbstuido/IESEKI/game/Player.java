@@ -42,18 +42,19 @@ public class Player extends SpriteAnimation {
     {
         m_gameTime = GameTime;
         this.SpriteUpdate(GameTime);
-        m_deree = MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY);
-
 
         //position
         if(isTablet)
         {
-            //m_cx -= ((int)AppManager.getInstance().getSensorY() * 1.0 - reviseX);
-            //m_cy -=  ((int)AppManager.getInstance().getSensorX() *1.0 - reviseY);
+            m_deree = MathCalu.getCos(0, 1, (-(AppManager.getInstance().getSensorY() - reviseY)), (AppManager.getInstance().getSensorX()) - reviseX);
 
+            m_cx += ((int)AppManager.getInstance().getSensorY() * 1.0 - reviseY);
+            m_cy -= ((int)AppManager.getInstance().getSensorX() * 1.0 - reviseX);
         }
         else
         {
+            m_deree = MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY);
+
             m_cx -= ((int)AppManager.getInstance().getSensorX() * 1.0 - reviseX);
             m_cy -=  ((int)AppManager.getInstance().getSensorY() *1.0 - reviseY);
         }
