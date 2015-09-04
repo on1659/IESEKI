@@ -2,7 +2,9 @@ package teamwarpcbstuido.IESEKI.Layout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -29,8 +31,7 @@ public class Link extends Activity {
     public final int GAME_PAUSE = 0;
     public final int GAME_PLAYING = 1;
 
-
-
+    public Vibrator vibe;
 
     Pause m_pause;
 
@@ -41,9 +42,10 @@ public class Link extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-
         AppManager.getInstance().RenderManager();
         AppManager.getInstance().setLink(Link.this);
+
+        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//���μ�����ȯ
 

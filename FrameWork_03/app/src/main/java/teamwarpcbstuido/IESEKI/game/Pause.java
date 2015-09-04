@@ -32,7 +32,9 @@ public class Pause extends Dialog implements View.OnClickListener {
     //public 일부로 public로 선언함
     public static boolean m_return;
 
-    Switch swt_music_onoff;
+    ImageButton custom_swt_music_onoff;
+    ImageButton custom_swt_vibe_onoff;
+
 
     public Pause(Context context) {
 
@@ -56,21 +58,28 @@ public class Pause extends Dialog implements View.OnClickListener {
         btn_return.setOnClickListener(this);
         btn_gomain.setOnClickListener(this);
 
-        swt_music_onoff = (Switch) findViewById(R.id.custom_switch_music);
+        custom_swt_music_onoff = (ImageButton) findViewById(R.id.pause_music_custom_switch);
+        custom_swt_music_onoff.setOnClickListener(this);
 
-        swt_music_onoff.setChecked(AppManager.getInstance().getPreference().MusicOptionLoad());
-        swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
-                AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
-            }
-        });
+        if(AppManager.getInstance().getPreference().MusicOptionLoad() == true)
+            custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_on);
+        else
+            custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_off);
+
+        custom_swt_vibe_onoff = (ImageButton) findViewById(R.id.pause_vibe_custom_switch);
+        custom_swt_vibe_onoff.setOnClickListener(this);
+
+        if(AppManager.getInstance().getPreference().VibeOptionLoad() == true)
+            custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_on);
+        else
+            custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_off);
 
         m_return = false;
     }
 
     public void Exit()
     {
-       // AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+        // AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
         //System.exit(0);
 
         AppManager.getInstance().getLink().Finish();
@@ -82,8 +91,8 @@ public class Pause extends Dialog implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-               AppManager.getInstance().getGameView().ShowPause(false);
-               // System.exit(0);
+                AppManager.getInstance().getGameView().ShowPause(false);
+                // System.exit(0);
 
                 AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
 
@@ -96,6 +105,36 @@ public class Pause extends Dialog implements View.OnClickListener {
 
                 m_return = false;
                 dismiss();
+                break;
+
+            case R.id.pause_music_custom_switch:
+
+                if(AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+                    custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_off);
+
+                    AppManager.getInstance().getPreference().MusicOptionSave(false);
+                }
+                else {
+                    custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_on);
+
+                    AppManager.getInstance().getPreference().MusicOptionSave(true);
+                }
+
+                break;
+
+            case R.id.pause_vibe_custom_switch:
+
+                if(AppManager.getInstance().getPreference().VibeOptionLoad() == true) {
+                    custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_off);
+
+                    AppManager.getInstance().getPreference().VibeOptionSave(false);
+                }
+                else {
+                    custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_on);
+
+                    AppManager.getInstance().getPreference().VibeOptionSave(true);
+                }
+
                 break;
 
             default:

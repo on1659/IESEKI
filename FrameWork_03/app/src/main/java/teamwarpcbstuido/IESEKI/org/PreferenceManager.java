@@ -96,6 +96,22 @@ public class PreferenceManager {
         return music_onoff;
     }
 
+    public void VibeOptionSave(boolean _onoff) {
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.putBoolean("Vibe_OnOff", _onoff);
+        ed.commit();
+
+    }
+
+    public boolean VibeOptionLoad() {
+        boolean vibe_onoff;
+        vibe_onoff = false;
+        SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
+        vibe_onoff = pref.getBoolean("Vibe_OnOff", true);
+        return vibe_onoff;
+    }
+
     public void BestScoreSave(int _score) {
         SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = pref.edit();

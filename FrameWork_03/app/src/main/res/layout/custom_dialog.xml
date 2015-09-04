@@ -15,17 +15,6 @@
         sl:scale_base_width="336"
         sl:scale_base_height="560">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pause_btn_return"
-            android:background="@drawable/btn_return"
-            android:onClick="OnClick"
-
-            sl:scale_left="10"
-            sl:scale_top="450"
-            sl:scale_width="150"
-            sl:scale_height="75" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -33,23 +22,58 @@
             android:id="@+id/imageView"
             android:background="@drawable/swt_text"
 
-            sl:scale_left="50"
-            sl:scale_top="300"
+            sl:scale_left="55"
+            sl:scale_top="250"
             sl:scale_width="100"
-            sl:scale_height="50"
-            sl:scale_textsize="15" />
+            sl:scale_height="50" />
 
-        <Switch
+
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/pause_music_custom_switch"
+            android:background="@drawable/swt_off"
 
-            android:id="@+id/custom_switch_music"
+            sl:scale_left="215"
+            sl:scale_top="255"
+            sl:scale_width="70"
+            sl:scale_height="35" />
 
-            sl:scale_left="50"
-            sl:scale_top="300"
-            sl:scale_width="250"
-            sl:scale_height="50"
-            sl:scale_textsize="15" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:background="@drawable/swt_text2"
+
+            sl:scale_left="55"
+            sl:scale_top="330"
+            sl:scale_width="100"
+            sl:scale_height="50" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pause_vibe_custom_switch"
+            android:background="@drawable/swt_off"
+
+            sl:scale_left="215"
+            sl:scale_top="335"
+            sl:scale_width="70"
+            sl:scale_height="35" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pause_btn_return"
+            android:background="@drawable/btn_return"
+            android:onClick="OnClick"
+
+            sl:scale_left="15"
+            sl:scale_top="450"
+            sl:scale_width="150"
+            sl:scale_height="75" />
 
 
         <ImageButton
@@ -59,7 +83,7 @@
             android:background="@drawable/btn_gomain"
             android:onClick="OnClick"
 
-            sl:scale_left="176"
+            sl:scale_left="181"
             sl:scale_top="450"
             sl:scale_width="150"
             sl:scale_height="75" />

@@ -1,10 +1,12 @@
 package teamwarpcbstuido.IESEKI.game;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.os.Vibrator;
 import android.system.OsConstants;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -83,6 +85,8 @@ public class GameState implements IState {
 
     long tmpTime;
 
+    int MonsterSpawnCycle;
+
 
     boolean GameOver_Check;
     private long mGameTimer;
@@ -117,6 +121,8 @@ public class GameState implements IState {
         MainGame_TimerManager();
 
         this.RestartGame();
+
+        MonsterSpawnCycle_Check();
 
         tempbutton = new Rect();
         tempbutton.set(width / 2, height / 2, width / 2 + 50, height / 2 + 50);
@@ -397,6 +403,9 @@ public class GameState implements IState {
                         AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
 
                     GameOver_Check = true;
+
+                    if(AppManager.getInstance().getPreference().VibeOptionLoad() == true)
+                        AppManager.getInstance().getLink().vibe.vibrate(500); //몬스터에게 죽었을 시, 진동.
                 }
 
                 for (int effNum = 0; effNum < m_effect.size(); effNum++)
@@ -466,7 +475,7 @@ public class GameState implements IState {
     //AddMonster
     public void AddMonster() {
 
-        if(mGameTimer % (20 / AppManager.getInstance().getGameSpeed())== 0)
+        if(mGameTimer % MonsterSpawnCycle == 0)
             Make_Monster(mCreatMonsetNum, Monster_Type_01, m_mode);
 
         if(mGameTimer == mGameLevelDesign)
@@ -637,6 +646,20 @@ public class GameState implements IState {
             m_monster.add(mon);
         }//for
 
+    }
+
+    public void MonsterSpawnCycle_Check()
+    {
+        if(AppManager.getInstance().getGameSpeed() == 2.5f)
+            MonsterSpawnCycle = 10;
+        else if(AppManager.getInstance().getGameSpeed() == 2.0f)
+            MonsterSpawnCycle = 15;
+        else if(AppManager.getInstance().getGameSpeed() == 1.5f)
+            MonsterSpawnCycle = 20;
+        else if(AppManager.getInstance().getGameSpeed() == 1.0f)
+            MonsterSpawnCycle = 25;
+        else if(AppManager.getInstance().getGameSpeed() == 0.5f)
+            MonsterSpawnCycle = 30;
     }
 
 

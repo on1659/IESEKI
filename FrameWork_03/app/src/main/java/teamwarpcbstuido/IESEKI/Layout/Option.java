@@ -2,6 +2,7 @@ package teamwarpcbstuido.IESEKI.Layout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +21,8 @@ public class Option extends Activity implements View.OnClickListener {
 
     ImageButton btn_zeroin;
 
-    Switch swt_music_onoff;
+    ImageButton custom_swt_music_onoff;
+    ImageButton custom_swt_vibe_onoff;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,23 +37,22 @@ public class Option extends Activity implements View.OnClickListener {
         btn_zeroin = (ImageButton) findViewById(R.id.option_btn_zeroin);
         btn_zeroin.setOnClickListener(this);
 
-        swt_music_onoff = (Switch) findViewById(R.id.option_switch_music);
+        custom_swt_music_onoff = (ImageButton) findViewById(R.id.option_music_custom_switch);
+        custom_swt_music_onoff.setOnClickListener(this);
 
-        swt_music_onoff.setChecked(AppManager.getInstance().getPreference().MusicOptionLoad());
-        swt_music_onoff.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(CompoundButton cb, boolean isChecking) {
-                AppManager.getInstance().getPreference().MusicOptionSave(isChecking);
+        if(AppManager.getInstance().getPreference().MusicOptionLoad() == true)
+            custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_on);
+        else
+            custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_off);
 
-                if(isChecking == true) {
-                    //AppManager.getInstance().MUSIC_ONOFF = true;
+        custom_swt_vibe_onoff = (ImageButton) findViewById(R.id.option_vibe_custom_switch);
+        custom_swt_vibe_onoff.setOnClickListener(this);
 
-                }
-                else {
-                    //AppManager.getInstance().MUSIC_ONOFF = false;
-                }
-            }
-        });
+        if(AppManager.getInstance().getPreference().VibeOptionLoad() == true)
+            custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_on);
+        else
+            custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_off);
+
     }
 
     @Override
@@ -62,10 +63,42 @@ public class Option extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.option_btn_zeroin:
+
                 AppManager.getInstance().RenderManager();
                 intent = new Intent(this, ZeroSetting.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
+                break;
+
+            case R.id.option_music_custom_switch:
+
+                if(AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+                    custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_off);
+
+                    AppManager.getInstance().getPreference().MusicOptionSave(false);
+                }
+                else {
+                    custom_swt_music_onoff.setBackgroundResource(R.drawable.swt_on);
+
+                    AppManager.getInstance().getPreference().MusicOptionSave(true);
+                }
+
+                break;
+
+            case R.id.option_vibe_custom_switch:
+
+                if(AppManager.getInstance().getPreference().VibeOptionLoad() == true) {
+                    custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_off);
+
+                    AppManager.getInstance().getPreference().VibeOptionSave(false);
+                }
+                else {
+                    custom_swt_vibe_onoff.setBackgroundResource(R.drawable.swt_on);
+
+                    AppManager.getInstance().getPreference().VibeOptionSave(true);
+                }
+
                 break;
 
             default:

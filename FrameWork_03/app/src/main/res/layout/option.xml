@@ -26,19 +26,6 @@
             sl:scale_width="250"
             sl:scale_height="125" />
 
-        <Switch
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/option_switch_music"
-
-            sl:scale_left="120"
-            sl:scale_top="370"
-            sl:scale_width="250"
-            sl:scale_height="100"
-            sl:scale_textsize="20" />
-
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,10 +33,47 @@
             android:background="@drawable/swt_text"
 
             sl:scale_left="120"
-            sl:scale_top="400"
+            sl:scale_top="380"
             sl:scale_width="100"
             sl:scale_height="50"
             sl:scale_textsize="20" />
+
+        <ImageButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/option_music_custom_switch"
+            android:background="@drawable/swt_off"
+
+            sl:scale_left="300"
+            sl:scale_top="385"
+            sl:scale_width="70"
+            sl:scale_height="35" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:background="@drawable/swt_text2"
+
+            sl:scale_left="120"
+            sl:scale_top="450"
+            sl:scale_width="100"
+            sl:scale_height="50"
+            sl:scale_textsize="20" />
+
+        <ImageButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/option_vibe_custom_switch"
+            android:background="@drawable/swt_off"
+
+            sl:scale_left="300"
+            sl:scale_top="455"
+            sl:scale_width="70"
+            sl:scale_height="35" />
+
 
 
     </teamwarpcbstuido.IESEKI.org.ScalableLayout>
