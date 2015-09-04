@@ -29,7 +29,6 @@ public class Help extends Activity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//가로세로전환
 
         setContentView(R.layout.help);
-
     }
 
 }

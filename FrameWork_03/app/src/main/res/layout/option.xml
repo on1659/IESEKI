@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/option_btn_zeroin"
-            android:background="@drawable/btn_zeroin"
+            android:background="@drawable/btn_goto_zeroin"
 
             sl:scale_left="120"
             sl:scale_top="550"
@@ -38,6 +38,7 @@
             sl:scale_height="100"
             sl:scale_textsize="20" />
 
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +50,6 @@
             sl:scale_width="100"
             sl:scale_height="50"
             sl:scale_textsize="20" />
-
 
 
     </teamwarpcbstuido.IESEKI.org.ScalableLayout>

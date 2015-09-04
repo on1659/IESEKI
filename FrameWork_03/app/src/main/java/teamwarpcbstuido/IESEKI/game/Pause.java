@@ -85,7 +85,7 @@ public class Pause extends Dialog implements View.OnClickListener {
                AppManager.getInstance().getGameView().ShowPause(false);
                // System.exit(0);
 
-                AppManager.getInstance().Timer1.cancel(); //타이머1 종료
+                AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
 
                 this.Exit();
                 break;

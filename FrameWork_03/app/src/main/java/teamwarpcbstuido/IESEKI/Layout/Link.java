@@ -3,7 +3,6 @@ package teamwarpcbstuido.IESEKI.Layout;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -69,22 +68,16 @@ public class Link extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        m_pause = null;
         AppManager.getInstance().getGameView().Destory();
         AppManager.getInstance().setGameView(null);
         AppManager.getInstance().setThread(null);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("TAG","onResume(Link)");
       //  AppManager.getInstance().getGameView().onResume();
     }
 
@@ -93,18 +86,13 @@ public class Link extends Activity {
         super.onPause();
        // AppManager.getInstance().getGameView().onPause();
       //  AppManager.getInstance().getPreference().DataSave("gameMode", GAME_PAUSE);
-        AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
-       // AppManager.getInstance().setPasueFlag(true);
-      //  Log.d("TAG", "onPaouse(Link)");
         m_pause.Exit();
     }
 
-
     public void Share()
     {
-        //View rootView = findViewById(android.R.id.content).getRootView();
-        LinearLayout relativeLayout = (LinearLayout)findViewById(R.id.customview_linearlayout);
-        AppManager.getInstance().implement_Capture_Share(this, relativeLayout);// Take_Capture.getInstance().takeScreenshot(rootView);
+         View rootView = findViewById(android.R.id.content).getRootView();
+          AppManager.getInstance().implement_Capture_Share(this, rootView);// Take_Capture.getInstance().takeScreenshot(rootView);
     }
 
 
@@ -120,10 +108,9 @@ public class Link extends Activity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 m_pause.m_return = true;//SetReturn(true);
+                AppManager.getInstance().getGameView().ShowPause(true);
                 m_pause.show();
                 AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
-                AppManager.getInstance().getGameView().ShowPause(true);
-
                 //m_selectMenu.m_myMediaPlayer.pause(AppManager.MUSIC_MAINGAME_BGM);
                 break;
         }

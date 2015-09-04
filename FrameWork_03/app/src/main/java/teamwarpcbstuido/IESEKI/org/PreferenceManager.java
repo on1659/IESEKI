@@ -68,7 +68,7 @@ public class PreferenceManager {
     public float GameSpeedLoad()
     {
         SharedPreferences pref = m_context.getSharedPreferences("pref", Context.MODE_PRIVATE);
-        return pref.getFloat("GameSpeed", 1.0f);
+        return pref.getFloat("GameSpeed", 1.5f);
     }
 
     public float[] SensorLoad()

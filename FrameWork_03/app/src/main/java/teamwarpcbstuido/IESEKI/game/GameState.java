@@ -361,7 +361,7 @@ public class GameState implements IState {
     public void Destroy()
     {
         AppManager.getInstance().SetTimerTask(null);
-        AppManager.getInstance().SetTiemr(null);
+        AppManager.getInstance().SetTimer(null);
         m_monster = null;
         m_item = null;
         m_effect = null;
@@ -466,7 +466,7 @@ public class GameState implements IState {
     //AddMonster
     public void AddMonster() {
 
-        if(mGameTimer % 20 == 0)
+        if(mGameTimer % (20 / AppManager.getInstance().getGameSpeed())== 0)
             Make_Monster(mCreatMonsetNum, Monster_Type_01, m_mode);
 
         if(mGameTimer == mGameLevelDesign)

@@ -78,7 +78,7 @@ public class AppManager {
     {
         maingame_timer = timeTask;
     }
-    public void SetTiemr(Timer timer)
+    public void SetTimer(Timer timer)
     {
         Timer1 = timer;
     }
@@ -292,7 +292,7 @@ public class AppManager {
     public float GameSpeedDown()
     {
         float speed = m_preference.GameSpeedLoad();
-        speed -= 0.1f;
+        speed -= 0.5f;
         m_preference.GameSpeedSave(speed);
         return speed;
     }
@@ -300,7 +300,7 @@ public class AppManager {
     public float GameSpeedUp()
     {
         float speed = m_preference.GameSpeedLoad();
-        speed += 0.1f;
+        speed += 0.5f;
         m_preference.GameSpeedSave(speed);
         return speed;
 
