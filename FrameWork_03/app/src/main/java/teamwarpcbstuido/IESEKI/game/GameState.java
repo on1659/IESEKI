@@ -670,44 +670,54 @@ public class GameState implements IState {
         m_showPause = flag;
     }
 
-
     //////////////////////////////////Callback
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float tx,ty;
+        int tx, ty;
+        tx = (int) event.getX();
+        ty = (int) event.getY();
 
-        tx = event.getX();
-        ty = event.getY();
+        m_gameover.gomain_btn_push = false;
+        m_gameover.restart_btn_push = false;
 
-        int x = (int)tx;
-        int y = (int)ty;
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //죽어쓸때
+                if(GameOver_Check == true && m_gameover.r_gomain.contains(tx,ty))
+                {
+                    m_gameover.gomain_btn_push = true;
 
-        //죽어쓸때
-        if(GameOver_Check == true && m_gameover.r_gomain.contains(x,y))
-        {
-           AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
-          // System.exit(0);
-           // Link.link.Finish();
+                    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+                    // System.exit(0);
+                    // Link.link.Finish();
 
-            AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
-            AppManager.getInstance().getLink().Finish();
+                    AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
+                    AppManager.getInstance().getLink().Finish();
 
-            return false;
-           //this.RestartGame();
+                    return false;
+                    //this.RestartGame();
+                }
+                else if(GameOver_Check == true && m_gameover.r_restart.contains(tx,ty))
+                {
+                    m_gameover.restart_btn_push = true;
+
+                    this.RestartGame();
+                }
+                else if(tempbutton.contains(tx,ty))
+                {
+                    AppManager.getInstance().getLink().Share();
+                }
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                break;
+
+            case MotionEvent.ACTION_UP:
+                break;
         }
 
-        if(GameOver_Check == true && m_gameover.r_restart.contains(x,y))
-        {
-            this.RestartGame();
-        }
-
-        if(tempbutton.contains(x,y))
-        {
-            AppManager.getInstance().getLink().Share();
-        }
-
-        return false;
+        return true;
     }
 
 

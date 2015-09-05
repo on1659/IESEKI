@@ -38,13 +38,17 @@ public class ZeroSettingCanvas extends View {
     static public Rect m_GameSpeed_pos;
 
     Bitmap background;
-    Bitmap bnt_zeroin;
     Rect back;
 
     Bitmap speed_down;
     Bitmap speed_up;
     Bitmap speed_step;
     Bitmap speed_cur_pos;
+    Bitmap zero_set;
+
+    Bitmap speed_down_push;
+    Bitmap speed_up_push;
+    Bitmap zero_set_push;
 
     Bitmap game_speed_text;
 
@@ -65,12 +69,16 @@ public class ZeroSettingCanvas extends View {
         //RenderManager is not use
         //this image is only use this activity
         background = BitmapFactory.decodeResource(context.getResources(), R.drawable.game_background2);
-        bnt_zeroin = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_zeroin);
+        zero_set = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_zeroin);
 
         speed_down = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_speeddown);
         speed_up = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_speedup);
         speed_step = BitmapFactory.decodeResource(context.getResources(), R.drawable.speed_step);
         speed_cur_pos = BitmapFactory.decodeResource(context.getResources(), R.drawable.speed_pos);
+
+        speed_down_push = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_push_speeddown);
+        speed_up_push = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_push_speedup);
+        zero_set_push = BitmapFactory.decodeResource(context.getResources(), R.drawable.btn_push_zeroin);
 
         game_speed_text = BitmapFactory.decodeResource(context.getResources(), R.drawable.speed_text);
 
@@ -195,10 +203,17 @@ public class ZeroSettingCanvas extends View {
         canvas.drawBitmap(background, null, back, null);
         m_player.onDrawPlayer(canvas);
         m_player.onUpdate(System.currentTimeMillis());
-        canvas.drawBitmap(bnt_zeroin, null, m_ZeroSetButton, null);
+
+        if(ZeroSetting.zeroset_btn_push == false)
+            canvas.drawBitmap(zero_set, null, m_ZeroSetButton, null);
+        else
+            canvas.drawBitmap(zero_set_push, null, m_ZeroSetButton, null);
         canvas.drawBitmap(game_speed_text,null, m_SpeedText, null);
 
-        canvas.drawBitmap(speed_down, null, m_GameSpeedButtonDown, null);
+        if(ZeroSetting.speeddown_btn_push == false)
+            canvas.drawBitmap(speed_down, null, m_GameSpeedButtonDown, null);
+        else
+            canvas.drawBitmap(speed_down_push, null, m_GameSpeedButtonDown, null);
 
         canvas.drawBitmap(speed_step,null, m_GameSpeed_1, null);
         canvas.drawBitmap(speed_step,null, m_GameSpeed_2, null);
@@ -208,7 +223,10 @@ public class ZeroSettingCanvas extends View {
 
         canvas.drawBitmap(speed_cur_pos,null, m_GameSpeed_pos, null);
 
-        canvas.drawBitmap(speed_up,null, m_GameSpeedButtonUp, null);
+        if(ZeroSetting.speedup_btn_push == false)
+            canvas.drawBitmap(speed_up, null, m_GameSpeedButtonUp, null);
+        else
+            canvas.drawBitmap(speed_up_push, null, m_GameSpeedButtonUp, null);
 
         invalidate();
     }

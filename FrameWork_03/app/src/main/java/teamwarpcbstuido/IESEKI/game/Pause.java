@@ -35,6 +35,8 @@ public class Pause extends Dialog implements View.OnClickListener {
     ImageButton custom_swt_music_onoff;
     ImageButton custom_swt_vibe_onoff;
 
+    boolean btn_gomain_push = false;
+    boolean btn_return_push = false;
 
     public Pause(Context context) {
 
@@ -97,6 +99,15 @@ public class Pause extends Dialog implements View.OnClickListener {
                 AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
 
                 this.Exit();
+
+                if(btn_gomain_push == false) {
+                    btn_gomain.setSelected(true);
+                    btn_gomain_push = true;
+                }
+                else if(btn_gomain_push == true) {
+                    btn_gomain.setSelected(false);
+                    btn_gomain_push = false;
+                }
                 break;
 
             case R.id.pause_btn_return:
@@ -105,6 +116,15 @@ public class Pause extends Dialog implements View.OnClickListener {
 
                 m_return = false;
                 dismiss();
+
+                if(btn_return_push == false) {
+                    btn_return.setSelected(true);
+                    btn_return_push = true;
+                }
+                else if(btn_return_push == true) {
+                    btn_return.setSelected(false);
+                    btn_return_push = false;
+                }
                 break;
 
             case R.id.pause_music_custom_switch:

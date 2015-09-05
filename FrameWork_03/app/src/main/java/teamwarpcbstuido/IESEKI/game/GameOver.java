@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import teamwarpcbstuido.IESEKI.Layout.ZeroSetting;
 import teamwarpcbstuido.IESEKI.R;
 import teamwarpcbstuido.IESEKI.org.AppManager;
 import teamwarpcbstuido.IESEKI.org.GraphicObject;
@@ -24,9 +25,10 @@ public class GameOver extends GraphicObject {
     private int Y = 1;
     int DPI[] = new int[2];
 
-    Bitmap m_gomain;
     Bitmap m_background;
+    Bitmap m_gomain;
     Bitmap m_restart;
+
     static public Rect r_gomain;
     static public Rect r_background;
     static public Rect r_restart;
@@ -34,6 +36,13 @@ public class GameOver extends GraphicObject {
     int width, height;
 
     UI m_ui;
+
+    //--------------------------------------------------
+    static public boolean gomain_btn_push = false;
+    static public boolean restart_btn_push = false;
+
+    Bitmap m_gomain_push;
+    Bitmap m_restart_push;
 
     public GameOver() {
         super(null);
@@ -46,6 +55,9 @@ public class GameOver extends GraphicObject {
         m_gomain = AppManager.getInstance().getBitmap(R.drawable.btn_gomain);
         m_background = AppManager.getInstance().getBitmap(R.drawable.gameover_background);
         m_restart = AppManager.getInstance().getBitmap(R.drawable.btn_restart);
+
+        m_gomain_push = AppManager.getInstance().getBitmap(R.drawable.btn_push_gomain);
+        m_restart_push = AppManager.getInstance().getBitmap(R.drawable.btn_push_restart);
 
         r_gomain = new Rect();
         r_background = new Rect();
@@ -73,8 +85,16 @@ public class GameOver extends GraphicObject {
     public void onDraw(Canvas canvas) {
 
         canvas.drawBitmap(m_background, null, r_background, null);
-        canvas.drawBitmap(m_gomain, null, r_gomain, null);
-        canvas.drawBitmap(m_restart, null, r_restart, null);
+
+        if(gomain_btn_push == false)
+            canvas.drawBitmap(m_gomain, null, r_gomain, null);
+        else
+            canvas.drawBitmap(m_gomain_push, null, r_gomain, null);
+
+        if(restart_btn_push == false)
+            canvas.drawBitmap(m_restart, null, r_restart, null);
+        else
+            canvas.drawBitmap(m_restart_push, null, r_restart, null);
 
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);

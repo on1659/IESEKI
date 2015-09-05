@@ -30,6 +30,11 @@ public class SelectMenu extends Activity  {
     ImageButton btn_help;
     ImageButton btn_option;
 
+    boolean btn_start_push = false;
+    boolean btn_help_push = false;
+    boolean btn_option_push = false;
+    boolean btn_quit_push = false;
+
     boolean m_flagPause;
     boolean m_flagPausebtn;
 
@@ -44,16 +49,16 @@ public class SelectMenu extends Activity  {
         m_flagPause = false;
         m_flagPausebtn  = false;
 
-       //btn_start = (ImageButton) findViewById(R.id.select_btn_start);
+       btn_start = (ImageButton) findViewById(R.id.select_btn_start);
        //btn_start.setOnClickListener(this);
 
-       //btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
+       btn_quit = (ImageButton) findViewById(R.id.select_btn_quit);
        //btn_quit.setOnClickListener(this);
 
-       //btn_help = (ImageButton) findViewById(R.id.select_btn_help);
+       btn_help = (ImageButton) findViewById(R.id.select_btn_help);
        //btn_help.setOnClickListener(this);
 
-       //btn_option = (ImageButton) findViewById(R.id.select_btn_option);
+       btn_option = (ImageButton) findViewById(R.id.select_btn_option);
        //btn_option.setOnClickListener(this);
     }
 
@@ -136,23 +141,59 @@ public class SelectMenu extends Activity  {
                 AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
                 intent = new Intent(this, Link.class);
                 startActivity(intent);
+
+                if(btn_start_push == false) {
+                    btn_start.setSelected(true);
+                    btn_start_push = true;
+                }
+                else if(btn_start_push == true) {
+                    btn_start.setSelected(false);
+                    btn_start_push = false;
+                }
                 break;
 
             case R.id.select_btn_help:
                 intent = new Intent(this, Help.class);
                 startActivity(intent);
+
+                if(btn_help_push == false) {
+                    btn_help.setSelected(true);
+                    btn_help_push = true;
+                }
+                else if(btn_help_push == true) {
+                    btn_help.setSelected(false);
+                    btn_help_push = false;
+                }
                 break;
 
             case R.id.select_btn_option:
 
                 intent = new Intent(this, Option.class);
                 startActivity(intent);
+
+                if(btn_option_push == false) {
+                    btn_option.setSelected(true);
+                    btn_option_push = true;
+                }
+                else if(btn_option_push == true) {
+                    btn_option.setSelected(false);
+                    btn_option_push = false;
+                }
                 break;
 
             case R.id.select_btn_quit:
                 AppManager.getInstance().Destroy();
                 finish();
                 System.exit(0);
+
+                if(btn_quit_push == false) {
+                    btn_quit.setSelected(true);
+                    btn_quit_push = true;
+                }
+                else if(btn_quit_push == true) {
+                    btn_quit.setSelected(false);
+                    btn_quit_push = false;
+                }
                 break;
 
             default:

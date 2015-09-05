@@ -24,6 +24,10 @@ public class ZeroSetting extends Activity {
 
     private int DPI[] = new int[2];
 
+    static public boolean zeroset_btn_push = false;
+    static public boolean speeddown_btn_push = false;
+    static public boolean speedup_btn_push = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,24 +51,35 @@ public class ZeroSetting extends Activity {
         tx = (int) event.getX();
         ty = (int) event.getY();
 
+        zeroset_btn_push = false;
+        speedup_btn_push = false;
+        speeddown_btn_push = false;
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (SettingVIew.m_ZeroSetButton.contains(tx, ty)) {
                     Toast.makeText(this.getApplicationContext(), getString(R.string.zero_set), Toast.LENGTH_LONG).show();
                     SettingVIew.setSensorRevise();
+
+                    zeroset_btn_push = true;
                 }
 
-                if(SettingVIew.m_GameSpeedButtonUp.contains(tx, ty)) {
+                else if(SettingVIew.m_GameSpeedButtonUp.contains(tx, ty)) {
                     AppManager.getInstance().GameSpeedUp();
                     SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
                     SettingVIew.Invalidate();
 
+                    speedup_btn_push = true;
                 }
-                if(SettingVIew.m_GameSpeedButtonDown.contains(tx,ty)) {
+                else if(SettingVIew.m_GameSpeedButtonDown.contains(tx,ty)) {
                     AppManager.getInstance().GameSpeedDown();
                     SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
                     SettingVIew.Invalidate();
+
+                    speeddown_btn_push = true;
                 }
+                break;
+            case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
                 break;
