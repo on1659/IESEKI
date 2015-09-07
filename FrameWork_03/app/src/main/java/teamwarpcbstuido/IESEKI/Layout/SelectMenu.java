@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,6 +36,12 @@ public class SelectMenu extends Activity  {
     boolean btn_option_push = false;
     boolean btn_quit_push = false;
 
+
+    /**back 버튼 두번 터치 간(Default 1초)*/
+    private final static int BACK_TIMMER = 1 * 1000;
+    /**back 버튼 두번 터치 체크용 flag*/
+    private boolean touchflag = false;
+
     boolean m_flagPause;
     boolean m_flagPausebtn;
 
@@ -60,58 +67,25 @@ public class SelectMenu extends Activity  {
 
        btn_option = (ImageButton) findViewById(R.id.select_btn_option);
        //btn_option.setOnClickListener(this);
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        //�̰� ���� ���� �ؾ߉�
-        AppManager.getInstance().setAppManager(this);
-
-        AppManager.getInstance().setSize();
-        AppManager.getInstance().setVibeSensor();
-        AppManager.getInstance().setPreference();
-        AppManager.getInstance().setMoveSensor();
-        AppManager.getInstance().setResuorces(getResources());
-        AppManager.getInstance().set_myMediaPlayer();
-        AppManager.getInstance().set_mySoundPool();
-
         AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_SELECT_BGM);
-
-
-
-}
+    }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-
-        //if(AppManager.getInstance().GetPauseFlag())
-        //{
-        //    m_flagPausebtn = true;
-        //    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
-        //    Intent intent = new Intent(this, Link.class);
-        //    startActivity(intent);
-        //}
-        //AppManager.getInstance().setPasueFlag(false);
-       // Log.d("TAG", "onRestart(SelectMenu)");
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-
-      //  Log.d("TAG", "onPostResume(SelectMenu)");
-      // if(m_flagPause)
-      // {
-      //     m_flagPause = false;
-      //     AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
-      //     Intent intent = new Intent(this, Link.class);
-      //     startActivity(intent);
-      // }
-      // m_flagPause = false;
 
     }
 
@@ -119,16 +93,9 @@ public class SelectMenu extends Activity  {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("TAG", "onPause(SelectMenu)");
-
-        AppManager.getInstance().setPasueFlag(false);
-
-        if(!m_flagPausebtn)
-            m_flagPause = true;
-         m_flagPausebtn = false;
-
-        AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
+        AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_SELECT_BGM);
     }
+
 
     public void OnClick(View v) {
 
@@ -138,7 +105,7 @@ public class SelectMenu extends Activity  {
         switch (v.getId()) {
             case R.id.select_btn_start:
                 m_flagPausebtn = true;
-                AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_SELECT_BGM);
+                AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_SELECT_BGM);
                 intent = new Intent(this, Link.class);
                 startActivity(intent);
 
@@ -206,10 +173,35 @@ public class SelectMenu extends Activity  {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                finish();
-                //System.exit(0);
-                break;
+                if(touchflag)
+                {
+                    //2번째 클릭시 종료한다.
+                    finish();
+                }
+                else{
+                    //1번째 클릭시 flag를 true로 변경, 타이머 동작
+                    startTimer();
+                }
+                return true;
+            case KeyEvent.KEYCODE_MENU:
+
+            default :
+                return false;
         }
-        return super.onKeyDown(keyCode, event);
+    }
+
+    private void startTimer(){
+
+        touchflag = true;
+        AppManager.getInstance().ShowToast(getString(R.string.double_touch_exit));
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                touchflag = false;
+            }
+        }, BACK_TIMMER);
+
     }
 }

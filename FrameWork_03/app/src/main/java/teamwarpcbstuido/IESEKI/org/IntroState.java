@@ -25,6 +25,11 @@ public class IntroState implements IState {
     }
 
     @Override
+    public void onRestart() {
+
+    }
+
+    @Override
     public void onPause() {
 
     }

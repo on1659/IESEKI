@@ -30,10 +30,10 @@ import static android.graphics.Color.*;
  * Created by Administrator on 2015-04-09.
  */
 public class GameState implements IState {
-   // Context context;
-   // public GameState(Context context){
-   //     //self.context = context;
- //   }
+    // Context context;
+    // public GameState(Context context){
+    //     //self.context = context;
+    //   }
     private static int X = 0;
     private static int Y = 1;
 
@@ -70,7 +70,7 @@ public class GameState implements IState {
     TimerTask eff_timer;
 
     private ArrayList<Monster> m_monster = new ArrayList<Monster>();
-      private ArrayList<Item> m_item = new ArrayList<Item>();
+    private ArrayList<Item> m_item = new ArrayList<Item>();
     private ArrayList<Effect> m_effect = new ArrayList<Effect>();
 
 
@@ -90,14 +90,13 @@ public class GameState implements IState {
 
     boolean GameOver_Check;
     private long mGameTimer;
-    private long mGameLevelDesign;
     private int mCreatMonsetNum;
+    private long mGameLevelDesign;
 
     private int itemCreateTime;
 
     private int m_mode;
 
-    Rect tempbutton;
 
     private boolean m_showPause;
 
@@ -124,15 +123,12 @@ public class GameState implements IState {
 
         MonsterSpawnCycle_Check();
 
-        tempbutton = new Rect();
-        tempbutton.set(width / 2, height / 2, width / 2 + 50, height / 2 + 50);
     }
 
 
     @Override
     public void RestartGame()
     {
-
         m_monster.clear();
         m_effect.clear();
         m_item.clear();
@@ -143,15 +139,15 @@ public class GameState implements IState {
 
         current_time = System.currentTimeMillis();
 
-        Make_Monster(4, Monster_Type_01, NORMAL_MODE);
-        Make_Item(2, ITEM_BloodyShield);
+        //Make_Monster(4, Monster_Type_01, NORMAL_MODE);
+        //Make_Item(2, ITEM_BloodyShield);
 
         tmpTime = 0;
 
         GameOver_Check = false;
 
         mCreatMonsetNum = 4;
-        mGameTimer =0;
+        mGameTimer = 0;
         m_mode = NORMAL_MODE;
 
         itemCreateTime = 0;
@@ -164,23 +160,44 @@ public class GameState implements IState {
     @Override
     public void onPause()
     {
-        AppManager.getInstance().setPasueFlag(true);
         AppManager.getInstance().SetPauseSaveData("character", m_player);
         AppManager.getInstance().SetPauseSaveData("item", m_item);
         AppManager.getInstance().SetPauseSaveData("effect", m_effect);
         AppManager.getInstance().SetPauseSaveData("background", m_background);
         AppManager.getInstance().SetPauseSaveData("monster", m_monster);
+        AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
+        m_showPause = true;
     }
 
     @Override
     public void onResume()
     {
+        return;
+    }
+
+
+    @Override
+    public void onRestart()
+    {
+        m_player = null;
+        m_item = null;
+        m_effect = null;
+        m_background = null;
+        m_monster = null;
+
+        if(!GameOver_Check)
+            AppManager.getInstance().getLink().PopupPause();
+        else
+            m_showPause = false;
+
         m_player = (Player) AppManager.getInstance().GetPauseSaveData("character");
         m_item = (ArrayList<Item>) AppManager.getInstance().GetPauseSaveData("item");
         m_effect = (ArrayList<Effect>) AppManager.getInstance().GetPauseSaveData("effect");
         m_background= (BackGround) AppManager.getInstance().GetPauseSaveData("background");
         m_monster = (ArrayList<Monster>) AppManager.getInstance().GetPauseSaveData("monster");
+        AppManager.getInstance().maingame_timer.run();
 
+       // AppManager.getInstance().ClearPauseSaveData();
     }
 
     @Override
@@ -207,56 +224,51 @@ public class GameState implements IState {
 
 
         {
-           //if (GameOver_Check)
-           //    debug.drawText(canvas, "GameOver_Check True", DPI, 5, 13, 55, BLUE);
+            //if (GameOver_Check)
+            //    debug.drawText(canvas, "GameOver_Check True", DPI, 5, 13, 55, BLUE);
 
-           //else
-           //    debug.drawText(canvas, "GameOver_Check False", DPI, 5, 13, 55, BLUE);
+            //else
+            //    debug.drawText(canvas, "GameOver_Check False", DPI, 5, 13, 55, BLUE);
 
-           //if (m_showPause)
-           //    debug.drawText(canvas, "m_showPause True", DPI, 5, 18, 55, BLUE);
+            //if (m_showPause)
+            //    debug.drawText(canvas, "m_showPause True", DPI, 5, 18, 55, BLUE);
 
-           //else
-           //    debug.drawText(canvas, "m_showPause False", DPI, 5, 18, 55, BLUE);
+            //else
+            //    debug.drawText(canvas, "m_showPause False", DPI, 5, 18, 55, BLUE);
 
             //debug.drawText(canvas, "FPS : " + FPS, DPI, 10, 13, 55, BLUE);
 
-           //debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, RED);
-           //debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, RED);
-           //debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, RED);
+            //debug.drawText(canvas, "Player_left : " + m_player.getPos().left, DPI, 10, 15, 35, RED);
+            //debug.drawText(canvas, "Player_Top : " + m_player.getPos().top, DPI, 10, 17, 35, RED);
+            //debug.drawText(canvas, "Player_degree : " + m_player.getDegree(), DPI, 10, 19, 35, RED);
 
 
-          debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 4, 21, 35, BLUE);
-          debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 4, 23, 35, BLUE);
+            //debug.drawText(canvas, "Roll : " + AppManager.getInstance().getSensorX(), DPI, 4, 21, 35, BLUE);
+            //debug.drawText(canvas, "Pitch : " + AppManager.getInstance().getSensorY(), DPI, 4, 23, 35, BLUE);
 
-           //debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, GREEN);
-
-
-          //  debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, BLACK);
+            //debug.drawText(canvas, "Monster Num : " + m_monster.size(), DPI, 10, 25, 35, GREEN);
 
 
-           // debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, CYAN);
+            //  debug.drawText(canvas, "Item Num : " + m_item.size(), DPI, 10, 27, 35, BLACK);
 
 
-           /// if (m_effect.size() > 1) {
-           ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(0).m_activeTime, DPI, 10, 31, 35, YELLOW);
-           ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, YELLOW);
-           /// }
+            // debug.drawText(canvas, "Effect Num : " + m_effect.size(), DPI, 10, 29, 35, CYAN);
+
+
+            /// if (m_effect.size() > 1) {
+            ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(0).m_activeTime, DPI, 10, 31, 35, YELLOW);
+            ///     debug.drawText(canvas, "GameTime  : " + m_effect.get(1).m_activeTime, DPI, 10, 35, 35, YELLOW);
+            /// }
 
             // debug.drawText(canvas, FPS, 250, 550, 55, BLUE);
-
-
-         }
-
+        }
 
         m_player.onDrawPlayer(canvas);
-        m_ui.onDraw(canvas);
+        m_ui.onDraw(canvas, mGameTimer);
 
         if(GameOver_Check == true)
-             m_gameover.onDraw(canvas);
+            m_gameover.onDraw(canvas);
 
-
-        canvas.drawBitmap(AppManager.getInstance().GetImage("Player"), null, tempbutton, null);
 
     }
 
@@ -286,43 +298,43 @@ public class GameState implements IState {
         return 0.04f;
     }
 
-    public void onUpdate()
-    {
-        if (m_pause.m_return == false && GameOver_Check == false) {
-            long GameTime = System.currentTimeMillis();
-            FPS = this.FramePerSecond();
-            this.Collision();
+   //public void onUpdate()
+   //{
+   //    if (m_pause.m_return == false && GameOver_Check == false) {
+   //        long GameTime = System.currentTimeMillis();
+   //        FPS = this.FramePerSecond();
+   //        this.Collision();
 
-            m_player.onUpdate(FPS);
-            m_background.onUpdate(GameTime);
+   //        m_player.onUpdate(FPS);
+   //        m_background.onUpdate(GameTime);
 
-            if (m_effect.size() > 0) {
-                for (int i = 0; i < m_effect.size(); i++) {
-                    m_effect.get(i).onUpdate(m_player, FPS);
+   //        if (m_effect.size() > 0) {
+   //            for (int i = 0; i < m_effect.size(); i++) {
+   //                m_effect.get(i).onUpdate(m_player, FPS);
 
-                    if (m_effect.get(i).Die()) m_effect.remove(i);
-                }
-            }
-            //Move
-            if (m_monster.size() > 0) {
-                for (int i = 0; i < m_monster.size() - 1; i++) {
-                    m_monster.get(i).onUpdate(FPS);
-                    if (m_monster.get(i).Die()) m_monster.remove(i);
+   //                if (m_effect.get(i).Die()) m_effect.remove(i);
+   //            }
+   //        }
+   //        //Move
+   //        if (m_monster.size() > 0) {
+   //            for (int i = 0; i < m_monster.size() - 1; i++) {
+   //                m_monster.get(i).onUpdate(FPS);
+   //                if (m_monster.get(i).Die()) m_monster.remove(i);
 
-                }
-            }
+   //            }
+   //        }
 
-            if (m_item.size() > 0) {
-                for (int i = 0; i < m_item.size() - 1; i++) {
-                    m_item.get(i).Move(FPS);
-                    if (m_item.get(i).DIe()) m_item.remove(i);
-                }
-            }
+   //        if (m_item.size() > 0) {
+   //            for (int i = 0; i < m_item.size() - 1; i++) {
+   //                m_item.get(i).Move(FPS);
+   //                if (m_item.get(i).DIe()) m_item.remove(i);
+   //            }
+   //        }
 
 
-        }
+   //    }
 
-    }
+   //}
 
 
     @Override
@@ -394,7 +406,7 @@ public class GameState implements IState {
                         if(m_effect.get(num).getType() == ITEM_BloodyShield)
                             isCollision = true;
                     }
-                   // m_monster.remove(i);
+                    // m_monster.remove(i);
 
                     if(isCollision)
                         break;
@@ -405,7 +417,7 @@ public class GameState implements IState {
                     GameOver_Check = true;
 
                     if(AppManager.getInstance().getPreference().VibeOptionLoad() == true)
-                        AppManager.getInstance().getLink().vibe.vibrate(500); //몬스터에게 죽었을 시, 진동.
+                        AppManager.getInstance().getVibe(500); //몬스터에게 죽었을 시, 진동.
                 }
 
                 for (int effNum = 0; effNum < m_effect.size(); effNum++)
@@ -444,7 +456,7 @@ public class GameState implements IState {
         {
             Random rnd = new Random();
             if(rnd.nextBoolean())
-             Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
+                Make_Item(1, rnd.nextInt(5)); // 추후 랜덤
             else
                 return;
         }
@@ -459,7 +471,7 @@ public class GameState implements IState {
             {
                 if (m_item.get(i).getWallCount() > 2)
                 {
-                  MakeItem();
+                    MakeItem();
                     break;
                 }
 
@@ -468,7 +480,7 @@ public class GameState implements IState {
 
         if (m_item.size() < 3)
         {
-           MakeItem();
+            MakeItem();
         }
     }
 
@@ -521,6 +533,7 @@ public class GameState implements IState {
 
     //Item Effect
     public void Make_Item(int make_num, int make_type) {
+
         for (int i = 0; i < make_num; i++) {
             Item itm = null;
             Random rnd = new Random();
@@ -638,7 +651,7 @@ public class GameState implements IState {
 
             if(hardMode == NORMAL_MODE )
             {
-               // mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] * 5); //Max DPI[X] is 36
+                // mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), -this.random(0, 5 * DPI[Y]), DPI[X] * 5,DPI[Y] * 5); //Max DPI[X] is 36
                 mon.SetPosition(this.random(-2 * DPI[X], 38 * DPI[X]), - 1 * this.random(0, 15 * DPI[Y]), DPI[X] * 5,DPI[Y] *  5); //Max DPI[X] is 36
                 mon.setDir(m_player.getPos(), false);
             }
@@ -670,6 +683,7 @@ public class GameState implements IState {
         m_showPause = flag;
     }
 
+
     //////////////////////////////////Callback
 
     @Override
@@ -688,7 +702,7 @@ public class GameState implements IState {
                 {
                     m_gameover.gomain_btn_push = true;
 
-                    AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+                    AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
                     // System.exit(0);
                     // Link.link.Finish();
 
@@ -702,11 +716,14 @@ public class GameState implements IState {
                 {
                     m_gameover.restart_btn_push = true;
 
+                    AppManager.getInstance().GetTimerTask().cancel();
+                    //AppManager.getInstance().maingame_timer = null;
+                    AppManager.getInstance().GetTimer().cancel();
+                    //AppManager.getInstance().Timer1 = null;
+
+                    MainGame_TimerManager();
+
                     this.RestartGame();
-                }
-                else if(tempbutton.contains(tx,ty))
-                {
-                    AppManager.getInstance().getLink().Share();
                 }
                 break;
 
@@ -719,17 +736,6 @@ public class GameState implements IState {
 
         return true;
     }
-
-
-
-    private int random(int dpi, int start, int end) {
-        Random rnd = new Random();
-        if (end <= start) {
-            return (rnd.nextInt(start * dpi - end * dpi) + start * dpi);
-        }
-        return (rnd.nextInt(end * dpi - start * dpi) + start * dpi);
-    }
-
 
     private int random(int start, int end) {
         Random rnd = new Random();
@@ -754,11 +760,14 @@ public class GameState implements IState {
                 try {
                     if(m_showPause == false && GameOver_Check == false)
                     {
-                        m_ui.updateScore();
                         mGameTimer++;
-                        itemCreateTime++;
-                        AddMonster();
-                        AddItem();
+
+                        if(mGameTimer >= 40) {
+                            m_ui.updateScore();
+                            itemCreateTime++;
+                            AddMonster();
+                            AddItem();
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 public class SpriteAnimation extends GraphicObject {
 
@@ -21,6 +22,24 @@ public class SpriteAnimation extends GraphicObject {
 
     protected boolean mbReply = true;
     protected boolean mbEnd = false;
+
+   private float                  m_frameFPS;
+   private int                     m_frameCount;
+
+   private int                  m_frameWidth;
+   private float                  m_frameHeight;
+
+   private float                  m_frameLeft;
+   private float                  m_frameTop;
+
+    private float                  m_width;
+    private float                   m_height;
+
+    float               m_imgWidth;
+    float               m_imgHeight;
+
+    float               m_frameFPSInit;
+
 
     public SpriteAnimation(String name) {
         super(name);
@@ -39,6 +58,26 @@ public class SpriteAnimation extends GraphicObject {
         mSRectangle.right = mSpriteWidth;
         mFPS = 1000 / theFPS;
         mNoOfFrames = theFrameCount;
+    }
+
+    public void SetSprite(float frameFPS, int frameCount, int frameCountHeight) {
+
+        m_width = AppManager.getInstance().GetImage(m_name).getWidth();//(float)CRenderManager::GetInstance()->GetImage(m_name)->GetWidth() / frameCount;
+        m_height = AppManager.getInstance().GetImage(m_name).getHeight();//(float)CRenderManager::GetInstance()->GetImage(m_name)->GetHeight() / frameCountHeight;
+
+
+        m_frameFPS = 1 / frameFPS;
+        m_frameFPSInit = m_frameFPS;
+        m_frameCount = frameCount;
+        m_imgWidth = m_width / frameCount;
+        m_imgHeight = m_height / frameCountHeight;
+
+
+        mSRectangle.top = 0;
+        mSRectangle.bottom = (int)m_imgHeight;
+        mSRectangle.left = 0;
+        mSRectangle.right = (int)m_imgWidth;
+
     }
 
     @Override
@@ -67,7 +106,23 @@ public class SpriteAnimation extends GraphicObject {
         canvas.rotate((float) angle * -1.0f, m_cx, m_cy);
     }
 
+   public  void OnSpriteUpdate()
+    {
+        m_frameLeft = m_imgWidth  * m_frameWidth;
+        m_frameTop = m_imgHeight * m_frameHeight;
 
+        m_frameFPS += m_frameFPS;
+        m_frameWidth += m_frameFPS;
+
+        if (m_frameWidth > m_frameCount)
+        {
+            m_frameWidth = 0;
+            m_frameFPS = m_frameFPSInit;
+        }
+
+        mSRectangle.left = (int)m_frameLeft;
+        mSRectangle.right = mSRectangle.left + (int)m_imgWidth;
+    }
 
 
     public void SpriteUpdate(float GameTime) {
@@ -88,6 +143,7 @@ public class SpriteAnimation extends GraphicObject {
         mSRectangle.left = mCurrentFrame * mSpriteWidth;
         mSRectangle.right = mSRectangle.left + mSpriteWidth;
     }
+
 
     public boolean getAnimationEnd() {
         return mbEnd;

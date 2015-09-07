@@ -21,6 +21,8 @@ public class UI extends GraphicObject {
     int k;
 
     Rect r_gameui;
+    Rect r_game_count;
+    Rect r_game_start;
 
     int width, height;
 
@@ -39,7 +41,21 @@ public class UI extends GraphicObject {
         r_gameui = new Rect();
         r_gameui.set(0, 0, width, height);
 
+        int l = DPI[0] * 15;
+        int t = DPI[1] * 26;
+        int w = DPI[0] * 6;
+        int h = DPI[1] * 6;
 
+        r_game_count = new Rect();
+        r_game_count.set(l, t, l + w, t + h);
+
+        l = DPI[0] * 8;
+        t = DPI[1] * 24;
+        w = DPI[0] * 20;
+        h = DPI[1] * 10;
+
+        r_game_start = new Rect();
+        r_game_start.set(l, t, l + w, t + h);
 
         m_score = 0;
     }
@@ -52,7 +68,17 @@ public class UI extends GraphicObject {
 
     }
 
-    public void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas, long game_time) {
+
+        if(game_time >= 10 && game_time < 20)
+            canvas.drawBitmap(AppManager.getInstance().GetImage("Count3"), null, r_game_count, null);
+        else if(game_time >= 20 && game_time < 30)
+            canvas.drawBitmap(AppManager.getInstance().GetImage("Count2"), null, r_game_count, null);
+        else if(game_time >= 30 && game_time < 40)
+            canvas.drawBitmap(AppManager.getInstance().GetImage("Count1"), null, r_game_count, null);
+        else if(game_time >= 40 && game_time < 45)
+            canvas.drawBitmap(AppManager.getInstance().GetImage("Count_Start"), null, r_game_start, null);
+
         canvas.drawBitmap(AppManager.getInstance().GetImage("Ui"), null, r_gameui, null);
 
         Paint paint = new Paint();

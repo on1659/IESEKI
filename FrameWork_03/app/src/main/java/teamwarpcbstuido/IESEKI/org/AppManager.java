@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -84,17 +85,8 @@ public class AppManager {
         Timer1 = timer;
     }
 
-    public TimerTask GetTimerTask()
-    {
-        return maingame_timer;
-    }
-
-    public Timer GetTimer()
-    {
-        Timer temp = Timer1;
-        return Timer1;
-    }
-
+    public TimerTask GetTimerTask() { return maingame_timer; }
+    public Timer GetTimer() { return Timer1; }
 
 
     public static AppManager getInstance(){
@@ -110,25 +102,34 @@ public class AppManager {
 
     public void setAppManager(Context context)
     {
+        if(m_context!= null)return;
         m_context = context;
     }
 
     public void setResuorces(Resources _resource) {
+        if(m_resource != null)return;
         m_resource = _resource;
     }
 
-    public void setMoveSensor(){ m_moveSensor = new moveSensor(m_context); }
+    public void setMoveSensor(){
+        if(m_moveSensor != null)return;
+        m_moveSensor = new moveSensor(m_context); }
 
     public void setPreference() {
+        if(m_preference != null)return;
         m_preference = new PreferenceManager(m_context);
     }
 
-    public void setVibeSensor() { m_vibe = (Vibrator) m_context.getSystemService(Context.VIBRATOR_SERVICE); }
+    public void setVibeSensor() {
+        if(m_vibe != null)return;
+        m_vibe = (Vibrator) m_context.getSystemService(Context.VIBRATOR_SERVICE); }
 
     public void setThread(Thread _thread) { m_thread = _thread; }
 
     public void setSize()
     {
+        if(screen_height !=0)return;
+
         Display dispaly = ((WindowManager) m_context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); //((WindowManager)context.getSystemService(Context.WIFI_SERVICE)).getDefaultDisplay();
         screen_width = dispaly.getWidth();
         screen_height = dispaly.getHeight();
@@ -139,21 +140,26 @@ public class AppManager {
 
     public void setLink(Link link)
     {
-       // if(m_link == null)
-            m_link = link;
+        // if(m_link == null)
+        m_link = link;
     }
 
-    public void set_myMediaPlayer() { m_myMediaPlayer = new MyMediaPlayer(m_context); }
-    public void set_mySoundPool(){ m_mySoundPool = new MySoundPool(m_context);}
+    public void set_myMediaPlayer() {
+        if(m_myMediaPlayer != null)return;
+        m_myMediaPlayer = new MyMediaPlayer(m_context);
+    }
+    public void set_mySoundPool(){
+        if(m_mySoundPool != null)return;
+        m_mySoundPool = new MySoundPool(m_context);}
 
     public void ReStartGame() { m_gameview.RestartGame();}
 
-    public float getSensorX(){return m_moveSensor.getX() * this.getGameSpeed();}
-    public float getSensorY(){return m_moveSensor.getY() * this.getGameSpeed();}
+    public float getSensorX(){return m_moveSensor.getX();}
+    public float getSensorY(){return m_moveSensor.getY();}
     public int getWidth(){return screen_width;}
     public int getHeight(){return screen_height;}
     public int[] getDPI(){return DPI;}
-    public void getShake(long _time){m_vibe.vibrate(_time);}
+    public void getVibe(long _time){m_vibe.vibrate(_time);}
 
     public Link getLink(){return m_link;}
 
@@ -177,7 +183,7 @@ public class AppManager {
 
     public Bitmap GetImage(String name)
     {
-       Bitmap bitmap =  bitmapList.get(name);
+        Bitmap bitmap =  bitmapList.get(name);
         return bitmap;
     }
 
@@ -187,12 +193,14 @@ public class AppManager {
         bitmap[0] = BitmapFactory.decodeResource(m_resource, r);
         bitmapList.put(name, bitmap[0]);
     }
-
     public void SetPauseSaveData(String name, Object obj)
     {
         m_PauseData.put(name, obj);
     }
-
+    public void ClearPauseSaveData()
+    {
+        m_PauseData = null;
+    }
     public Object GetPauseSaveData(String name)
     {
         Object obj =  m_PauseData.get(name);
@@ -219,47 +227,12 @@ public class AppManager {
 
         this.Addimage("Ui", R.drawable.maingame_ui);
 
+        this.Addimage("Count1", R.drawable.count_num_1);
+        this.Addimage("Count2", R.drawable.count_num_2);
+        this.Addimage("Count3", R.drawable.count_num_3);
+        this.Addimage("Count_Start", R.drawable.count_num_start);
     }
 
-    //캡쳐 후 공유 함수
-    public void implement_Capture_Share(Context context,View view){
-        this.CreateFolder();
-        Take_Capture screen = Take_Capture.getInstance();
-        String path = screen.takeScreenshot(view);
-        Picture_Share pShare = Picture_Share.getInstance();
-        pShare.share(context, path);
-    }
-
-    /**폴더 생성*/
-    private void CreateFolder(){
-
-        try{
-            //check sdcard mount state
-            String str = Environment.getExternalStorageState();
-            if ( str.equals(Environment.MEDIA_MOUNTED)) {
-
-                Log.d("Sd_card_path", "sdcard mounted");
-                String mTargetDirPath = this.getScreenShootFilePath();
-
-                File file = new File(mTargetDirPath);
-                if(!file.exists()){
-                    file.mkdirs();
-                    Log.e("Sd_card_path", mTargetDirPath + " folder created");
-                }else{
-                    //  Log.d(TAG, mTargetDirPath + " is exist");
-                }
-            }else{
-                Log.d("Sd_card_path", "sdcard unmount, use default image.");
-            }
-        }catch(Exception e){
-            Log.d("Sd_card_path", "fail");
-        }
-    }
-
-    /**스크린샷 파일 경로를 가져온다.*/
-    private String getScreenShootFilePath(){
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath() + "/IESEKI";
-    }
 
     public void PauseDataDestory()
     {
@@ -282,7 +255,6 @@ public class AppManager {
         m_link  = null;
         m_PauseData = null;
         bitmapList  = null;
-
     }
 
     public float getGameSpeed()
@@ -314,6 +286,10 @@ public class AppManager {
         int xlargeBit = 4; // Configuration.SCREENLAYOUT_SIZE_XLARGE;  // upgrade to HC SDK to get this
         Configuration config = m_context.getResources().getConfiguration();
         return (config.screenLayout & xlargeBit) == xlargeBit;
+    }
+    public void ShowToast(String msg)
+    {
+        Toast.makeText(m_context, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

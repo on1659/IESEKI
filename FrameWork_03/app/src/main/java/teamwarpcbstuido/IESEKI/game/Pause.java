@@ -92,12 +92,13 @@ public class Pause extends Dialog implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.pause_btn_gomain:
-                AppManager.getInstance().get_myMediaPlayer().stop(AppManager.MUSIC_MAINGAME_BGM);
+                AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
+                //AppManager.getInstance().get_myMediaPlayer().release(AppManager.MUSIC_MAINGAME_BGM);
                 AppManager.getInstance().getGameView().ShowPause(false);
-                // System.exit(0);
 
                 AppManager.getInstance().GetTimer().cancel(); //타이머1 종료
 
+                //System.exit(0);
                 this.Exit();
 
                 if(btn_gomain_push == false) {
@@ -112,6 +113,7 @@ public class Pause extends Dialog implements View.OnClickListener {
 
             case R.id.pause_btn_return:
                 AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+                //AppManager.getInstance().get_myMediaPlayer().release(AppManager.MUSIC_MAINGAME_BGM);
                 AppManager.getInstance().getGameView().ShowPause(false);
 
                 m_return = false;

@@ -88,7 +88,7 @@ public class ZeroSettingCanvas extends View {
 
         //�������� ��ư
         int l = DPI[0] * 8;
-        int t = DPI[1] * 50;
+        int t = DPI[1] * 48;
         int w = DPI[0] * 20;
         int h = DPI[1] * 10;
 
@@ -194,6 +194,11 @@ public class ZeroSettingCanvas extends View {
     public void Invalidate()
     {
         this.invalidate();
+    }
+
+    public void SetSpeed()
+    {
+        m_player.setSpeed(AppManager.getInstance().getGameSpeed());
     }
 
 

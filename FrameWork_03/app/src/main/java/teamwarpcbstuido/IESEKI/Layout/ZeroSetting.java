@@ -58,7 +58,7 @@ public class ZeroSetting extends Activity {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (SettingVIew.m_ZeroSetButton.contains(tx, ty)) {
-                    Toast.makeText(this.getApplicationContext(), getString(R.string.zero_set), Toast.LENGTH_LONG).show();
+                    AppManager.getInstance().ShowToast(getString(R.string.zero_set));
                     SettingVIew.setSensorRevise();
 
                     zeroset_btn_push = true;
@@ -68,14 +68,14 @@ public class ZeroSetting extends Activity {
                     AppManager.getInstance().GameSpeedUp();
                     SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
                     SettingVIew.Invalidate();
-
+                    SettingVIew.SetSpeed();
                     speedup_btn_push = true;
                 }
                 else if(SettingVIew.m_GameSpeedButtonDown.contains(tx,ty)) {
                     AppManager.getInstance().GameSpeedDown();
                     SettingVIew.SetSpeed(SettingVIew.SpeedPosCheck());
                     SettingVIew.Invalidate();
-
+                    SettingVIew.SetSpeed();
                     speeddown_btn_push = true;
                 }
                 break;

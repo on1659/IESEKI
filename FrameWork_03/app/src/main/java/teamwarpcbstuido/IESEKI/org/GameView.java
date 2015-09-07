@@ -49,10 +49,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         gameState = new GameState();
         ChangeGameState(gameState);
 
-        m_thread = new GameViewThread(getHolder(), this);
+        //m_thread = new GameViewThread(getHolder(), this);
+        this.StartThread();
         AppManager.getInstance().setThread(m_thread);
     }
 
+    public void StartThread()
+    {
+        m_thread = null;
+        m_thread = new GameViewThread(getHolder(),this);
+    }
     public void RestartGame()
     {
         m_state.RestartGame();
@@ -62,6 +68,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void onResume(){m_state.onResume();}
 
+    public void onRestart(){m_state.onRestart();}
+
     public void ShowPause(boolean flag){m_state.ShowPause(flag);}
 
 
@@ -69,7 +77,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawColor(Color.BLACK);
         gameState.Render(canvas);
 
-  //      canvas.drawBitmap(bit, 10, 10, pnt);
+        //      canvas.drawBitmap(bit, 10, 10, pnt);
     }
 
     @Override
@@ -94,12 +102,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 
-      public void ChangeGameState(IState _state){
-          if(m_state != null)
-              m_state.Destroy();
-          _state.Init();
-          m_state = _state;
-      }
+    public void ChangeGameState(IState _state){
+        if(m_state != null)
+            m_state.Destroy();
+        _state.Init();
+        m_state = _state;
+    }
 
     public void Destory()
     {
@@ -113,8 +121,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
-
-
     }
 
     @Override

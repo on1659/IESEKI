@@ -164,6 +164,7 @@
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">FrameWork_03</string>
+    <string name="double_touch_exit">"'뒤로'" 버튼을 한번 더 누르시면 종료됩니다.</string>
     <string name="hello_world">Hello world!</string>
     <string name="score_show">점수는 : </string>
     <string name="title_activity_loading">Loading</string>

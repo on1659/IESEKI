@@ -16,7 +16,7 @@ public class Player extends SpriteAnimation {
     public int width, height;
     protected  int reviseX, reviseY;
     private double m_deree;
-    private double m_speed;
+    private float m_speed;
     private boolean isTablet;
     int DPI[] = new int[2];
 
@@ -33,6 +33,7 @@ public class Player extends SpriteAnimation {
         reviseX = (int)revise[0];
         reviseY = (int)revise[1];
         isTablet = AppManager.getInstance().IsTablet();
+        m_speed = AppManager.getInstance().getGameSpeed();
         //this.InitSpriteData(10, 1 ,10, 6);
         this.InitSpriteData(1, 1 ,1, 1);
         this.SetPosition(width / 2, height/ 2, DPI[0] * 5, DPI[1] * 5);
@@ -43,21 +44,25 @@ public class Player extends SpriteAnimation {
         m_gameTime = GameTime;
         this.SpriteUpdate(GameTime);
 
+
         //position
         if(isTablet)
         {
-            m_deree = MathCalu.getCos(0, 1, (-(AppManager.getInstance().getSensorY() - reviseY)), (AppManager.getInstance().getSensorX()) - reviseX);
+            m_deree = MathCalu.getCos(0, 1, (-AppManager.getInstance().getSensorY() - reviseY), (AppManager.getInstance().getSensorX()) - reviseX);
 
-            m_cx += ((int)AppManager.getInstance().getSensorY() * 1.0 - reviseY);
-            m_cy -= ((int)AppManager.getInstance().getSensorX() * 1.0 - reviseX);
+
+            m_cx += ((int)AppManager.getInstance().getSensorY()  * m_speed - reviseY);
+            m_cy -=  ((int)AppManager.getInstance().getSensorX() * m_speed - reviseX);
+
         }
         else
         {
             m_deree = MathCalu.getCos(0, 1, (AppManager.getInstance().getSensorX() - reviseX), (AppManager.getInstance().getSensorY()) - reviseY);
 
-            m_cx -= ((int)AppManager.getInstance().getSensorX() * 1.0 - reviseX);
-            m_cy -=  ((int)AppManager.getInstance().getSensorY() *1.0 - reviseY);
+            m_cx -= ((int)AppManager.getInstance().getSensorX()  * m_speed - reviseX);
+            m_cy -=  ((int)AppManager.getInstance().getSensorY() * m_speed - reviseY);
         }
+
         if(m_cx >= width - m_w/2) {
             m_cx = width - m_w/2;
         }
@@ -75,7 +80,7 @@ public class Player extends SpriteAnimation {
             m_cy = m_h/2;
         }
 
-        m_pos.set( (m_cx - m_w/2) , (m_cy - m_h/2), (m_cx + m_w/2), (m_cy + m_h/2) );
+        m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
     }
 
     public void setSensorRevise()
@@ -88,6 +93,11 @@ public class Player extends SpriteAnimation {
     public void onDrawPlayer(Canvas canvas)
     {
         onDraw(canvas, m_deree);
+    }
+
+    public void setSpeed(float speed)
+    {
+        m_speed = speed;
     }
 
 

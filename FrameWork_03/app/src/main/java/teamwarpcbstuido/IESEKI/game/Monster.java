@@ -15,13 +15,12 @@ import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
  */
 public class Monster extends SpriteAnimation
 {
-
-   protected int m_speed;
-   protected  float m_speedX;
-   protected  float m_speedY;
-   protected int xDestiny, yDestiny;
-   protected float xDir, yDir;
-   protected  int width, height;
+    protected int m_speed;
+    protected  float m_speedX;
+    protected  float m_speedY;
+    protected int xDestiny, yDestiny;
+    protected float xDir, yDir;
+    protected  int width, height;
     private boolean m_hardMode;
 
     public Monster(String name)
@@ -37,14 +36,13 @@ public class Monster extends SpriteAnimation
     }
 
     public void onUpdate(float fps) {
-        // m_speed = DPI[1] * 5;
 
         if(m_hardMode)
         {
             m_cy += (m_speedX * yDir) * fps;
             m_cx += (m_speedY * xDir / 3) * fps;
         }
-       else
+        else
         {
             m_cy += (m_speedX * yDir) * fps;
             m_cx += (m_speedY * xDir / 3) * fps;
@@ -85,15 +83,15 @@ public class Monster extends SpriteAnimation
         xDir = (float)dir[0];
         yDir = (float)dir[1];
 
-       //float mGap = yDestiny - m_cy;
-       //if (mGap > 0)
-       //{
-       //    yDir = 1;
-       //}
-       //else {
-       //    yDir = -1;
-       //}
-           // m_speed *= AppManager.getInstance().getDPI()[1] * AppManager.getInstance().Random(5,5);
+        //float mGap = yDestiny - m_cy;
+        //if (mGap > 0)
+        //{
+        //    yDir = 1;
+        //}
+        //else {
+        //    yDir = -1;
+        //}
+        // m_speed *= AppManager.getInstance().getDPI()[1] * AppManager.getInstance().Random(5,5);
         if(m_hardMode == true)
         {
             m_speedY *= 3;
@@ -104,15 +102,15 @@ public class Monster extends SpriteAnimation
             m_speedX *= 2;
             m_speedY *= 2;
         }
-       // xDestiny = _Destiny.left;
-       // yDestiny = _Destiny.top;
+        // xDestiny = _Destiny.left;
+        // yDestiny = _Destiny.top;
 //
-       // if (xDestiny > m_cx)
-       // {
-       //     xDir = 1;
-       // } else {
-       //     xDir = -1;
-       // }
+        // if (xDestiny > m_cx)
+        // {
+        //     xDir = 1;
+        // } else {
+        //     xDir = -1;
+        // }
     }
 
     public void SetHardModeDir(float y)

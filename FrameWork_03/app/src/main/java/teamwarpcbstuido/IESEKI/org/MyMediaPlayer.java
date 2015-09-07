@@ -81,6 +81,25 @@ public class MyMediaPlayer {
         }
     }
 
+
+
+    public void release(int choice) {
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+            switch (choice) {
+
+                case AppManager.MUSIC_SELECT_BGM:
+                  //  m_music_selectmenu.release();
+                    break;
+                case AppManager.MUSIC_MAINGAME_BGM:
+                  //  m_music_maingame.release();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
     /*
     @Override
     public void onDestroy() //사운드의 메모리해제

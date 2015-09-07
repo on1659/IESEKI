@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -31,7 +32,6 @@ public class Link extends Activity {
     public final int GAME_PAUSE = 0;
     public final int GAME_PLAYING = 1;
 
-    public Vibrator vibe;
 
     Pause m_pause;
 
@@ -45,26 +45,12 @@ public class Link extends Activity {
         AppManager.getInstance().RenderManager();
         AppManager.getInstance().setLink(Link.this);
 
-        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//���μ�����ȯ
-
-
         setContentView(R.layout.custom_view);
 
         m_pause = new Pause(Link.this);
         m_pause.setCancelable(false);
 
-
-       // m_selectMenu.m_myMediaPlayer.play(AppManager.MUSIC_MAINGAME_BGM);
-
-
         AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
-
-       //if(AppManager.getInstance().getPreference().DataLoad("gameMode", 0) == GAME_PAUSE)
-       //    AppManager.getInstance().getGameView().onResume();
-
-       //AppManager.getInstance().getPreference().DataSave("gameMode",GAME_PLAYING);
     }
 
     @Override
@@ -75,32 +61,40 @@ public class Link extends Activity {
         AppManager.getInstance().setThread(null);
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
-      //  AppManager.getInstance().getGameView().onResume();
+        //AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("TAG", "onRestart Link");
+        AppManager.getInstance().getGameView().StartThread();
+        AppManager.getInstance().getGameView().onRestart();
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-       // AppManager.getInstance().getGameView().onPause();
-      //  AppManager.getInstance().getPreference().DataSave("gameMode", GAME_PAUSE);
-        m_pause.Exit();
+        AppManager.getInstance().getGameView().onPause();
+        AppManager.getInstance().getGameView().Destory();
+        AppManager.getInstance().setThread(null);
     }
 
-    public void Share()
-    {
-         View rootView = findViewById(android.R.id.content).getRootView();
-          AppManager.getInstance().implement_Capture_Share(this, rootView);// Take_Capture.getInstance().takeScreenshot(rootView);
-    }
-
-
-    public void Finish() {
+   public void Finish() {
+        AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
         AppManager.getInstance().getGameView().Destory();
         this.finish();
+    }
+
+    public void PopupPause()
+    {
+        m_pause.m_return = true;//SetReturn(true);
+	    AppManager.getInstance().getGameView().ShowPause(true);
+        m_pause.show();
     }
 
 
@@ -109,16 +103,10 @@ public class Link extends Activity {
 
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                m_pause.m_return = true;//SetReturn(true);
-                AppManager.getInstance().getGameView().ShowPause(true);
-                m_pause.show();
+                this.PopupPause();
                 AppManager.getInstance().get_myMediaPlayer().pause(AppManager.MUSIC_MAINGAME_BGM);
-                //m_selectMenu.m_myMediaPlayer.pause(AppManager.MUSIC_MAINGAME_BGM);
-                break;
+                 break;
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
-
 }

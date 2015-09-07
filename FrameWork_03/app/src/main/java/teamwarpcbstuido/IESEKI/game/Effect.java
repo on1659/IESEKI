@@ -21,9 +21,6 @@ import teamwarpcbstuido.IESEKI.org.SpriteAnimation;
  */
 public class Effect extends SpriteAnimation {
 
-
-    private int rota;
-
     Bitmap bmp_effect;
     private int m_type;
 
@@ -43,7 +40,6 @@ public class Effect extends SpriteAnimation {
     public Effect(String name, int type) {
         super(name);
         m_type = type;
-        rota = 0;
 
         width = AppManager.getInstance().getWidth();
         height = AppManager.getInstance().getHeight();
@@ -58,34 +54,36 @@ public class Effect extends SpriteAnimation {
         m_activeTime = 5;
     }
 
-    public void Eff_BloodyShield(Item item) //Å¸ÀÌ¸Ó·Î ½Ã°£Àç°í ÀÏÁ¤½Ã°£µ¿¾È µ¹¸®±â (È¿°ú¹ßµ¿ ~ È¿°ú³¡)
+    public void Eff_BloodyShield(Item item) //Å¸ï¿½Ì¸Ó·ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (È¿ï¿½ï¿½ï¿½ßµï¿½ ~ È¿ï¿½ï¿½ï¿½ï¿½)
     {
         m_cx = item.m_cx;
         m_cy = item.m_cy;
         m_w = item.getWidth() / 2 * 3;
         m_h = item.getHight() / 2 * 3;
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        this.InitSpriteData(1, 1, 1, 1);
+        //this.InitSpriteData(1, 1, 1, 1);
+        this.SetSprite(40, 12, 1);
         /*
-        1. ºù±Ûºù±Û µ¹¾Æ°¡°Ô ÇÏ±â
-        2. ¸ó½ºÅÍ¿Í Ãæµ¹Ã³¸®
+        1. ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½
+        2. ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½æµ¹Ã³ï¿½ï¿½
         */
     }
-    public void Eff_PIWheel(Player _player) //Å¸ÀÌ¸Ó·Î ½Ã°£Àç°í ÀÏÁ¤½Ã°£µ¿¾È µ¹¸®±â (È¿°ú¹ßµ¿ ~ È¿°ú³¡)
+    public void Eff_PIWheel(Player _player) //Å¸ï¿½Ì¸Ó·ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (È¿ï¿½ï¿½ï¿½ßµï¿½ ~ È¿ï¿½ï¿½ï¿½ï¿½)
     {
         m_cx = _player.m_cx;
         m_cy = _player.m_cy;
         m_w = _player.getWidth() / 2 * 5;
         m_h = _player.getHight() / 2 * 5;
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-        this.InitSpriteData(1, 1, 1, 1);
+        //this.InitSpriteData(12, 1, 1, 12);
+        this.SetSprite(40, 12, 1);
         /*
-        1. ºù±Ûºù±Û µ¹¾Æ°¡°Ô ÇÏ±â
-        2. ¸ó½ºÅÍ¿Í Ãæµ¹Ã³¸®
+        1. ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½
+        2. ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½æµ¹Ã³ï¿½ï¿½
         */
     }
 
-    public void Eff_Meruss(Item item) //Å¸ÀÌ¸Ó·Î ½Ã°£Àç°í ÀÏÁ¤½Ã°£µ¿¾È µ¹¸®±â (È¿°ú¹ßµ¿ ~ È¿°ú³¡)
+    public void Eff_Meruss(Item item) //Å¸ï¿½Ì¸Ó·ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (È¿ï¿½ï¿½ï¿½ßµï¿½ ~ È¿ï¿½ï¿½ï¿½ï¿½)
     {
         m_cx = item.m_cx;
         m_cy = item.m_cy;
@@ -93,21 +91,21 @@ public class Effect extends SpriteAnimation {
         m_h = item.getHight() / 2 * 3;
         m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
         this.InitSpriteData(1, 1, 1, 1);
-        m_speed = DPI[0] * 4;
+        m_speed = DPI[0] * 3;
         /*
-        1. ºù±Ûºù±Û µ¹¾Æ°¡°Ô ÇÏ±â
-        2. ¸ó½ºÅÍ¿Í Ãæµ¹Ã³¸®
+        1. ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½
+        2. ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½æµ¹Ã³ï¿½ï¿½
         */
     }
 
     public void Eff_Reflect() {
-        //¹Ù·ÎµÚÁ®¶ó ÀÌ°ÅÀÓ
+        //ï¿½Ù·Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½
         m_activeTime = 0;
         return;
     }
 
     public void Eff_Adrenaline() {
-        //¹Ù·ÎµÚÁ®¶ó ÀÌ°ÅÀÓ
+        //ï¿½Ù·Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì°ï¿½ï¿½ï¿½
         m_activeTime = 3;
         pnt2.setColor(Color.WHITE);
         return;
@@ -117,15 +115,11 @@ public class Effect extends SpriteAnimation {
 
         switch (m_type) {
             case GameState.ITEM_PIWheel:
-                canvas.rotate(rota, m_cx, m_cy);
                 onDraw(canvas, pnt);
-                canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
             case GameState.ITEM_BloodyShield:
-                canvas.rotate(rota, m_cx, m_cy);
                 onDraw(canvas, pnt);
-                canvas.rotate(-rota, m_cx, m_cy);
                 break;
 
             case GameState.ITEM_Meruss:
@@ -141,17 +135,19 @@ public class Effect extends SpriteAnimation {
     public void onUpdate(Player _player, float fps) {
 
         switch (m_type) {
+
             case GameState.ITEM_PIWheel:
-                rota += 5;
+                //this.SpriteUpdate(fps);
+                this.OnSpriteUpdate();
                 break;
 
             case GameState.ITEM_BloodyShield:
+                this.OnSpriteUpdate();
                 m_cx = _player.m_cx;
                 m_cy = _player.m_cy;
                 m_w = _player.getWidth() / 2 * 3;
                 m_h = _player.getHight() / 2 * 3;
                 m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
-                rota += 5;
                 break;
 
             case GameState.ITEM_Meruss:
@@ -162,7 +158,7 @@ public class Effect extends SpriteAnimation {
         }
 
         if(m_alpha > 5) {
-            m_alpha -= 1;
+            m_alpha -= 2;
             pnt.setAlpha(m_alpha);
         }
 
@@ -172,9 +168,9 @@ public class Effect extends SpriteAnimation {
         }
     }
 
-    //-------------------------------------------------------Å¸ÀÌ¸Ó ¸Å´ÏÀú
+    //-------------------------------------------------------Å¸ï¿½Ì¸ï¿½ ï¿½Å´ï¿½ï¿½ï¿½
     public void Effect_TimerManager(TimerTask timertask1) {
-        //------------------------------------------------Å¸ÀÌ¸Ó1
+        //------------------------------------------------Å¸ï¿½Ì¸ï¿½1
         timertask1 = new TimerTask() {
             public void run() {
                 try {
@@ -187,15 +183,15 @@ public class Effect extends SpriteAnimation {
         };
 
         Timer Timer1 = new Timer();
-        Timer1.schedule(timertask1, 0, 1000); //½ÇÁ¦½Ã°è 1ÃÊ ¸¶´Ù ½ÇÇà
+        Timer1.schedule(timertask1, 0, 1000); //ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public boolean Die() {
-        if (m_activeTime < 1) //¾ÆÀÌÅÛ ±âº» Áö¼Ó½Ã°£ÀÌ 3ÃÊ
+        if (m_activeTime < 1) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ 3ï¿½ï¿½
         {
-            return true;    //Á¦°ÅÇÏÀÚ
+            return true;    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
-        if (m_cy < 0 || m_cy > height + m_h || m_cx < -m_w || m_cx > width + m_w) //¾î¶² ÇØ»óµµÀÌµç ¸ó½ºÅÍ °¡·Î¼¼·Î±æÀÌ
+        if (m_cy < 0 || m_cy > height + m_h || m_cx < -m_w || m_cx > width + m_w) //ï¿½î¶² ï¿½Ø»ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¼ï¿½ï¿½Î±ï¿½ï¿½ï¿½
             return true;
 
         return false;
