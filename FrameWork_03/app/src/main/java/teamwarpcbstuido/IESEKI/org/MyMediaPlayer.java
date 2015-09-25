@@ -13,16 +13,19 @@ public class MyMediaPlayer {
 
     public MediaPlayer m_music_selectmenu;
     public MediaPlayer m_music_maingame;
+    Context m_context;
 
 
     public MyMediaPlayer(Context context) {
 
-        //MediaPlayer¿ë »ç¿îµå ·Îµå
+        //MediaPlayerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½
         m_music_selectmenu = MediaPlayer.create(context, R.raw.music_selectmenu);
         m_music_selectmenu.setVolume(0.1f * 5, 0.1f * 5);
 
         m_music_maingame = MediaPlayer.create(context, R.raw.music_maingame);
         m_music_maingame.setVolume(0.1f * 5, 0.1f * 5);
+
+        m_context = context;
     }
 
     public void play(int choice) {
@@ -32,12 +35,12 @@ public class MyMediaPlayer {
 
             case AppManager.MUSIC_SELECT_BGM:
                 m_music_selectmenu.setLooping(true);
-                m_music_selectmenu.start(); // (ÁßÁöµÈ À§Ä¡¿¡¼­ ºÎÅÍ) Àç»ý ½ÃÀÛ
+                m_music_selectmenu.start(); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 break;
 
             case AppManager.MUSIC_MAINGAME_BGM:
                 m_music_maingame.setLooping(true);
-                m_music_maingame.start(); // (ÁßÁöµÈ À§Ä¡¿¡¼­ ºÎÅÍ) Àç»ý ½ÃÀÛ
+                m_music_maingame.start(); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 break;
             default:
                 break;
@@ -45,6 +48,31 @@ public class MyMediaPlayer {
         }
     }
 
+    public void reStartplay(int choice) {
+
+        if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
+            switch (choice) {
+
+                case AppManager.MUSIC_SELECT_BGM:
+                    m_music_selectmenu.stop();
+                    m_music_selectmenu = MediaPlayer.create(m_context, R.raw.music_selectmenu);
+                    m_music_selectmenu.setVolume(0.1f * 5, 0.1f * 5);
+                    m_music_selectmenu.setLooping(true);
+                    m_music_selectmenu.start(); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    break;
+
+                case AppManager.MUSIC_MAINGAME_BGM:
+                    m_music_maingame.stop();
+                    m_music_maingame = MediaPlayer.create(m_context, R.raw.music_maingame);
+                    m_music_maingame.setVolume(0.1f * 5, 0.1f * 5);
+                    m_music_maingame.setLooping(true);
+                    m_music_maingame.start(); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     public void stop(int choice) {
         if (AppManager.getInstance().getPreference().MusicOptionLoad() == true) {
@@ -102,7 +130,7 @@ public class MyMediaPlayer {
 
     /*
     @Override
-    public void onDestroy() //»ç¿îµåÀÇ ¸Þ¸ð¸®ÇØÁ¦
+    public void onDestroy() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         if (m_main_gameBgm_01 != null) m_main_gameBgm_01.release();
     }
@@ -113,15 +141,15 @@ public class MyMediaPlayer {
     //        m_music_selectmenu.seekTo(0);
     //}
 
-    //---------------------------------------------------Âü°í
+    //---------------------------------------------------ï¿½ï¿½ï¿½ï¿½
     /*
-    mPlayer.setVolume(0.8f, 0.8f); // º¼·ý ¼³Á¤
-    mPlayer.setLooping(true); // ¹Ýº¹ ¿¬ÁÖ
-    mPlayer.start(); // (ÁßÁöµÈ À§Ä¡¿¡¼­ ºÎÅÍ) Àç»ý ½ÃÀÛ
+    mPlayer.setVolume(0.8f, 0.8f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    mPlayer.setLooping(true); // ï¿½Ýºï¿½ ï¿½ï¿½ï¿½ï¿½
+    mPlayer.start(); // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
-    mPlayer.stop(); // Àç»ý ¸ØÃã
-    mPlayer.pause(); // ÀÏ½Ã Á¤Áö
+    mPlayer.stop(); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    mPlayer.pause(); // ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
      */
     //---------------------------------------------------
 

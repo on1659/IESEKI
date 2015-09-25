@@ -50,12 +50,13 @@ public class Link extends Activity {
         m_pause = new Pause(Link.this);
         m_pause.setCancelable(false);
 
-        AppManager.getInstance().get_myMediaPlayer().play(AppManager.MUSIC_MAINGAME_BGM);
+        AppManager.getInstance().get_myMediaPlayer().reStartplay(AppManager.MUSIC_MAINGAME_BGM);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AppManager.getInstance().get_myMediaPlayer().reStartplay(AppManager.MUSIC_SELECT_BGM);
         AppManager.getInstance().getGameView().Destory();
         AppManager.getInstance().setGameView(null);
         AppManager.getInstance().setThread(null);
@@ -70,7 +71,6 @@ public class Link extends Activity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("TAG", "onRestart Link");
         AppManager.getInstance().getGameView().StartThread();
         AppManager.getInstance().getGameView().onRestart();
 

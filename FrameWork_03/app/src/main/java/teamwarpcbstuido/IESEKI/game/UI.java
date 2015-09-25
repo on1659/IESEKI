@@ -100,7 +100,7 @@ public class UI extends GraphicObject {
 
     public void updateScore()
     {
-        m_score ++;
+        m_score +=3;
     }
 
     public void ScoreInit(){ m_score = 0; }

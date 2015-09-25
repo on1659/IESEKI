@@ -612,6 +612,11 @@ public class GameState implements IState {
 
     //Make
     public void Make_Monster(int make_num, int make_type, int hardMode) {
+
+        int speed = 6;
+        if(mGameTimer < 2000)speed = 4;
+        if(mGameTimer < 4000)speed = 5;
+        if(mGameTimer < 6000)speed = 6;
         for(int i = 0; i < make_num; i++)
         {
             Monster mon = null;
@@ -620,7 +625,7 @@ public class GameState implements IState {
             switch(make_type)
             {
                 case Monster_Type_01://Monster_Type_01
-                    mon = new Monster_Type_01(DPI);
+                    mon = new Monster_Type_01(DPI, speed);
                     break;
 
                 case Monster_Type_02://Monster_Type_02:
@@ -715,14 +720,10 @@ public class GameState implements IState {
                 else if(GameOver_Check == true && m_gameover.r_restart.contains(tx,ty))
                 {
                     m_gameover.restart_btn_push = true;
-
+                    AppManager.getInstance().get_myMediaPlayer().reStartplay(AppManager.MUSIC_MAINGAME_BGM);
                     AppManager.getInstance().GetTimerTask().cancel();
-                    //AppManager.getInstance().maingame_timer = null;
                     AppManager.getInstance().GetTimer().cancel();
-                    //AppManager.getInstance().Timer1 = null;
-
                     MainGame_TimerManager();
-
                     this.RestartGame();
                 }
                 break;
