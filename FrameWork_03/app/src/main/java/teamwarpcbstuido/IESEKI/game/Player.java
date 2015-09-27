@@ -20,6 +20,8 @@ public class Player extends SpriteAnimation {
     private boolean isTablet;
     int DPI[] = new int[2];
 
+    public boolean Equip_BloodyShield; //플레이어가 블러디쉴드를 가진 상태인가?(BloodyShield Modify)
+
     public Player(String name)
     {
         super(name);
@@ -35,8 +37,10 @@ public class Player extends SpriteAnimation {
         isTablet = AppManager.getInstance().IsTablet();
         m_speed = AppManager.getInstance().getGameSpeed();
         //this.InitSpriteData(10, 1 ,10, 6);
-        this.InitSpriteData(1, 1 ,1, 1);
+        this.InitSpriteData(1, 1, 1, 1);
         this.SetPosition(width / 2, height/ 2, DPI[0] * 5, DPI[1] * 5);
+
+        Equip_BloodyShield = false; //초기 블러디쉴드 false(BloodyShield Modify)
     }
 
     public void onUpdate(float GameTime)

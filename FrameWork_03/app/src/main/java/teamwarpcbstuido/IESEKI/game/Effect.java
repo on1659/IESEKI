@@ -148,6 +148,10 @@ public class Effect extends SpriteAnimation {
                 m_w = _player.getWidth() / 2 * 3;
                 m_h = _player.getHight() / 2 * 3;
                 m_pos.set((m_cx - m_w / 2), (m_cy - m_h / 2), (m_cx + m_w / 2), (m_cy + m_h / 2));
+
+                //블러디 쉴드 이펙트가 생존해 있는 기간동안에는 블러디쉴드 상태를 계속 true해줌(BloodyShield Modify)
+                _player.Equip_BloodyShield = true;
+
                 break;
 
             case GameState.ITEM_Meruss:

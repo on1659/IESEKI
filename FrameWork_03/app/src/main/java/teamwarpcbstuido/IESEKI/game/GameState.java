@@ -132,7 +132,10 @@ public class GameState implements IState {
         m_monster.clear();
         m_effect.clear();
         m_item.clear();
+
         m_player.SetPosition(width / 2, height / 2);
+        m_player.Equip_BloodyShield = false; //블러디쉴드 상태 해제(BloodyShield Modify)
+
         m_ui.ScoreInit();
 
         FPS = 0;
@@ -351,7 +354,16 @@ public class GameState implements IState {
                 for (int i = 0; i < m_effect.size(); i++) {
                     m_effect.get(i).onUpdate(m_player, FPS);
 
-                    if (m_effect.get(i).Die()) m_effect.remove(i);
+                    if (m_effect.get(i).Die()) {
+
+                        //이펙트 해제될 때, 블러디쉴드 장착해제(BloodyShield Modify)
+                        if(m_effect.get(i).getType() == ITEM_BloodyShield)
+                            m_player.Equip_BloodyShield = false;
+
+                        m_effect.remove(i);
+                    }
+
+
                 }
             }
             //Move
@@ -369,10 +381,7 @@ public class GameState implements IState {
                     if (m_item.get(i).DIe()) m_item.remove(i);
                 }
             }
-
-
         }
-
     }
 
     @Override
@@ -390,9 +399,6 @@ public class GameState implements IState {
     }
 
     public void Collision() {
-
-        boolean isCollision = false;
-
         if (m_monster.size() != 0)
         {
             for (int i = 0; i < m_monster.size() - 1; i++) {
@@ -401,29 +407,30 @@ public class GameState implements IState {
                 //Circle Collision
                 if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_player.getX(), m_player.getY(), m_player.getRadius()))
                 {
-                    for(int num = 0; num < m_effect.size(); num++)
+
+                    //플레이어 블러디쉴드 따로 충돌검사(BloodyShield Modify)
+                    if(m_player.Equip_BloodyShield == true)
                     {
-                        if(m_effect.get(num).getType() == ITEM_BloodyShield)
-                            isCollision = true;
+                        m_ui.killMonster(50);
+                        m_monster.remove(i);
+                        AppManager.getInstance().get_mySoundPool().play(AppManager.EFFECT_MONSTER_DIE);
                     }
-                    // m_monster.remove(i);
+                    else
+                    {
+                        if (m_ui.getScore() > AppManager.getInstance().getPreference().BestScoreLoad())
+                            AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
 
-                    if(isCollision)
-                        break;
+                        GameOver_Check = true;
 
-                    if(m_ui.getScore()> AppManager.getInstance().getPreference().BestScoreLoad())
-                        AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
-
-                    GameOver_Check = true;
-
-                    if(AppManager.getInstance().getPreference().VibeOptionLoad() == true)
-                        AppManager.getInstance().getVibe(500); //몬스터에게 죽었을 시, 진동.
+                        if (AppManager.getInstance().getPreference().VibeOptionLoad() == true)
+                            AppManager.getInstance().getVibe(500); //몬스터에게 죽었을 시, 진동.
+                    }
                 }
 
                 for (int effNum = 0; effNum < m_effect.size(); effNum++)
                 {
                     //Circle Collision
-                    if (m_effect.get(effNum).getType() == ITEM_PIWheel || m_effect.get(effNum).getType() == ITEM_BloodyShield || m_effect.get(effNum).getType() == ITEM_Meruss)
+                    if (m_effect.get(effNum).getType() == ITEM_PIWheel || m_effect.get(effNum).getType() == ITEM_Meruss)
                     {
                         if (Collision.collisionCircle(m_monster.get(i).getX(), m_monster.get(i).getY(), m_monster.get(i).getRadius(), m_effect.get(effNum).getX(), m_effect.get(effNum).getY(), m_effect.get(effNum).getRadius()))
                         {
@@ -433,8 +440,6 @@ public class GameState implements IState {
                         }
                     }
                 }
-
-
             }
         }
 
