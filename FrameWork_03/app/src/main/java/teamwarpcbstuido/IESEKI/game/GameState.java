@@ -417,8 +417,9 @@ public class GameState implements IState {
                     }
                     else
                     {
-                        if (m_ui.getScore() > AppManager.getInstance().getPreference().BestScoreLoad())
-                            AppManager.getInstance().getPreference().BestScoreSave(m_ui.getScore());
+                        //------------------16'.03.05 JJY
+                        m_gameover.ScoreCheck();
+                        //------------------16'.03.05 JJY
 
                         GameOver_Check = true;
 
@@ -731,12 +732,28 @@ public class GameState implements IState {
                     MainGame_TimerManager();
                     this.RestartGame();
                 }
+
+                //------------------16'.03.05 JJY
+                else if(GameOver_Check == true && m_gameover.r_share.contains(tx,ty))
+                {
+                    m_gameover.share_btn_push = true;
+
+                    //Share Func
+                    //
+                    //
+                }
+                //------------------16'.03.05 JJY
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 break;
 
             case MotionEvent.ACTION_UP:
+                //------------------16'.03.05 JJY
+               m_gameover.gomain_btn_push = false;
+               m_gameover.restart_btn_push = false;
+               m_gameover.share_btn_push = false;
+                //------------------16'.03.05 JJY
                 break;
         }
 
